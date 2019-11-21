@@ -304,6 +304,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/21/leetcode/17.%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/21/leetcode/17.%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/" itemprop="url">leetcode/17.电话号码的字母组合</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-21T22:29:18+08:00">
+                2019-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="17-电话号码的字母组合（广度优先法）"><a href="#17-电话号码的字母组合（广度优先法）" class="headerlink" title="17.电话号码的字母组合（广度优先法）"></a>17.电话号码的字母组合（广度优先法）</h1><h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><p>淦……最近英文版leetcode不知道为啥好像崩了。（顺便给自己偷几天懒有了正当理由，不过感觉中文版的好多了</p>
+<p><strong>题目描述</strong></p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/original_images/17_telephone_keypad.png" alt="jpg"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。</span><br><span class="line"></span><br><span class="line">给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</span><br><span class="line"></span><br><span class="line">示例:</span><br><span class="line"></span><br><span class="line">输入：&quot;23&quot;</span><br><span class="line">输出：[&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</span><br><span class="line"></span><br><span class="line">来源：力扣（LeetCode）</span><br><span class="line">链接：https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number</span><br><span class="line">著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>准备工作</strong></p>
+<p>为了简单的找到数字对应的字母，采用哈希表储存：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="built_in">string</span>&gt; m&#123;&#123;<span class="string">'2'</span>, <span class="string">"abc"</span>&#125;,&#123;<span class="string">'3'</span>,<span class="string">"def"</span>&#125;,&#123;<span class="string">'4'</span>,<span class="string">"ghi"</span>&#125;,&#123;<span class="string">'5'</span>,<span class="string">"jkl"</span>&#125;,&#123;<span class="string">'6'</span>,<span class="string">"mno"</span>&#125;,&#123;<span class="string">'7'</span>,<span class="string">"pqrs"</span>&#125;,&#123;<span class="string">'8'</span>,<span class="string">"tuv"</span>&#125;,&#123;<span class="string">'9'</span>,<span class="string">"wxyz"</span>&#125;&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>算法说明</strong></p>
+<p>由于采用的是广度优先搜索的思想，所以本题我们借助队列来实现算法。</p>
+<p>由于队列为“先进先出”的容器，将首个数字对应的全部字符放进队列后进行循环遍历。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//先存储第一个对应的字符</span><br><span class="line">        for(int i = 0; i &lt; m[digits[0]].size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            string str;</span><br><span class="line">			str.push_back(m[digits[0]][i]);</span><br><span class="line">            q.push(str);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在循环中，每次将队列头与下个数字对应的全部字符依次连接后，进入队列。队列头与每个字符依次连接和出队列。注意由于将新的字符串压入队列，所以在循环之前需要获得队列的长度，在队列长度减少的情况下进行循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int length = q.size();</span><br><span class="line">     while(length--)</span><br><span class="line">      &#123;</span><br><span class="line">          for(int j = 0; j &lt; m[digits[i]].size(); j++)</span><br><span class="line">          &#123;</span><br><span class="line">              s = q.front();</span><br><span class="line">              s = s + m[digits[i]][j];</span><br><span class="line">              q.push(s);</span><br><span class="line">          &#125;</span><br><span class="line">          q.pop();    //弹出队头</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>全部代码如下</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;string&gt; letterCombinations(string digits) &#123;</span><br><span class="line">        vector&lt;string&gt; result;</span><br><span class="line">        map&lt;char, string&gt; m&#123;&#123;&apos;2&apos;, &quot;abc&quot;&#125;,&#123;&apos;3&apos;,&quot;def&quot;&#125;,&#123;&apos;4&apos;,&quot;ghi&quot;&#125;,&#123;&apos;5&apos;,&quot;jkl&quot;&#125;,&#123;&apos;6&apos;,&quot;mno&quot;&#125;,&#123;&apos;7&apos;,&quot;pqrs&quot;&#125;,&#123;&apos;8&apos;,&quot;tuv&quot;&#125;,&#123;&apos;9&apos;,&quot;wxyz&quot;&#125;&#125;; //建立哈希表</span><br><span class="line">        queue&lt;string&gt; q;    //建立队列</span><br><span class="line"></span><br><span class="line">        //先存储第一个对应的字符</span><br><span class="line">        for(int i = 0; i &lt; m[digits[0]].size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            string str;</span><br><span class="line">			str.push_back(m[digits[0]][i]);</span><br><span class="line">            q.push(str);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        string s;   //建立临时字符串</span><br><span class="line">        //开始遍历</span><br><span class="line">        for(int i = 1; i &lt; digits.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            int length = q.size();</span><br><span class="line">            while(length--)</span><br><span class="line">            &#123;</span><br><span class="line">                for(int j = 0; j &lt; m[digits[i]].size(); j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    s = q.front();</span><br><span class="line">                    s = s + m[digits[i]][j];</span><br><span class="line">                    q.push(s);</span><br><span class="line">                &#125;</span><br><span class="line">                q.pop();    //弹出队头</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        while(!q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            result.push_back(q.front());</span><br><span class="line">            q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>后记</strong></p>
+<p>其实原来想着用最暴力最简单的方法来做的，但是实在是太麻烦了。借鉴了解题区【苏格】大佬的思路。十分感谢。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/leetcode/832.%20Flipping%20an%20Image/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1056,7 +1207,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
