@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>HTML学习/HTML基础讲解</title>
+    <url>/2020/01/16/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%9F%BA%E7%A1%80%E8%AE%B2%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="1、HTML基础标签"><a href="#1、HTML基础标签" class="headerlink" title="1、HTML基础标签"></a>1、HTML基础标签</h2><p><code>&lt;!DOCTYPE html&gt;</code></p>
+<p>是HTML5的标识头，html的不同版本具有不同的标识头</p>
+<p><code>&lt;html lang=&quot;en&quot;&gt;</code></p>
+<p>语言默认为英文</p>
+<p><code>&lt;head&gt;</code> <code>&lt;body&gt;</code></p>
+<p><code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code>   指定编码格式</p>
+<p><code>&lt;title&gt;</code>  指定标题</p>
+<h2 id="2、HTML标题"><a href="#2、HTML标题" class="headerlink" title="2、HTML标题"></a>2、HTML标题</h2><p><code>&lt;h1&gt; ...&lt;h6&gt;</code> </p>
+<p>标题由大到小</p>
+<h2 id="3、HTML段落"><a href="#3、HTML段落" class="headerlink" title="3、HTML段落"></a>3、HTML段落</h2><p><code>&lt;p&gt;...&lt;/p&gt;</code></p>
+<p>在这之后的语句会另起一行</p>
+<h2 id="4、HTML超链接"><a href="#4、HTML超链接" class="headerlink" title="4、HTML超链接"></a>4、HTML超链接</h2><p><code>&lt;a href=&quot;链接地址&quot;&gt;链接名字&lt;/a&gt;</code></p>
+<h2 id="5、HTML图片链接"><a href="#5、HTML图片链接" class="headerlink" title="5、HTML图片链接"></a>5、HTML图片链接</h2><p><code>&lt;img src=&quot;图片地址&quot;&gt;</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>leetcode/53.最大子序和</title>
+    <url>/2020/01/10/leetcode/53.%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/</url>
+    <content><![CDATA[<p>##最大子序和##</p>
+]]></content>
+  </entry>
+  <entry>
     <title>leetcode/17.电话号码的字母组合</title>
     <url>/2019/11/21/leetcode/17.%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88/</url>
     <content><![CDATA[<h1 id="17-电话号码的字母组合（广度优先法）"><a href="#17-电话号码的字母组合（广度优先法）" class="headerlink" title="17.电话号码的字母组合（广度优先法）"></a>17.电话号码的字母组合（广度优先法）</h1><h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><p>淦……最近英文版leetcode不知道为啥好像崩了。（顺便给自己偷几天懒有了正当理由，不过感觉中文版的好多了</p>
