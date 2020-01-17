@@ -3,9 +3,7 @@
   <entry>
     <title>HTML学习/HTML基础讲解</title>
     <url>/2020/01/16/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%9F%BA%E7%A1%80%E8%AE%B2%E8%A7%A3/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: hexo 添加标签和分类 </span><br><span class="line">date: 2018-12-01 01:06:34</span><br><span class="line">categories: </span><br><span class="line">- hexo</span><br><span class="line">- config</span><br><span class="line">- tagstags</span><br></pre></td></tr></table></figure>
-
-<h2 id="1、HTML基础标签"><a href="#1、HTML基础标签" class="headerlink" title="1、HTML基础标签"></a>1、HTML基础标签</h2><p><code>&lt;!DOCTYPE html&gt;</code></p>
+    <content><![CDATA[<h2 id="1、HTML基础标签"><a href="#1、HTML基础标签" class="headerlink" title="1、HTML基础标签"></a>1、HTML基础标签</h2><p><code>&lt;!DOCTYPE html&gt;</code></p>
 <p>是HTML5的标识头，html的不同版本具有不同的标识头</p>
 <p><code>&lt;html lang=&quot;en&quot;&gt;</code></p>
 <p>语言默认为英文</p>
