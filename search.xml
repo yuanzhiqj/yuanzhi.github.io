@@ -40,6 +40,9 @@
 <h3 id="2、-格式化"><a href="#2、-格式化" class="headerlink" title="2、 格式化"></a>2、 格式化</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;b&gt;					定义粗体文本</span><br><span class="line">&lt;big&gt;				定义大号字</span><br><span class="line">&lt;em&gt;				定义着重文字</span><br><span class="line">&lt;i&gt;					定义斜体字</span><br><span class="line">&lt;small&gt;				定义小体字</span><br><span class="line">&lt;sub&gt;				定义下标字</span><br><span class="line">&lt;sup&gt;				定义上标字</span><br><span class="line">&lt;ins&gt;				定义插入字</span><br><span class="line">&lt;del&gt;				定义删除字</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>HTML</category>
+      </categories>
   </entry>
   <entry>
     <title>leetcode/113.杨辉三角</title>
