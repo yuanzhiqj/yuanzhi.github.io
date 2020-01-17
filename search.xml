@@ -19,10 +19,13 @@
 ]]></content>
   </entry>
   <entry>
-    <title>leetcode/53.最大子序和</title>
+    <title>最大子序和</title>
     <url>/2020/01/10/leetcode/53.%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C/</url>
     <content><![CDATA[<p>##最大子序和##</p>
 ]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
   </entry>
   <entry>
     <title>leetcode/17.电话号码的字母组合</title>
