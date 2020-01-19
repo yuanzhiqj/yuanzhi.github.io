@@ -3,11 +3,7 @@
   <entry>
     <title>机器学习/卷积神经网络</title>
     <url>/2020/01/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">categories:</span><br><span class="line"> - 机器学习</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h1><p>valid卷积(不进行填充)：</p>
+    <content><![CDATA[<h1 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h1><p>valid卷积(不进行填充)：</p>
 <p><code>nxn * fxf → n-f+1 x n-f+1</code></p>
 <p>same卷积(卷积后与输出与输入尺寸一样)</p>
 <p><code>n+2p-f+1 x n+2p-f+1</code></p>
@@ -25,6 +21,9 @@
 <p>常用：f=2,s=2。相当于高度宽度减半。</p>
 <h3 id="平均池化-Average-pooling"><a href="#平均池化-Average-pooling" class="headerlink" title="平均池化(Average pooling)"></a>平均池化(Average pooling)</h3><p>范围内求平均值</p>
 ]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
   </entry>
   <entry>
     <title>HTML学习/HTML样式</title>
