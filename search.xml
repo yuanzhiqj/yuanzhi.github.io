@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>机器学习/卷积神经网络</title>
+    <url>/2020/01/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">categories</span><br><span class="line"> - 机器学习</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h1><p>valid卷积(不进行填充)：</p>
+<p><code>nxn * fxf → n-f+1 x n-f+1</code></p>
+<p>same卷积(卷积后与输出与输入尺寸一样)</p>
+<p><code>n+2p-f+1 x n+2p-f+1</code></p>
+<h1 id="卷积步长（stride）"><a href="#卷积步长（stride）" class="headerlink" title="卷积步长（stride）"></a>卷积步长（stride）</h1><p><code>(n+2p-f)/s+1 x (n+2p-f)/s+1               //向下取整</code></p>
+<h1 id="三维卷积"><a href="#三维卷积" class="headerlink" title="三维卷积"></a>三维卷积</h1><p><code>nxnxnc * fxfxnc → n-f+1 x n-f+1 x nc&#39;</code></p>
+<p>nc = nc </p>
+<p>nc’为使用过滤器的数目</p>
+<h1 id="单层卷积网络"><a href="#单层卷积网络" class="headerlink" title="单层卷积网络"></a>单层卷积网络</h1><p>f<sup>[l]</sup> = fliter size</p>
+<p>p<sup>[l]</sup> = padding</p>
+<p>s<sup>[l]</sup> = stride</p>
+<p>nc<sup>[l]</sup> = number of fliters</p>
+<p>Input: n<sub>H</sub><sup>[l-1]</sup> x n<sub>W</sub><sup>[l-1]</sup> x n<sub>C</sub><sup>[l-1]</sup></p>
+<p>Output: n<sub>H</sub><sup>[l]</sup> x n<sub>W</sub><sup>[l]</sup> x n<sub>C</sub><sup>[l]</sup></p>
+<h1 id="池化层（Pooling-layer）"><a href="#池化层（Pooling-layer）" class="headerlink" title="池化层（Pooling layer）"></a>池化层（Pooling layer）</h1><h3 id="最大池化-max-pooling"><a href="#最大池化-max-pooling" class="headerlink" title="最大池化(max pooling)"></a>最大池化(max pooling)</h3><p>取范围内的最大值，梯度下降无需改变任何值（即确定了超参）</p>
+<p>常用：f=2,s=2。相当于高度宽度减半。</p>
+<h3 id="平均池化-Average-pooling"><a href="#平均池化-Average-pooling" class="headerlink" title="平均池化(Average pooling)"></a>平均池化(Average pooling)</h3><p>范围内求平均值</p>
+]]></content>
+  </entry>
+  <entry>
     <title>HTML学习/HTML样式</title>
     <url>/2020/01/17/HTML%E5%AD%A6%E4%B9%A0/HTML%E6%A0%B7%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="HTML样式"><a href="#HTML样式" class="headerlink" title="HTML样式"></a>HTML样式</h1><h3 id="1、标签"><a href="#1、标签" class="headerlink" title="1、标签"></a>1、标签</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;:样式定义</span><br><span class="line">&lt;link&gt;:资源引用</span><br></pre></td></tr></table></figure>
