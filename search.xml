@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>HTML学习/HTML框架 背景 实体</title>
+    <url>/2020/01/29/HTML%E5%AD%A6%E4%B9%A0/HTML%E6%A1%86%E6%9E%B6%20%E8%83%8C%E6%99%AF%20%E5%AE%9E%E4%BD%93/</url>
+    <content><![CDATA[<hr>
+<p>categories</p>
+<ul>
+<li>HTML</li>
+</ul>
+<hr>
+<h1 id="HTML框架"><a href="#HTML框架" class="headerlink" title="HTML框架"></a>HTML框架</h1><p>1、框架标签（frame）</p>
+<p>框架对于页面的设计有着很大的作用</p>
+<p>2、框架集标签（&lt;frameset&gt;）</p>
+<p>框架集标签定义如何将窗口分割为框架</p>
+<p>每一个frameset定义一系列行或列</p>
+<p>rows/cols的值规定了每行或每列占据屏幕的面积</p>
+<p>3、常用标签：</p>
+<p>noresize:固定框架大小</p>
+<p>cols:列</p>
+<p>rows:行</p>
+<p>4、内联框架</p>
+<p>iframe</p>
+<h1 id="HTML背景"><a href="#HTML背景" class="headerlink" title="HTML背景"></a>HTML背景</h1><h3 id="1、背景标签"><a href="#1、背景标签" class="headerlink" title="1、背景标签"></a>1、背景标签</h3><p>​    background</p>
+<h3 id="2、背景颜色"><a href="#2、背景颜色" class="headerlink" title="2、背景颜色"></a>2、背景颜色</h3><p>   bgcolor</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>HTML学习/HTML表单</title>
+    <url>/2020/01/28/HTML%E5%AD%A6%E4%B9%A0/HTML%E8%A1%A8%E5%8D%95/</url>
+    <content><![CDATA[<h1 id="HTML表单"><a href="#HTML表单" class="headerlink" title="HTML表单"></a>HTML表单</h1><p>表单用于获取不同类型的用户输入</p>
+<p>常用表单标签</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;form&gt;			表单</span><br><span class="line">&lt;input&gt;			输入域</span><br><span class="line">&lt;textarea&gt;		文本域</span><br><span class="line">&lt;label&gt;			控制标签</span><br><span class="line">&lt;fieldset&gt;		定义域</span><br><span class="line">&lt;legend&gt;		域的标题</span><br><span class="line">&lt;select&gt;		选择列表</span><br><span class="line">&lt;optgroup&gt;		选项组</span><br><span class="line">&lt;option&gt;		下拉列表中的表项</span><br><span class="line">&lt;button&gt;		按钮</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h3><h4 id="1、复选框"><a href="#1、复选框" class="headerlink" title="1、复选框"></a>1、复选框</h4><p><code>&lt;input type=&quot;checkbox&quot;&gt;</code></p>
+<h4 id="2、单选按钮"><a href="#2、单选按钮" class="headerlink" title="2、单选按钮"></a>2、单选按钮</h4><p><code>&lt;input type=&quot;radio&quot; name=&quot;...&quot;&gt;    //name属性需要相同</code></p>
+<h4 id="3、下拉列表"><a href="#3、下拉列表" class="headerlink" title="3、下拉列表"></a>3、下拉列表</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>www.baidu.com<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>https://yuanzhiqj.github.io<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、文本域"><a href="#4、文本域" class="headerlink" title="4、文本域"></a>4、文本域</h4><p><code>&lt;textarea cols=&quot;30&quot; rows=&quot;30&quot;&gt;请在此填写&lt;/textarea&gt;</code></p>
+<h4 id="5、创建按钮"><a href="#5、创建按钮" class="headerlink" title="5、创建按钮"></a>5、创建按钮</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"按钮"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="表单与php交互"><a href="#表单与php交互" class="headerlink" title="表单与php交互"></a>表单与php交互</h1><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">form action="" method="get"&gt;</span><br><span class="line">        用户名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">        密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>HTML</category>
+      </categories>
+  </entry>
+  <entry>
     <title>HTML学习/HTML列表 块 布局</title>
     <url>/2020/01/27/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%88%97%E8%A1%A8%20%E5%9D%97%20%E5%B8%83%E5%B1%80/</url>
     <content><![CDATA[<h1 id="HTML列表"><a href="#HTML列表" class="headerlink" title="HTML列表"></a>HTML列表</h1><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span>				有序列表	//单元前面有顺序标识</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>				无序列表	//单元前面只有·</span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>				列表项</span><br><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span>				列表</span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>				列表项</span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>				描述</span><br></pre></td></tr></table></figure>
