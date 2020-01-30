@@ -3,13 +3,7 @@
   <entry>
     <title>HTML学习/HTML框架 背景 实体</title>
     <url>/2020/01/29/HTML%E5%AD%A6%E4%B9%A0/HTML%E6%A1%86%E6%9E%B6%20%E8%83%8C%E6%99%AF%20%E5%AE%9E%E4%BD%93/</url>
-    <content><![CDATA[<hr>
-<p>categories</p>
-<ul>
-<li>HTML</li>
-</ul>
-<hr>
-<h1 id="HTML框架"><a href="#HTML框架" class="headerlink" title="HTML框架"></a>HTML框架</h1><p>1、框架标签（frame）</p>
+    <content><![CDATA[<h1 id="HTML框架"><a href="#HTML框架" class="headerlink" title="HTML框架"></a>HTML框架</h1><p>1、框架标签（frame）</p>
 <p>框架对于页面的设计有着很大的作用</p>
 <p>2、框架集标签（&lt;frameset&gt;）</p>
 <p>框架集标签定义如何将窗口分割为框架</p>
@@ -30,6 +24,9 @@
 <h1 id="HTML实体"><a href="#HTML实体" class="headerlink" title="HTML实体"></a>HTML实体</h1><h3 id="1、实体"><a href="#1、实体" class="headerlink" title="1、实体"></a>1、实体</h3><p>HTML中预留字符串必须被替换成字符实体</p>
 <p>如：&lt;、&gt;、&amp;</p>
 ]]></content>
+      <categories>
+        <category>HTML</category>
+      </categories>
   </entry>
   <entry>
     <title>HTML学习/HTML表单</title>
