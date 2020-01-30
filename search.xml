@@ -23,6 +23,12 @@
 <p>iframe</p>
 <h1 id="HTML背景"><a href="#HTML背景" class="headerlink" title="HTML背景"></a>HTML背景</h1><h3 id="1、背景标签"><a href="#1、背景标签" class="headerlink" title="1、背景标签"></a>1、背景标签</h3><p>​    background</p>
 <h3 id="2、背景颜色"><a href="#2、背景颜色" class="headerlink" title="2、背景颜色"></a>2、背景颜色</h3><p>   bgcolor</p>
+<h3 id="3、背景颜色"><a href="#3、背景颜色" class="headerlink" title="3、背景颜色"></a>3、背景颜色</h3><p>颜色是由一个十六进制符号来定义、这个符号由红色绿色蓝色的值组成（RGB）</p>
+<p>颜色值最小值：0(#00)</p>
+<p>颜色值最大值：255(#FF)</p>
+<p>红色：#FF0000 绿色：#00FF00 蓝色：#0000FF</p>
+<h1 id="HTML实体"><a href="#HTML实体" class="headerlink" title="HTML实体"></a>HTML实体</h1><h3 id="1、实体"><a href="#1、实体" class="headerlink" title="1、实体"></a>1、实体</h3><p>HTML中预留字符串必须被替换成字符实体</p>
+<p>如：&lt;、&gt;、&amp;</p>
 ]]></content>
   </entry>
   <entry>
