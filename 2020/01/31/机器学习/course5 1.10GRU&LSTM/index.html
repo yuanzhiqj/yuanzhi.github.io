@@ -79,15 +79,77 @@
 
 
 
-<meta name="description" content="HTML列表123456&amp;lt;ol&amp;gt;				有序列表	&#x2F;&#x2F;单元前面有顺序标识&amp;lt;ul&amp;gt;				无序列表	&#x2F;&#x2F;单元前面只有·&amp;lt;li&amp;gt;				列表项&amp;lt;dl&amp;gt;				列表&amp;lt;dt&amp;gt;				列表项&amp;lt;dd&amp;gt;				描述  1、无序列表使用标签:&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt; 属性：disc（实心圆）、circle（空心圆）、squar">
+<meta name="description" content="原文链接： https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;591fd8b5bbd0      reset gate  、update gate  、候选隐藏层 （与 LSTM 的)类似，可以看成是当前时刻的新信息，其中用来控制需要保留多少之前的记忆） 为了克服RNN 无法很好处理远距离依赖而提出了 LSTM，而 GRU 是LSTM 的一个变体，GRU 保持了 LSTM 的效果同时又使结构更加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML学习&#x2F;HTML列表 块 布局">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;27&#x2F;HTML%E5%AD%A6%E4%B9%A0&#x2F;HTML%E5%88%97%E8%A1%A8%20%E5%9D%97%20%E5%B8%83%E5%B1%80&#x2F;index.html">
+<meta property="og:title" content="机器学习&#x2F;course5 1.10GRU&amp;LSTM">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;31&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0&#x2F;course5%201.10GRU&amp;LSTM&#x2F;index.html">
 <meta property="og:site_name" content="元直">
-<meta property="og:description" content="HTML列表123456&amp;lt;ol&amp;gt;				有序列表	&#x2F;&#x2F;单元前面有顺序标识&amp;lt;ul&amp;gt;				无序列表	&#x2F;&#x2F;单元前面只有·&amp;lt;li&amp;gt;				列表项&amp;lt;dl&amp;gt;				列表&amp;lt;dt&amp;gt;				列表项&amp;lt;dd&amp;gt;				描述  1、无序列表使用标签:&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt; 属性：disc（实心圆）、circle（空心圆）、squar">
+<meta property="og:description" content="原文链接： https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;591fd8b5bbd0      reset gate  、update gate  、候选隐藏层 （与 LSTM 的)类似，可以看成是当前时刻的新信息，其中用来控制需要保留多少之前的记忆） 为了克服RNN 无法很好处理远距离依赖而提出了 LSTM，而 GRU 是LSTM 的一个变体，GRU 保持了 LSTM 的效果同时又使结构更加">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-27T14:03:05.617Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;19896587-485eaf5f683112c4.png?imageMogr2&#x2F;auto-orient&#x2F;strip|imageView2&#x2F;2&#x2F;w&#x2F;1200&#x2F;format&#x2F;webp">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=r_t">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=z_t">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Ctilde%7Bh%7D_%7Bt%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Ctilde%7Bc%7D_%7Bt%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=r_t">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=%5Cbegin%7Barray%7D%7Bc%7D%7Br_%7Bt%7D%3D%5Csigma%5Cleft(W_%7Br%7D%20%5Ccdot%5Cleft%5Bh_%7Bt-1%7D%2C%20x_%7Bt%7D%5Cright%5D%5Cright)%7D%20%5C%5C%20%7Bz_%7Bt%7D%3D%5Csigma%5Cleft(W_%7Bz%7D%20%5Ccdot%5Cleft%5Bh_%7Bt-1%7D%2C%20x_%7Bt%7D%5Cright%5D%5Cright)%7D%20%5C%5C%20%7B%5Ctilde%7Bh%7D_%7Bt%7D%3D%5Ctanh%20%5Cleft(W_%7B%5Coverline%7Bh%7D%7D%20%5Ccdot%5Cleft%5Br_%7Bt%7D%20*%20h_%7Bt-1%7D%2C%20x_%7Bt%7D%5Cright%5D%5Cright)%7D%20%5C%5C%20%7Bh_%7Bt%7D%3D%5Cleft(1-z_%7Bt%7D%5Cright)%20*%20h_%7Bt-1%7D%2Bz_%7Bt%7D%20*%20%5Ctilde%7Bh%7D_%7Bt%7D%7D%20%5C%5C%20%7By_%7Bt%7D%3D%5Csigma%5Cleft(W_%7Bo%7D%20%5Ccdot%20h_%7Bt%7D%5Cright)%7D%5Cend%7Barray%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=W_r%2CW_z%2CW_h">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=W_r%20%3D%20W_%7Brx%7D%2BW_%7Brh%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;math.jianshu.com&#x2F;math?formula=h_%7Bt-1%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic4.zhimg.com&#x2F;80&#x2F;v2-a8424cd80eae1b7d312991692decbe8b_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=x%5Et">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5E%7Bt-1%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=x%5Et+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5E%7Bt-1%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=y%5Et+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5Et">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic2.zhimg.com&#x2F;80&#x2F;v2-49244046a83e30ef2383b94644bf0f31_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5E%7Bt-1%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=x%5Et">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=r+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%5Csigma">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic3.zhimg.com&#x2F;80&#x2F;v2-7fff5d817530dada1b279c7279d73b8a_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%7Bh%5E%7Bt-1%7D%7D%27+%3D+h%5E%7Bt-1%7D+%5Codot+r+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%7Bh%5E%7Bt-1%7D%7D%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=x%5Et+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic4.zhimg.com&#x2F;80&#x2F;v2-390781506bbebbef799f1a12acd7865b_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%27+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=x%5Et">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic1.zhimg.com&#x2F;80&#x2F;v2-8134a00c243153bfd9fd2bcbe0844e9c_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%5Codot">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%5Coplus">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5Et+%3D+z+%5Codot+h%5E%7Bt-1%7D+%2B+%281+-+z%29%5Codot+h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z+%5Codot+h%5E%7Bt-1%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5E%7Bt-1%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%281-z%29+%5Codot+h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%281-z%29">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h+%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%27+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5Et+%3D+z+%5Codot+h%5E%7Bt-1%7D+%2B+%281+-+z%29%5Codot+h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5E%7Bt-1%7D+">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%281-z%29">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%281-z%29">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=r">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%E2%80%99">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%27">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=h%5E%7Bt-1%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z%5Ef">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%281-z%29">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=z%5Ei">
+<meta property="og:updated_time" content="2020-01-31T02:25:10.356Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;19896587-485eaf5f683112c4.png?imageMogr2&#x2F;auto-orient&#x2F;strip|imageView2&#x2F;2&#x2F;w&#x2F;1200&#x2F;format&#x2F;webp">
 
 
 
@@ -117,13 +179,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/01/27/HTML学习/HTML列表 块 布局/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/01/31/机器学习/course5 1.10GRU&LSTM/"/>
 
 
 
 
 
-  <title>HTML学习/HTML列表 块 布局 | 元直</title>
+  <title>机器学习/course5 1.10GRU&LSTM | 元直</title>
   
 
 
@@ -324,7 +386,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%88%97%E8%A1%A8%20%E5%9D%97%20%E5%B8%83%E5%B1%80/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/course5%201.10GRU&LSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="元直">
@@ -341,7 +403,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTML学习/HTML列表 块 布局</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习/course5 1.10GRU&LSTM</h1>
         
 
         <div class="post-meta">
@@ -353,8 +415,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-27T20:52:49+08:00">
-                2020-01-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-31T10:20:13+08:00">
+                2020-01-31
               </time>
             
 
@@ -413,28 +475,69 @@
       
 
       
-        <h1 id="HTML列表"><a href="#HTML列表" class="headerlink" title="HTML列表"></a>HTML列表</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span>				有序列表	//单元前面有顺序标识</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>				无序列表	//单元前面只有·</span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>				列表项</span><br><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span>				列表</span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>				列表项</span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>				描述</span><br></pre></td></tr></table></figure>
-
-<h3 id="1、无序列表"><a href="#1、无序列表" class="headerlink" title="1、无序列表"></a>1、无序列表</h3><p>使用标签:&lt;ul&gt;&lt;li&gt;</p>
-<p>属性：disc（实心圆）、circle（空心圆）、square（方块）</p>
-<h3 id="2、有序列表"><a href="#2、有序列表" class="headerlink" title="2、有序列表"></a>2、有序列表</h3><p>使用标签:&lt;ol&gt;&lt;li&gt;</p>
-<p>属性：A（大写）、a（小写）、l（大写罗马）、i（小写罗马）、start（数字，可指定开始数）</p>
-<h3 id="3、嵌套列表"><a href="#3、嵌套列表" class="headerlink" title="3、嵌套列表"></a>3、嵌套列表</h3><p>使用标签:&lt;ul&gt;&lt;ol&gt;&lt;li&gt;</p>
-<h3 id="4、自定义列表"><a href="#4、自定义列表" class="headerlink" title="4、自定义列表"></a>4、自定义列表</h3><p>使用标签:&lt;dl&gt;&lt;dt&gt;&lt;dd&gt;</p>
-<h1 id="HTML块"><a href="#HTML块" class="headerlink" title="HTML块"></a>HTML块</h1><h3 id="1、HTML块元素"><a href="#1、HTML块元素" class="headerlink" title="1、HTML块元素"></a>1、HTML块元素</h3><p>块元素在显示时，通常会以新行开始</p>
-<p>如：&lt;h1&gt;&lt;p&gt;&lt;ul&gt;</p>
-<h3 id="2、HTML内联元素"><a href="#2、HTML内联元素" class="headerlink" title="2、HTML内联元素"></a>2、HTML内联元素</h3><p>内联元素通常不会以新行开始</p>
-<p>如：&lt;b&gt;&lt;a&gt;&lt;img&gt;</p>
-<h3 id="3、HTML-lt-div-gt-元素"><a href="#3、HTML-lt-div-gt-元素" class="headerlink" title="3、HTML&lt;div&gt;元素"></a>3、HTML&lt;div&gt;元素</h3><p>&lt;div&gt;元素也被称为块元素、其主要是组合HTML元素的容器</p>
-<h3 id="4、HTML-lt-span-gt-元素"><a href="#4、HTML-lt-span-gt-元素" class="headerlink" title="4、HTML&lt;span&gt;元素"></a>4、HTML&lt;span&gt;元素</h3><p>&lt;span&gt;元素是内联元素、可作为文本的容器</p>
-<h1 id="HTML布局"><a href="#HTML布局" class="headerlink" title="HTML布局"></a>HTML布局</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>table布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">marginheight</span>=<span class="string">"0px"</span> <span class="attr">marginwidth</span>=<span class="string">"0px"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"950px"</span> <span class="attr">style</span>=<span class="string">"background-color: darkgray"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"3"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"10%"</span> <span class="attr">style</span>=<span class="string">"background-color: aqua"</span>&gt;</span>head<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>  <span class="attr">width</span>=<span class="string">"30%"</span> <span class="attr">height</span>=<span class="string">"80%"</span> <span class="attr">style</span>=<span class="string">"background-color: blue"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>  <span class="attr">width</span>=<span class="string">"70%"</span> <span class="attr">height</span>=<span class="string">"80%"</span> <span class="attr">style</span>=<span class="string">"background-color: brown"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>  <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"10%"</span> <span class="attr">colspan</span>=<span class="string">"3"</span> <span class="attr">style</span>=<span class="string">"background-color: black"</span>&gt;</span>bottom<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <p>原文链接： <a href="https://www.jianshu.com/p/591fd8b5bbd0" target="_blank" rel="noopener">https://www.jianshu.com/p/591fd8b5bbd0</a> </p>
+<img src="https://upload-images.jianshu.io/upload_images/19896587-485eaf5f683112c4.png?imageMogr2/auto-orient/strip|imageView2/2/w/1200/format/webp">
 
 
 
-
-
-
-
+<p>reset gate <img src="https://math.jianshu.com/math?formula=r_t" alt="r_t"> 、update gate <img src="https://math.jianshu.com/math?formula=z_t" alt="z_t"> 、候选隐藏层<img src="https://math.jianshu.com/math?formula=%5Ctilde%7Bh%7D_%7Bt%7D" alt="\tilde{h}_{t}"> （与 LSTM 的<img src="https://math.jianshu.com/math?formula=%5Ctilde%7Bc%7D_%7Bt%7D" alt="\tilde{c}_{t}">)类似，可以看成是当前时刻的新信息，其中<img src="https://math.jianshu.com/math?formula=r_t" alt="r_t">用来控制需要保留多少之前的记忆）</p>
+<p>为了克服RNN 无法很好处理远距离依赖而提出了 LSTM，而 GRU 是LSTM 的一个变体，GRU 保持了 LSTM 的效果同时又使结构更加简单。<br> GRU 只剩下两个门，即<strong>更新门</strong>和<strong>重置门</strong>。更新门用于控制前一时刻的状态信息被代入到当前状态的程，更新门的值越大说明前一时刻的状态信息带入越多。重置门用于控制忽略前一时刻的状态信息的程度，重置门的值越小说明忽略得越多。</p>
+<p><img src="https://math.jianshu.com/math?formula=%5Cbegin%7Barray%7D%7Bc%7D%7Br_%7Bt%7D%3D%5Csigma%5Cleft(W_%7Br%7D%20%5Ccdot%5Cleft%5Bh_%7Bt-1%7D%2C%20x_%7Bt%7D%5Cright%5D%5Cright)%7D%20%5C%5C%20%7Bz_%7Bt%7D%3D%5Csigma%5Cleft(W_%7Bz%7D%20%5Ccdot%5Cleft%5Bh_%7Bt-1%7D%2C%20x_%7Bt%7D%5Cright%5D%5Cright)%7D%20%5C%5C%20%7B%5Ctilde%7Bh%7D_%7Bt%7D%3D%5Ctanh%20%5Cleft(W_%7B%5Coverline%7Bh%7D%7D%20%5Ccdot%5Cleft%5Br_%7Bt%7D%20*%20h_%7Bt-1%7D%2C%20x_%7Bt%7D%5Cright%5D%5Cright)%7D%20%5C%5C%20%7Bh_%7Bt%7D%3D%5Cleft(1-z_%7Bt%7D%5Cright)%20*%20h_%7Bt-1%7D%2Bz_%7Bt%7D%20*%20%5Ctilde%7Bh%7D_%7Bt%7D%7D%20%5C%5C%20%7By_%7Bt%7D%3D%5Csigma%5Cleft(W_%7Bo%7D%20%5Ccdot%20h_%7Bt%7D%5Cright)%7D%5Cend%7Barray%7D" alt="\begin{array}{c}{r_{t}=\sigma\left(W_{r} \cdot\left[h_{t-1}, x_{t}\right]\right)} \\ {z_{t}=\sigma\left(W_{z} \cdot\left[h_{t-1}, x_{t}\right]\right)} \\ {\tilde{h}_{t}=\tanh \left(W_{\overline{h}} \cdot\left[r_{t} * h_{t-1}, x_{t}\right]\right)} \\ {h_{t}=\left(1-z_{t}\right) * h_{t-1}+z_{t} * \tilde{h}_{t}} \\ {y_{t}=\sigma\left(W_{o} \cdot h_{t}\right)}\end{array}"></p>
+<p>其中，<img src="https://math.jianshu.com/math?formula=W_r%2CW_z%2CW_h" alt="W_r,W_z,W_h">都是拼接的，比如<img src="https://math.jianshu.com/math?formula=W_r%20%3D%20W_%7Brx%7D%2BW_%7Brh%7D" alt="W_r = W_{rx}+W_{rh}">，所以在学习时要分开来</p>
+<p>第三式通过重置门重置后的<img src="https://math.jianshu.com/math?formula=h_%7Bt-1%7D" alt="h_{t-1}">与输入拼接，在通过 tanh激活函数得到 h’</p>
+<p>最后一步记忆更新阶段，利用更新门来控制，更新门越接近1，代表记忆下来的数据越多。</p>
+<p>GRU 相比LSTM，能够达到相当的效果，同时更加容易训练。GRU 使用了一个门控z 就可以进行遗忘和选择记忆，而 LSTM 要使用多个门控。</p>
+<p>原文链接： <a href="https://zhuanlan.zhihu.com/p/32481747" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32481747</a> </p>
+<h2 id="1-什么是GRU"><a href="#1-什么是GRU" class="headerlink" title="1. 什么是GRU"></a>1. 什么是GRU</h2><p>GRU（Gate Recurrent Unit）是循环神经网络（Recurrent Neural Network, RNN）的一种。和LSTM（Long-Short Term Memory）一样，也是为了解决长期记忆和反向传播中的梯度等问题而提出来的。</p>
+<p>GRU和LSTM在很多情况下实际表现上相差无几，那么为什么我们要使用新人GRU（2014年提出）而不是相对经受了更多考验的LSTM（1997提出）呢。</p>
+<p>下图1-1引用论文中的一段话来说明GRU的优势所在。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-a8424cd80eae1b7d312991692decbe8b_hd.jpg" alt="img">图1-1 R-NET: MACHINE READING COMPREHENSION WITH SELF-MATCHING NETWORKS（2017）</p>
+<blockquote>
+<p>简单译文：我们在我们的实验中选择GRU是因为它的实验效果与LSTM相似，但是更易于计算。</p>
+</blockquote>
+<p><strong>简单来说就是贫穷限制了我们的计算能力…</strong></p>
+<p>相比LSTM，使用GRU能够达到相当的效果，并且相比之下更容易进行训练，能够很大程度上提高训练效率，因此很多时候会更倾向于使用GRU。</p>
+<p>OK，那么为什么说GRU更容易进行训练呢，下面开始介绍一下GRU的内部结构。</p>
+<hr>
+<h2 id="2-GRU浅析"><a href="#2-GRU浅析" class="headerlink" title="2. GRU浅析"></a>2. GRU浅析</h2><h2 id="2-1-GRU的输入输出结构"><a href="#2-1-GRU的输入输出结构" class="headerlink" title="2.1 GRU的输入输出结构"></a>2.1 GRU的输入输出结构</h2><p>GRU的输入输出结构与普通的RNN是一样的。</p>
+<p>有一个当前的输入 <img src="https://www.zhihu.com/equation?tex=x%5Et" alt="[公式]"> ，和上一个节点传递下来的隐状态（hidden state） <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D" alt="[公式]"> ，这个隐状态包含了之前节点的相关信息。</p>
+<p>结合 <img src="https://www.zhihu.com/equation?tex=x%5Et+" alt="[公式]"> 和 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D" alt="[公式]">，GRU会得到当前隐藏节点的输出 <img src="https://www.zhihu.com/equation?tex=y%5Et+" alt="[公式]"> 和传递给下一个节点的隐状态 <img src="https://www.zhihu.com/equation?tex=h%5Et" alt="[公式]"> 。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-49244046a83e30ef2383b94644bf0f31_hd.jpg" alt="img">图2-1 GRU的输入输出结构</p>
+<p>那么，GRU到底有什么特别之处呢？下面来对它的内部结构进行分析！</p>
+<hr>
+<h2 id="2-2-GRU的内部结构"><a href="#2-2-GRU的内部结构" class="headerlink" title="2.2 GRU的内部结构"></a>2.2 GRU的内部结构</h2><p>首先，我们先通过上一个传输下来的状态 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D" alt="[公式]"> 和当前节点的输入 <img src="https://www.zhihu.com/equation?tex=x%5Et" alt="[公式]"> 来获取两个门控状态。如下图2-2所示，其中 <img src="https://www.zhihu.com/equation?tex=r+" alt="[公式]"> 控制重置的门控（reset gate）， <img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> 为控制更新的门控（update gate）。</p>
+<blockquote>
+<p>Tips： <img src="https://www.zhihu.com/equation?tex=%5Csigma" alt="[公式]"> 为*<a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Sigmoid_function">sigmoid</a>*函数，通过这个函数可以将数据变换为0-1范围内的数值，从而来充当门控信号。</p>
+</blockquote>
+<p><img src="https://pic3.zhimg.com/80/v2-7fff5d817530dada1b279c7279d73b8a_hd.jpg" alt="img">图2-2 r，z门控</p>
+<p><strong>与LSTM分明的层次结构不同，下面将对GRU进行一气呵成的介绍<del>~</del> 请大家屏住呼吸，不要眨眼。</strong></p>
+<p>得到门控信号之后，首先使用重置门控来得到<strong>“重置”</strong>之后的数据 <img src="https://www.zhihu.com/equation?tex=%7Bh%5E%7Bt-1%7D%7D%27+%3D+h%5E%7Bt-1%7D+%5Codot+r+" alt="[公式]"> ，再将 <img src="https://www.zhihu.com/equation?tex=%7Bh%5E%7Bt-1%7D%7D%27" alt="[公式]"> 与输入 <img src="https://www.zhihu.com/equation?tex=x%5Et+" alt="[公式]"> 进行拼接，再通过一个<a href="https://link.zhihu.com/?target=https%3A//baike.baidu.com/item/tanh">tanh</a>激活函数来将数据放缩到<strong>-1~1</strong>的范围内。即得到如下图2-3所示的 <img src="https://www.zhihu.com/equation?tex=h%27" alt="[公式]"> 。</p>
+<p><img src="https://pic4.zhimg.com/80/v2-390781506bbebbef799f1a12acd7865b_hd.jpg" alt="img">图2-3 包含当前输入数据的h&amp;amp;#39;</p>
+<p>这里的 <img src="https://www.zhihu.com/equation?tex=h%27+" alt="[公式]"> 主要是包含了当前输入的 <img src="https://www.zhihu.com/equation?tex=x%5Et" alt="[公式]"> 数据。有针对性地对 <img src="https://www.zhihu.com/equation?tex=h%27" alt="[公式]"> 添加到当前的隐藏状态，相当于”记忆了当前时刻的状态“。类似于LSTM的选择记忆阶段（参照我的上一篇文章）。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-8134a00c243153bfd9fd2bcbe0844e9c_hd.jpg" alt="img">图2-3 GRU的内部结构</p>
+<blockquote>
+<p>图2-3中的 <img src="https://www.zhihu.com/equation?tex=%5Codot" alt="[公式]"> 是Hadamard Product，也就是操作矩阵中对应的元素相乘，因此要求两个相乘矩阵是同型的。 <img src="https://www.zhihu.com/equation?tex=%5Coplus" alt="[公式]"> 则代表进行矩阵加法操作。</p>
+</blockquote>
+<hr>
+<p>最后介绍GRU最关键的一个步骤，我们可以称之为<strong>”更新记忆“</strong>阶段。</p>
+<p>在这个阶段，我们同时进行了遗忘了记忆两个步骤。我们使用了先前得到的更新门控 <img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> （update gate）。</p>
+<p><strong>更新表达式</strong>： <img src="https://www.zhihu.com/equation?tex=h%5Et+%3D+z+%5Codot+h%5E%7Bt-1%7D+%2B+%281+-+z%29%5Codot+h%27" alt="[公式]"></p>
+<p>首先再次强调一下，门控信号（这里的 <img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> ）的范围为0~1。门控信号越接近1，代表”记忆“下来的数据越多；而越接近0则代表”遗忘“的越多。</p>
+<p>GRU很聪明的一点就在于，<strong>我们使用了同一个门控 <img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> 就同时可以进行遗忘和选择记忆（LSTM则要使用多个门控）</strong>。</p>
+<ul>
+<li><img src="https://www.zhihu.com/equation?tex=z+%5Codot+h%5E%7Bt-1%7D" alt="[公式]"> ：表示对原本隐藏状态的选择性“遗忘”。这里的 <img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> 可以想象成遗忘门（forget gate），忘记 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D" alt="[公式]"> 维度中一些不重要的信息。</li>
+<li><img src="https://www.zhihu.com/equation?tex=%281-z%29+%5Codot+h%27" alt="[公式]"> ： 表示对包含当前节点信息的 <img src="https://www.zhihu.com/equation?tex=h%27" alt="[公式]"> 进行选择性”记忆“。与上面类似，这里的 <img src="https://www.zhihu.com/equation?tex=%281-z%29" alt="[公式]"> 同理会忘记 <img src="https://www.zhihu.com/equation?tex=h+%27" alt="[公式]"> 维度中的一些不重要的信息。或者，这里我们更应当看做是对 <img src="https://www.zhihu.com/equation?tex=h%27+" alt="[公式]"> 维度中的某些信息进行选择。</li>
+<li><img src="https://www.zhihu.com/equation?tex=h%5Et+%3D+z+%5Codot+h%5E%7Bt-1%7D+%2B+%281+-+z%29%5Codot+h%27" alt="[公式]"> ：结合上述，这一步的操作就是忘记传递下来的 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D+" alt="[公式]"> 中的某些维度信息，并加入当前节点输入的某些维度信息。</li>
+</ul>
+<blockquote>
+<p>可以看到，这里的遗忘 <img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> 和选择 <img src="https://www.zhihu.com/equation?tex=%281-z%29" alt="[公式]"> 是联动的。也就是说，对于传递进来的维度信息，我们会进行选择性遗忘，则遗忘了多少权重 （<img src="https://www.zhihu.com/equation?tex=z" alt="[公式]"> ），我们就会使用包含当前输入的 <img src="https://www.zhihu.com/equation?tex=h%27" alt="[公式]"> 中所对应的权重进行弥补 <img src="https://www.zhihu.com/equation?tex=%281-z%29" alt="[公式]"> 。以保持一种”恒定“状态。</p>
+</blockquote>
+<hr>
+<h2 id="3-LSTM与GRU的关系"><a href="#3-LSTM与GRU的关系" class="headerlink" title="3. LSTM与GRU的关系"></a>3. LSTM与GRU的关系</h2><p>GRU是在2014年提出来的，而LSTM是1997年。他们的提出都是为了解决相似的问题，那么GRU难免会参考LSTM的内部结构。那么他们之间的关系大概是怎么样的呢？这里简单介绍一下。</p>
+<p>大家看到 <img src="https://www.zhihu.com/equation?tex=r" alt="[公式]"> (reset gate)实际上与他的名字有点不符。我们仅仅使用它来获得了 <img src="https://www.zhihu.com/equation?tex=h%E2%80%99" alt="[公式]"> 。</p>
+<p>那么这里的 <img src="https://www.zhihu.com/equation?tex=h%27" alt="[公式]"> 实际上可以看成对应于LSTM中的hidden state；上一个节点传下来的 <img src="https://www.zhihu.com/equation?tex=h%5E%7Bt-1%7D" alt="[公式]"> 则对应于LSTM中的cell state。z对应的则是LSTM中的 <img src="https://www.zhihu.com/equation?tex=z%5Ef" alt="[公式]"> forget gate，那么 <img src="https://www.zhihu.com/equation?tex=%281-z%29" alt="[公式]"> 我们似乎就可以看成是选择门 <img src="https://www.zhihu.com/equation?tex=z%5Ei" alt="[公式]"> 了。大家可以结合我的两篇文章来进行观察，这是非常有趣的。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2><p>GRU输入输出的结构与普通的RNN相似，其中的内部思想与LSTM相似。</p>
+<p>与LSTM相比，GRU内部少了一个”门控“，参数比LSTM少，但是却也能够达到与LSTM相当的功能。考虑到硬件的<strong>计算能力</strong>和<strong>时间成本</strong>，因而很多时候我们也就会选择更加”实用“的GRU啦。</p>
 
       
     </div>
@@ -459,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="next" title="机器学习/卷积神经网络">
-                <i class="fa fa-chevron-left"></i> 机器学习/卷积神经网络
+              <a href="/2020/01/29/HTML%E5%AD%A6%E4%B9%A0/HTML%E6%A1%86%E6%9E%B6%20%E8%83%8C%E6%99%AF%20%E5%AE%9E%E4%BD%93/" rel="next" title="HTML学习/HTML框架 背景 实体">
+                <i class="fa fa-chevron-left"></i> HTML学习/HTML框架 背景 实体
               </a>
             
           </div>
@@ -468,10 +571,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/28/HTML%E5%AD%A6%E4%B9%A0/HTML%E8%A1%A8%E5%8D%95/" rel="prev" title="HTML学习/HTML表单">
-                HTML学习/HTML表单 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -598,7 +697,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML列表"><span class="nav-number">1.</span> <span class="nav-text">HTML列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、无序列表"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、无序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、有序列表"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、有序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、嵌套列表"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、嵌套列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、自定义列表"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、自定义列表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML块"><span class="nav-number">2.</span> <span class="nav-text">HTML块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、HTML块元素"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、HTML块元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、HTML内联元素"><span class="nav-number">2.0.2.</span> <span class="nav-text">2、HTML内联元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、HTML-lt-div-gt-元素"><span class="nav-number">2.0.3.</span> <span class="nav-text">3、HTML&lt;div&gt;元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、HTML-lt-span-gt-元素"><span class="nav-number">2.0.4.</span> <span class="nav-text">4、HTML&lt;span&gt;元素</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML布局"><span class="nav-number">3.</span> <span class="nav-text">HTML布局</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是GRU"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是GRU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-GRU浅析"><span class="nav-number">2.</span> <span class="nav-text">2. GRU浅析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-GRU的输入输出结构"><span class="nav-number">3.</span> <span class="nav-text">2.1 GRU的输入输出结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-GRU的内部结构"><span class="nav-number">4.</span> <span class="nav-text">2.2 GRU的内部结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-LSTM与GRU的关系"><span class="nav-number">5.</span> <span class="nav-text">3. LSTM与GRU的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-总结"><span class="nav-number">6.</span> <span class="nav-text">4. 总结</span></a></li></ol></div>
             
 
           </div>
