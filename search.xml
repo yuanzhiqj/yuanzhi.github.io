@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CSS/CSS样式</title>
+    <url>/2020/02/05/CSS/CSS%E6%A0%B7%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="CSS背景"><a href="#CSS背景" class="headerlink" title="CSS背景"></a>CSS背景</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-attachment		背景图像是否固定或随着页面的其余部分滚动</span><br><span class="line">background-color			设置元素的背景颜色</span><br><span class="line">background-image			把图片设置为背景</span><br><span class="line">background-position			设置背景图片的起始位置</span><br><span class="line">background-repeat			设置背景图片是否及如何重复</span><br><span class="line">background-size				规定背景图片的尺寸</span><br><span class="line">background-origin			规定背景图片的定位区域</span><br><span class="line">background-clip				规定背景的绘制区域</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="CSS文本"><a href="#CSS文本" class="headerlink" title="CSS文本"></a>CSS文本</h1><p>CSS文本属性可定义文本外观</p>
+<p>通过文本属性，可以改变文本的颜色、字符间距、对其文本、装饰文本、对文本缩进</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">color			文本颜色</span><br><span class="line">direction		文本方向</span><br><span class="line">line-height		行高</span><br><span class="line">letter-spacing	字符间距</span><br><span class="line">text-align		对齐元素中的文本</span><br><span class="line">text-decoration	向本文添加修饰</span><br><span class="line">text-transform	元素中的字母</span><br><span class="line">unicode-bidi	设置文本方向</span><br><span class="line">white-space		元素中空白的处理方式</span><br><span class="line">word-spacing	字间距</span><br><span class="line">text-shadow		向文本添加阴影	//4个参数</span><br><span class="line">word-show		规定文本的换行规则</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="CSS字体"><a href="#CSS字体" class="headerlink" title="CSS字体"></a>CSS字体</h1><p>CSS字体属性定义文本的字体系列、大小、加粗、风格和变形</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">font-family		设置字体系列</span><br><span class="line">font-size		设置字体的尺寸</span><br><span class="line">font-style		设置字体风格</span><br><span class="line">font-variant	以小型大写字体或正常字体显示文字</span><br><span class="line">font-weight		设置字体的粗细</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python/python学习笔记2列表</title>
+    <url>/2020/02/05/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02%E5%88%97%E8%A1%A8/</url>
+    <content><![CDATA[<h1 id="列表索引"><a href="#列表索引" class="headerlink" title="列表索引"></a>列表索引</h1><p>将索引指定为-1，可让python返回最后一个列表元素。</p>
+<p>同样，索引-2返回倒数第二个列表元素，索引-3返回倒数第三个列表元素，以此类推。</p>
+<h1 id="在列表中添加元素"><a href="#在列表中添加元素" class="headerlink" title="在列表中添加元素"></a>在列表中添加元素</h1><h2 id="1、在列表末尾添加元素"><a href="#1、在列表末尾添加元素" class="headerlink" title="1、在列表末尾添加元素"></a>1、在列表末尾添加元素</h2><p>方法<code>append(添加的元素)</code></p>
+<h2 id="2、在列表任意位置添加元素"><a href="#2、在列表任意位置添加元素" class="headerlink" title="2、在列表任意位置添加元素"></a>2、在列表任意位置添加元素</h2><p>方法<code>insert(插入的位置，添加的元素)</code></p>
+<h1 id="从列表中删除元素"><a href="#从列表中删除元素" class="headerlink" title="从列表中删除元素"></a>从列表中删除元素</h1><h2 id="1、使用del语句删除元素"><a href="#1、使用del语句删除元素" class="headerlink" title="1、使用del语句删除元素"></a>1、使用del语句删除元素</h2><p>前提：知道要删除的元素在列表的位置</p>
+<p><code>del list[index]</code></p>
+<h2 id="2、使用pop-方法删除元素"><a href="#2、使用pop-方法删除元素" class="headerlink" title="2、使用pop()方法删除元素"></a>2、使用pop()方法删除元素</h2><p>方法pop()可以删除列表末尾的元素，并且能够继续使用该元素</p>
+<p><code>popped = list.pop()</code></p>
+<p>增加参数可以弹出任意位置的元素</p>
+<p><code>popped = list.pop(index)</code></p>
+<h2 id="3、根据值删除元素"><a href="#3、根据值删除元素" class="headerlink" title="3、根据值删除元素"></a>3、根据值删除元素</h2><p>方法<code>remove(要删除元素的值)</code></p>
+<p>该方法也可以继续使用它的值</p>
+<p><font color = #FF0000>*注意：如果列表中有重复的值，remove()只能删除第一个指定的值</font></p>
+<h1 id="组织列表"><a href="#组织列表" class="headerlink" title="组织列表"></a>组织列表</h1><h2 id="使用sort-对列表进行永久性排序"><a href="#使用sort-对列表进行永久性排序" class="headerlink" title="使用sort()对列表进行永久性排序"></a>使用sort()对列表进行永久性排序</h2><p>按照字母顺序排序。</p>
+<p>如果需要按字母顺序相反的顺序排列元素，则需向sort()方法传递参数reverse=True。</p>
+<p><code>list.sort(reverse=True)</code></p>
+<h2 id="使用sorted-对列表进行临时排序"><a href="#使用sorted-对列表进行临时排序" class="headerlink" title="使用sorted()对列表进行临时排序"></a>使用sorted()对列表进行临时排序</h2><p><code>print(sorted(list))</code></p>
+<h2 id="倒着打印列表"><a href="#倒着打印列表" class="headerlink" title="倒着打印列表"></a>倒着打印列表</h2><p>方法<code>reverse()</code></p>
+<h2 id="确定列表的长度"><a href="#确定列表的长度" class="headerlink" title="确定列表的长度"></a>确定列表的长度</h2><p>函数<code>len()</code></p>
+]]></content>
+      <categories>
+        <category>python入门</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CSS/CSS基础</title>
     <url>/2020/02/04/CSS/CSS%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="CSS基础语法"><a href="#CSS基础语法" class="headerlink" title="CSS基础语法"></a>CSS基础语法</h1><p>1.selector{</p>
