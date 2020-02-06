@@ -16,9 +16,42 @@
 <h1 id="CSS字体"><a href="#CSS字体" class="headerlink" title="CSS字体"></a>CSS字体</h1><p>CSS字体属性定义文本的字体系列、大小、加粗、风格和变形</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">font-family		设置字体系列</span><br><span class="line">font-size		设置字体的尺寸</span><br><span class="line">font-style		设置字体风格</span><br><span class="line">font-variant	以小型大写字体或正常字体显示文字</span><br><span class="line">font-weight		设置字体的粗细</span><br></pre></td></tr></table></figure>
 
+
+
+<h1 id="CSS链接"><a href="#CSS链接" class="headerlink" title="CSS链接"></a>CSS链接</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a:link		普通的，未被访问的链接</span><br><span class="line">a:visited	用户已访问的链接</span><br><span class="line">a:hover		鼠标指针位于链接的上方</span><br><span class="line">a:active	链接被点击的时刻</span><br><span class="line">text:decoration	属性大多用于去掉链接中的下划线</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="CSS列表"><a href="#CSS列表" class="headerlink" title="CSS列表"></a>CSS列表</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">list-style			简写列表项</span><br><span class="line">list-style-image	列表项图像</span><br><span class="line">list-style-position	列表标志位置</span><br><span class="line">list-style-type		列表类型</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="CSS表格"><a href="#CSS表格" class="headerlink" title="CSS表格"></a>CSS表格</h1><p>1、CSS表格属性</p>
+<p>2、表格边框</p>
+<p>3、折叠边框</p>
+<p>4、表格宽高</p>
+<p>5、表格文本对齐</p>
+<p>6、表格内边距</p>
+<p>7、表格颜色</p>
+<h1 id="CSS轮廓"><a href="#CSS轮廓" class="headerlink" title="CSS轮廓"></a>CSS轮廓</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">outline             设置轮廓属性</span><br><span class="line">outline-color		设置轮廓的颜色</span><br><span class="line">outline-style		设置轮廓的样式</span><br><span class="line">outline-width		设置轮廓的宽度</span><br></pre></td></tr></table></figure>
+
+
+
 ]]></content>
       <categories>
         <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python/python学习笔记3条件语句</title>
+    <url>/2020/02/05/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B03%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5/</url>
+    <content><![CDATA[<h1 id="条件测试"><a href="#条件测试" class="headerlink" title="条件测试"></a>条件测试</h1><h2 id="检查特定值是否包含在列表中"><a href="#检查特定值是否包含在列表中" class="headerlink" title="检查特定值是否包含在列表中"></a>检查特定值是否包含在列表中</h2><p>使用关键字in</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">requested_toppings = [&apos;mushrooms&apos;, &apos;onions&apos;, &apos;pineapple&apos;] </span><br><span class="line">&gt;&gt;&gt; &apos;mushrooms&apos; in requested_toppings</span><br><span class="line">True </span><br><span class="line">&gt;&gt;&gt; &apos;pepperoni&apos; in requested_toppings </span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+
+<p>相反，使用not in特定值是否不包含在列表中</p>
+]]></content>
+      <categories>
+        <category>python入门</category>
       </categories>
   </entry>
   <entry>
@@ -43,6 +76,20 @@
 <h2 id="使用sorted-对列表进行临时排序"><a href="#使用sorted-对列表进行临时排序" class="headerlink" title="使用sorted()对列表进行临时排序"></a>使用sorted()对列表进行临时排序</h2><p><code>print(sorted(list))</code></p>
 <h2 id="倒着打印列表"><a href="#倒着打印列表" class="headerlink" title="倒着打印列表"></a>倒着打印列表</h2><p>方法<code>reverse()</code></p>
 <h2 id="确定列表的长度"><a href="#确定列表的长度" class="headerlink" title="确定列表的长度"></a>确定列表的长度</h2><p>函数<code>len()</code></p>
+<h1 id="数值列表"><a href="#数值列表" class="headerlink" title="数值列表"></a>数值列表</h1><h2 id="使用函数range"><a href="#使用函数range" class="headerlink" title="使用函数range()"></a>使用函数range()</h2><p>函数range()让python从指定的第一个值开始计数，在达到第二个值后停止，因此输出不包括第二个值。</p>
+<p>还可以指定步长<code>even_numbers = list(range(2,11,2))    //打印1~10之内的偶数</code></p>
+<h2 id="使用list-创建数字列表"><a href="#使用list-创建数字列表" class="headerlink" title="使用list()创建数字列表"></a>使用list()创建数字列表</h2><p><code>numbers = list(range(1,6))</code></p>
+<h2 id="一些简单的统计计算"><a href="#一些简单的统计计算" class="headerlink" title="一些简单的统计计算"></a>一些简单的统计计算</h2><p>min()    找出最小值</p>
+<p>max()    找出最大值</p>
+<p>sum()    找出总和</p>
+<h1 id="使用列表的一部分"><a href="#使用列表的一部分" class="headerlink" title="使用列表的一部分"></a>使用列表的一部分</h1><h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">players = [<span class="string">'charkes'</span>,<span class="string">'martina'</span>,<span class="string">'michael'</span>,<span class="string">'florence'</span>,<span class="string">'eli'</span>]</span><br><span class="line">print(players[<span class="number">0</span>:<span class="number">3</span>])	//这将输出<span class="number">0</span>，<span class="number">1</span>，<span class="number">2</span>的元素，即第<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>个元素</span><br></pre></td></tr></table></figure>
+
+<p>如果没有指定起始索引，python从列表开头开始提取，要让切片终止于列表末尾，也可以使用类似的语法</p>
+<p><code>print(players[-3:])        //打印最后三名队员的名字</code>    </p>
+<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><p><code>players_two = player[:]</code></p>
+<h1 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h1><p>不可变的列表。不同于列表用[]表示，元组使用()表示</p>
+<p><code>dimension = (200,50)</code></p>
+<h2 id="修改元组变量"><a href="#修改元组变量" class="headerlink" title="修改元组变量"></a>修改元组变量</h2><p>虽然不能修改元组的元素，但可以给存储元组的变量赋值。即重新定义整个元组</p>
 ]]></content>
       <categories>
         <category>python入门</category>
