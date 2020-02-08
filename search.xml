@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CSS/CSS盒子模型</title>
+    <url>/2020/02/08/CSS/CSS%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>盒子模型的内容范围包括：</p>
+<p>margin、border、padding、content部分组成</p>
+<h1 id="内边距"><a href="#内边距" class="headerlink" title="内边距"></a>内边距</h1><p>内边距在content外，边框内</p>
+<p>属性：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">padding							设置所有边距</span><br><span class="line">padding-bottom/left/right/top	设置底/左/右/上边距</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>CSS/CSS定位</title>
+    <url>/2020/02/08/CSS/CSS%E5%AE%9A%E4%BD%8D/</url>
+    <content><![CDATA[<h1 id="CSS定位"><a href="#CSS定位" class="headerlink" title="CSS定位"></a>CSS定位</h1><h2 id="1、CSS定位"><a href="#1、CSS定位" class="headerlink" title="1、CSS定位"></a>1、CSS定位</h2><p>改变元素在页面上的位置</p>
+<h2 id="2、CSS定位机制"><a href="#2、CSS定位机制" class="headerlink" title="2、CSS定位机制"></a>2、CSS定位机制</h2><ul>
+<li><p>普通流:元素按照其在HTML中的位置顺序决定排布的过程</p>
+</li>
+<li><p>浮动</p>
+</li>
+<li><p>绝对布局</p>
+</li>
+</ul>
+<h2 id="3、CSS定位属性"><a href="#3、CSS定位属性" class="headerlink" title="3、CSS定位属性"></a>3、CSS定位属性</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">position					把元素放在一个静态的、相对的、绝对的、或固定的位置中</span><br><span class="line">top/left/right/bottom		元素向上/向左/向右/向下的偏移量</span><br><span class="line">overflow					设置元素溢出其区域发生的事情</span><br><span class="line">clip						设置元素显示的形状</span><br><span class="line">vertical-align				设置元素垂直对齐方式</span><br><span class="line">z-index						设置元素的堆叠顺序//谁的值大谁在前面</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、position属性"><a href="#1、position属性" class="headerlink" title="1、position属性"></a>1、position属性</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">static</span><br><span class="line">relative</span><br><span class="line">absolute</span><br><span class="line">fixed</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="CSS浮动"><a href="#CSS浮动" class="headerlink" title="CSS浮动"></a>CSS浮动</h1><h2 id="1、浮动"><a href="#1、浮动" class="headerlink" title="1、浮动"></a>1、浮动</h2><p>float属性可用的值：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">left:属性向左浮动</span><br><span class="line">right:元素向右浮动</span><br><span class="line">none:元素不浮动</span><br><span class="line">inherit:从父级继承浮动属性</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、clear属性"><a href="#2、clear属性" class="headerlink" title="2、clear属性"></a>2、clear属性</h2><p>去掉浮动属性（包括继承来的属性）</p>
+<p>clear属性值:</p>
+<p>left、right：去掉元素向左、右浮动</p>
+<p>both:左右两侧均去掉浮动</p>
+<p>inherit:从父级继承来clear的值</p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python/python学习笔记6类</title>
+    <url>/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06%E7%B1%BB/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>python入门</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python/python学习笔记5函数</title>
+    <url>/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h1 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h1><p>使用关键字<strong>def</strong>，定义以冒号结尾。</p>
+<h1 id="传递实参"><a href="#传递实参" class="headerlink" title="传递实参"></a>传递实参</h1><h2 id="位置实参"><a href="#位置实参" class="headerlink" title="位置实参"></a>位置实参</h2><p>要求<strong>实参</strong>的顺序和<strong>形参</strong>的顺序相同</p>
+<h2 id="关键字实参"><a href="#关键字实参" class="headerlink" title="关键字实参"></a>关键字实参</h2><p>每个实参都由变量名和值组成，即传递给函数的是<strong>名称-值对</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">describe_pet(animal_type=<span class="string">'hamster'</span>, pet_name=<span class="string">'harry'</span>) </span><br><span class="line">describe_pet(pet_name=<span class="string">'harry'</span>, animal_type=<span class="string">'hamster'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>编写函数时，可以给每个形参指定默认值</p>
+<p><code>def describe_pet(pet_name, animal_type=&#39;dog&#39;):</code></p>
+<p><font color=##FF0000>注意：使用默认值时，在形参列表中必须先列出没有默认值的形参，再列出有默认值的实参。这让python能够正确地解读位置实参。</font></p>
+<h2 id="禁止函数修改列表"><a href="#禁止函数修改列表" class="headerlink" title="禁止函数修改列表"></a>禁止函数修改列表</h2><p>要将列表的<strong>副本</strong>传递给函数，可以这样做</p>
+<p><code>function_name(list_name[:])</code></p>
+<h2 id="传递任意数量的实参"><a href="#传递任意数量的实参" class="headerlink" title="传递任意数量的实参"></a>传递任意数量的实参</h2><p><code>def function_name(*parameters)</code></p>
+<p>符号*让python创建一个空元组，并将所有收到的值都封装到这个元组中。</p>
+]]></content>
+      <categories>
+        <category>python入门</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python/python学习笔记4字典</title>
+    <url>/2020/02/07/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04%E5%AD%97%E5%85%B8/</url>
+    <content><![CDATA[<p>在python中，字典是一系列键-值对。每个键都与一个值相关联。用符号{}表示。</p>
+<h1 id="删除键-值对"><a href="#删除键-值对" class="headerlink" title="删除键-值对"></a>删除键-值对</h1><p>可使用del语句</p>
+<h1 id="遍历字典"><a href="#遍历字典" class="headerlink" title="遍历字典"></a>遍历字典</h1><h2 id="可声明两个变量，用于存储键-值对中的键和值"><a href="#可声明两个变量，用于存储键-值对中的键和值" class="headerlink" title="可声明两个变量，用于存储键-值对中的键和值"></a>可声明两个变量，用于存储键-值对中的键和值</h2><p>方法<code>items()</code></p>
+<p><code>for key,value in dictionary.items():</code></p>
+<h2 id="遍历键"><a href="#遍历键" class="headerlink" title="遍历键"></a>遍历键</h2><p>方法<code>keys()</code></p>
+<p><code>for key in dictionary.keys()</code></p>
+<h2 id="在遍历前按特定顺序排列"><a href="#在遍历前按特定顺序排列" class="headerlink" title="在遍历前按特定顺序排列"></a>在遍历前按特定顺序排列</h2><p>方法<code>keys()</code></p>
+<p><code>for name in sorted(dictionary.keys())</code></p>
+<h1 id="遍历值"><a href="#遍历值" class="headerlink" title="遍历值"></a>遍历值</h1><p>方法<code>values()</code></p>
+<p><code>for value in dictionary.values()</code></p>
+]]></content>
+      <categories>
+        <category>python入门</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CSS/CSS样式</title>
     <url>/2020/02/05/CSS/CSS%E6%A0%B7%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="CSS背景"><a href="#CSS背景" class="headerlink" title="CSS背景"></a>CSS背景</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-attachment		背景图像是否固定或随着页面的其余部分滚动</span><br><span class="line">background-color			设置元素的背景颜色</span><br><span class="line">background-image			把图片设置为背景</span><br><span class="line">background-position			设置背景图片的起始位置</span><br><span class="line">background-repeat			设置背景图片是否及如何重复</span><br><span class="line">background-size				规定背景图片的尺寸</span><br><span class="line">background-origin			规定背景图片的定位区域</span><br><span class="line">background-clip				规定背景的绘制区域</span><br></pre></td></tr></table></figure>
