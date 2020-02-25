@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="皇图霸业笑谈中 不胜人间一场醉">
+<meta name="description" content="创建和使用类__init__()方法每次创建新的实例时，python都会自动运行它。 方法__init__中并未显示地包含return语句，但python自动返回一个实例。 selfself会自动传递，因此我们不需要传递它。 以self为前缀的变量都可以供类中的所有方法使用 继承创建字类时，父类必须包含在当前文件中，且位于子类前面。 定义子类时，必须在括号内指定父类的名称。 class son_n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python&#x2F;python学习笔记6类">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;08&#x2F;python&#x2F;python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06%E7%B1%BB&#x2F;index.html">
 <meta property="og:site_name" content="元直">
-<meta property="og:description" content="皇图霸业笑谈中 不胜人间一场醉">
+<meta property="og:description" content="创建和使用类__init__()方法每次创建新的实例时，python都会自动运行它。 方法__init__中并未显示地包含return语句，但python自动返回一个实例。 selfself会自动传递，因此我们不需要传递它。 以self为前缀的变量都可以供类中的所有方法使用 继承创建字类时，父类必须包含在当前文件中，且位于子类前面。 定义子类时，必须在括号内指定父类的名称。 class son_n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-08T11:21:27.649Z">
+<meta property="og:updated_time" content="2020-02-09T03:26:42.883Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -413,7 +413,22 @@
       
 
       
-        
+        <h1 id="创建和使用类"><a href="#创建和使用类" class="headerlink" title="创建和使用类"></a>创建和使用类</h1><h2 id="init-方法"><a href="#init-方法" class="headerlink" title="__init__()方法"></a>__init__()方法</h2><p>每次创建新的实例时，python都会自动运行它。</p>
+<p>方法__init__中并未显示地包含return语句，但python自动返回一个实例。</p>
+<h2 id="self"><a href="#self" class="headerlink" title="self"></a>self</h2><p>self会自动传递，因此我们不需要传递它。</p>
+<p>以self为前缀的变量都可以供类中的所有方法使用</p>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>创建字类时，父类必须包含在当前文件中，且位于子类前面。</p>
+<p>定义子类时，必须在括号内指定父类的名称。</p>
+<p><code>class son_name(father_name):</code></p>
+<h2 id="super"><a href="#super" class="headerlink" title="super()"></a>super()</h2><p>super是一个特殊函数，帮助python将父类和子类关联起来。</p>
+<p><code>super().__init__(make, model, year)</code></p>
+<h2 id="重写父类的方法"><a href="#重写父类的方法" class="headerlink" title="重写父类的方法"></a>重写父类的方法</h2><p>对于父类的方法，只要它不符合子类模拟的实物的行为，都可以对其进行重写。</p>
+<p>当在子类中与要重写的父类方法同名时，python将不会考虑这个父类方法，而只关注在子类中定义的相应的方法。</p>
+<h1 id="导入类"><a href="#导入类" class="headerlink" title="导入类"></a>导入类</h1><p><code>from module_name import class_name</code></p>
+<p><code>from module_name import class_name1,class_name2...</code></p>
+<p><code>from module_name import *</code></p>
+<h1 id="python标准库"><a href="#python标准库" class="headerlink" title="python标准库"></a>python标准库</h1><h2 id="collections模块"><a href="#collections模块" class="headerlink" title="collections模块"></a>collections模块</h2><p>collections中的OrderedDict类的示例与字典几乎相同，但能记录键-值对的添加顺序。</p>
+
       
     </div>
     
@@ -501,8 +516,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -521,7 +545,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -532,7 +556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -557,6 +581,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建和使用类"><span class="nav-number">1.</span> <span class="nav-text">创建和使用类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#init-方法"><span class="nav-number">1.1.</span> <span class="nav-text">__init__()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#self"><span class="nav-number">1.2.</span> <span class="nav-text">self</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#super"><span class="nav-number">2.1.</span> <span class="nav-text">super()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写父类的方法"><span class="nav-number">2.2.</span> <span class="nav-text">重写父类的方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#导入类"><span class="nav-number">3.</span> <span class="nav-text">导入类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#python标准库"><span class="nav-number">4.</span> <span class="nav-text">python标准库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#collections模块"><span class="nav-number">4.1.</span> <span class="nav-text">collections模块</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

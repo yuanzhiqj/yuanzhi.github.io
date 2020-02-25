@@ -324,6 +324,952 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/HTML%E5%AD%A6%E4%B9%A0/HTML%E8%A1%A8%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/28/HTML%E5%AD%A6%E4%B9%A0/HTML%E8%A1%A8%E5%8D%95/" itemprop="url">HTML学习/HTML表单</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-28T20:58:08+08:00">
+                2020-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTML表单"><a href="#HTML表单" class="headerlink" title="HTML表单"></a>HTML表单</h1><p>表单用于获取不同类型的用户输入</p>
+<p>常用表单标签</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;			表单</span><br><span class="line">&lt;input&gt;			输入域</span><br><span class="line">&lt;textarea&gt;		文本域</span><br><span class="line">&lt;label&gt;			控制标签</span><br><span class="line">&lt;fieldset&gt;		定义域</span><br><span class="line">&lt;legend&gt;		域的标题</span><br><span class="line">&lt;select&gt;		选择列表</span><br><span class="line">&lt;optgroup&gt;		选项组</span><br><span class="line">&lt;option&gt;		下拉列表中的表项</span><br><span class="line">&lt;button&gt;		按钮</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h3><h4 id="1、复选框"><a href="#1、复选框" class="headerlink" title="1、复选框"></a>1、复选框</h4><p><code>&lt;input type=&quot;checkbox&quot;&gt;</code></p>
+<h4 id="2、单选按钮"><a href="#2、单选按钮" class="headerlink" title="2、单选按钮"></a>2、单选按钮</h4><p><code>&lt;input type=&quot;radio&quot; name=&quot;...&quot;&gt;    //name属性需要相同</code></p>
+<h4 id="3、下拉列表"><a href="#3、下拉列表" class="headerlink" title="3、下拉列表"></a>3、下拉列表</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>www.baidu.com<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>https://yuanzhiqj.github.io<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4、文本域"><a href="#4、文本域" class="headerlink" title="4、文本域"></a>4、文本域</h4><p><code>&lt;textarea cols=&quot;30&quot; rows=&quot;30&quot;&gt;请在此填写&lt;/textarea&gt;</code></p>
+<h4 id="5、创建按钮"><a href="#5、创建按钮" class="headerlink" title="5、创建按钮"></a>5、创建按钮</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"按钮"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="表单与php交互"><a href="#表单与php交互" class="headerlink" title="表单与php交互"></a>表单与php交互</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">form action="" method="get"&gt;</span><br><span class="line">        用户名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span></span><br><span class="line">        密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%88%97%E8%A1%A8%20%E5%9D%97%20%E5%B8%83%E5%B1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/27/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%88%97%E8%A1%A8%20%E5%9D%97%20%E5%B8%83%E5%B1%80/" itemprop="url">HTML学习/HTML列表 块 布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-27T20:52:49+08:00">
+                2020-01-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTML列表"><a href="#HTML列表" class="headerlink" title="HTML列表"></a>HTML列表</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span>				有序列表	//单元前面有顺序标识</span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>				无序列表	//单元前面只有·</span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span>				列表项</span><br><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span>				列表</span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>				列表项</span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>				描述</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、无序列表"><a href="#1、无序列表" class="headerlink" title="1、无序列表"></a>1、无序列表</h3><p>使用标签:&lt;ul&gt;&lt;li&gt;</p>
+<p>属性：disc（实心圆）、circle（空心圆）、square（方块）</p>
+<h3 id="2、有序列表"><a href="#2、有序列表" class="headerlink" title="2、有序列表"></a>2、有序列表</h3><p>使用标签:&lt;ol&gt;&lt;li&gt;</p>
+<p>属性：A（大写）、a（小写）、l（大写罗马）、i（小写罗马）、start（数字，可指定开始数）</p>
+<h3 id="3、嵌套列表"><a href="#3、嵌套列表" class="headerlink" title="3、嵌套列表"></a>3、嵌套列表</h3><p>使用标签:&lt;ul&gt;&lt;ol&gt;&lt;li&gt;</p>
+<h3 id="4、自定义列表"><a href="#4、自定义列表" class="headerlink" title="4、自定义列表"></a>4、自定义列表</h3><p>使用标签:&lt;dl&gt;&lt;dt&gt;&lt;dd&gt;</p>
+<h1 id="HTML块"><a href="#HTML块" class="headerlink" title="HTML块"></a>HTML块</h1><h3 id="1、HTML块元素"><a href="#1、HTML块元素" class="headerlink" title="1、HTML块元素"></a>1、HTML块元素</h3><p>块元素在显示时，通常会以新行开始</p>
+<p>如：&lt;h1&gt;&lt;p&gt;&lt;ul&gt;</p>
+<h3 id="2、HTML内联元素"><a href="#2、HTML内联元素" class="headerlink" title="2、HTML内联元素"></a>2、HTML内联元素</h3><p>内联元素通常不会以新行开始</p>
+<p>如：&lt;b&gt;&lt;a&gt;&lt;img&gt;</p>
+<h3 id="3、HTML-lt-div-gt-元素"><a href="#3、HTML-lt-div-gt-元素" class="headerlink" title="3、HTML&lt;div&gt;元素"></a>3、HTML&lt;div&gt;元素</h3><p>&lt;div&gt;元素也被称为块元素、其主要是组合HTML元素的容器</p>
+<h3 id="4、HTML-lt-span-gt-元素"><a href="#4、HTML-lt-span-gt-元素" class="headerlink" title="4、HTML&lt;span&gt;元素"></a>4、HTML&lt;span&gt;元素</h3><p>&lt;span&gt;元素是内联元素、可作为文本的容器</p>
+<h1 id="HTML布局"><a href="#HTML布局" class="headerlink" title="HTML布局"></a>HTML布局</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>table布局<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">marginheight</span>=<span class="string">"0px"</span> <span class="attr">marginwidth</span>=<span class="string">"0px"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"950px"</span> <span class="attr">style</span>=<span class="string">"background-color: darkgray"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"3"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"10%"</span> <span class="attr">style</span>=<span class="string">"background-color: aqua"</span>&gt;</span>head<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>  <span class="attr">width</span>=<span class="string">"30%"</span> <span class="attr">height</span>=<span class="string">"80%"</span> <span class="attr">style</span>=<span class="string">"background-color: blue"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>  <span class="attr">width</span>=<span class="string">"70%"</span> <span class="attr">height</span>=<span class="string">"80%"</span> <span class="attr">style</span>=<span class="string">"background-color: brown"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>  <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"10%"</span> <span class="attr">colspan</span>=<span class="string">"3"</span> <span class="attr">style</span>=<span class="string">"background-color: black"</span>&gt;</span>bottom<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" itemprop="url">机器学习/卷积神经网络</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-19T10:42:34+08:00">
+                2020-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h1><p>valid卷积(不进行填充)：</p>
+<p><code>nxn * fxf → n-f+1 x n-f+1</code></p>
+<p>same卷积(卷积后与输出与输入尺寸一样)</p>
+<p><code>n+2p-f+1 x n+2p-f+1</code></p>
+<h1 id="卷积步长（stride）"><a href="#卷积步长（stride）" class="headerlink" title="卷积步长（stride）"></a>卷积步长（stride）</h1><p><code>(n+2p-f)/s+1 x (n+2p-f)/s+1               //向下取整</code></p>
+<h1 id="三维卷积"><a href="#三维卷积" class="headerlink" title="三维卷积"></a>三维卷积</h1><p><code>nxnxnc * fxfxnc → n-f+1 x n-f+1 x nc&#39;</code></p>
+<p>nc = nc </p>
+<p>nc’为使用过滤器的数目</p>
+<h1 id="单层卷积网络"><a href="#单层卷积网络" class="headerlink" title="单层卷积网络"></a>单层卷积网络</h1><p>f<sup>[l]</sup> = fliter size</p>
+<p>p<sup>[l]</sup> = padding</p>
+<p>s<sup>[l]</sup> = stride</p>
+<p>nc<sup>[l]</sup> = number of fliters</p>
+<p>Input: n<sub>H</sub><sup>[l-1]</sup> x n<sub>W</sub><sup>[l-1]</sup> x n<sub>C</sub><sup>[l-1]</sup></p>
+<p>Output: n<sub>H</sub><sup>[l]</sup> x n<sub>W</sub><sup>[l]</sup> x n<sub>C</sub><sup>[l]</sup></p>
+<h1 id="池化层（Pooling-layer）"><a href="#池化层（Pooling-layer）" class="headerlink" title="池化层（Pooling layer）"></a>池化层（Pooling layer）</h1><h3 id="最大池化-max-pooling"><a href="#最大池化-max-pooling" class="headerlink" title="最大池化(max pooling)"></a>最大池化(max pooling)</h3><p>取范围内的最大值，梯度下降无需改变任何值（即确定了超参）</p>
+<p>常用：f=2,s=2。相当于高度宽度减半。</p>
+<h3 id="平均池化-Average-pooling"><a href="#平均池化-Average-pooling" class="headerlink" title="平均池化(Average pooling)"></a>平均池化(Average pooling)</h3><p>范围内求平均值</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/HTML%E5%AD%A6%E4%B9%A0/HTML%E6%A0%B7%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/17/HTML%E5%AD%A6%E4%B9%A0/HTML%E6%A0%B7%E5%BC%8F/" itemprop="url">HTML学习/HTML样式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-17T21:28:45+08:00">
+                2020-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTML样式"><a href="#HTML样式" class="headerlink" title="HTML样式"></a>HTML样式</h1><h3 id="1、标签"><a href="#1、标签" class="headerlink" title="1、标签"></a>1、标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;:样式定义</span><br><span class="line">&lt;link&gt;:资源引用</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、属性"><a href="#2、属性" class="headerlink" title="2、属性"></a>2、属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rel = &quot;stylesheet&quot;:外部样式表</span><br><span class="line">type = &quot;text/css&quot;:引入文档的类型</span><br><span class="line">margin-left:边距</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、三种样式表插入方法"><a href="#3、三种样式表插入方法" class="headerlink" title="3、三种样式表插入方法"></a>3、三种样式表插入方法</h3><p>外部样式表</p>
+<p><code>&lt;link rel = &quot;stylesheet&quot;type=&quot;text/css&quot; href = &quot;mystyle.css&quot;&gt;</code></p>
+<p>内部样式表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type = &quot;text/css&quot;&gt;</span><br><span class="line">body&#123;background-color:red&#125;</span><br><span class="line">p&#123;margin-left:20px&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>内联样式表</p>
+<p><code>&lt;p style = &quot;color:red&quot;&gt;</code></p>
+<h1 id="HTML链接"><a href="#HTML链接" class="headerlink" title="HTML链接"></a>HTML链接</h1><h3 id="1、链接数据"><a href="#1、链接数据" class="headerlink" title="1、链接数据"></a>1、链接数据</h3><p>​    文本链接</p>
+<p>​    图片链接</p>
+<h3 id="2、属性-1"><a href="#2、属性-1" class="headerlink" title="2、属性"></a>2、属性</h3><p>​    href属性：指向另一个文档的链接</p>
+<p>​    name属性：创建文档内的链接</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;a name=&quot;tips&quot;&gt;hello&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;a href=&quot;#tips&quot;&gt;跳转到hello&lt;/a&gt;	//跳转到tips所在的地方</span><br></pre></td></tr></table></figure></code></pre><h3 id="3、img标签属性"><a href="#3、img标签属性" class="headerlink" title="3、img标签属性"></a>3、img标签属性</h3><p>​    alt:替换文本属性</p>
+<p>​    width:宽</p>
+<p>​    height:高</p>
+<h1 id="HTML表格"><a href="#HTML表格" class="headerlink" title="HTML表格"></a>HTML表格</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;							定义表格</span><br><span class="line">&lt;caption&gt;						定义表格标题</span><br><span class="line">&lt;th&gt;							定义表格的表头</span><br><span class="line">&lt;tr&gt;							定义表格的行</span><br><span class="line">&lt;td&gt;							定义表格的单元</span><br><span class="line">&lt;thead&gt;							定义表格的页眉</span><br><span class="line">&lt;tbody&gt;							定义表格的主体</span><br><span class="line">&lt;tfoot&gt;							定义表格的页脚</span><br><span class="line">&lt;col&gt;							定义表格的列属性</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/17/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%85%83%E7%B4%A0/" itemprop="url">HTML学习/HTML元素</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-17T20:47:25+08:00">
+                2020-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1、HTML元素"><a href="#1、HTML元素" class="headerlink" title="1、HTML元素"></a>1、HTML元素</h2><h3 id="1、元素指的是开始标签到结束标签的所有代码"><a href="#1、元素指的是开始标签到结束标签的所有代码" class="headerlink" title="1、元素指的是开始标签到结束标签的所有代码"></a>1、元素指的是开始标签到结束标签的所有代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开始标签				元素内容					结束标签</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>					   this is my web page 		  <span class="tag">&lt;/<span class="name">p</span>&gt;</span>	</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span> /&gt;</span>	//空元素</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、元素语法"><a href="#2、元素语法" class="headerlink" title="2、元素语法"></a>2、元素语法</h3><p>元素的内容是开始标签与结束标签之间的内容</p>
+<p>空元素在开始标签中进行关闭</p>
+<p>大多数HTML元素可拥有属性</p>
+<h3 id="3、嵌套的HTML元素"><a href="#3、嵌套的HTML元素" class="headerlink" title="3、嵌套的HTML元素"></a>3、嵌套的HTML元素</h3><h2 id="2、HTML元素属性和格式化"><a href="#2、HTML元素属性和格式化" class="headerlink" title="2、HTML元素属性和格式化"></a>2、HTML元素属性和格式化</h2><h3 id="1、属性"><a href="#1、属性" class="headerlink" title="1、属性"></a>1、属性</h3><p>1、标签可以拥有属性为元素提供更多的信息</p>
+<p>2、属性以键/值对的形式出现</p>
+<p><code>href = &quot;https://yuanzhiqj.github.com&quot;</code></p>
+<p>3、常用标签属性</p>
+<p><code>&lt;h1&gt;:align对其方式</code></p>
+<p><code>&lt;body&gt;:bgcolor背景颜色</code></p>
+<p><code>&lt;a&gt;:target规定在何处打开链接 _self在当前目录页覆盖 _blank新建标签页打开</code></p>
+<p>4、通用元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class:规定元素的类名</span><br><span class="line">id:规定元素唯一ID</span><br><span class="line">style:规定元素的样式</span><br><span class="line">title:规定元素的额外信息</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、-格式化"><a href="#2、-格式化" class="headerlink" title="2、 格式化"></a>2、 格式化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;b&gt;					定义粗体文本</span><br><span class="line">&lt;big&gt;				定义大号字</span><br><span class="line">&lt;em&gt;				定义着重文字</span><br><span class="line">&lt;i&gt;					定义斜体字</span><br><span class="line">&lt;small&gt;				定义小体字</span><br><span class="line">&lt;sub&gt;				定义下标字</span><br><span class="line">&lt;sup&gt;				定义上标字</span><br><span class="line">&lt;ins&gt;				定义插入字</span><br><span class="line">&lt;del&gt;				定义删除字</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/17/leetcode/113.%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/17/leetcode/113.%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92/" itemprop="url">leetcode/113.杨辉三角</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-17T19:48:51+08:00">
+                2020-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><code>给定一个非负数numRows,生成杨辉三角前numRows行</code></p>
+<h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">输入: 5</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">     [1],</span><br><span class="line">    [1,1],</span><br><span class="line">   [1,2,1],</span><br><span class="line">  [1,3,3,1],</span><br><span class="line"> [1,4,6,4,1]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>利用动态规划找规律，每一行的首尾均为1。而a[i] [j]  =a[i-1] [j-1] + a[i-1] [j];</p>
+<p>利用两次for循环即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; generate(<span class="keyword">int</span> numRows) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numRows; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i+<span class="number">1</span>; j++)	<span class="comment">//每一行的数字</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(j == <span class="number">0</span>)					<span class="comment">//行首</span></span><br><span class="line">                    temp.push_back(<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j == i)				<span class="comment">//行尾</span></span><br><span class="line">                    temp.push_back(<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    temp.push_back(res[i<span class="number">-1</span>][j<span class="number">-1</span>]+res[i<span class="number">-1</span>][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            res.push_back(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/16/HTML%E5%AD%A6%E4%B9%A0/HTML%E5%9F%BA%E7%A1%80%E8%AE%B2%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -871,613 +1817,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/leetcode/2.%20Add%20Two%20Numbers/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/04/leetcode/2.%20Add%20Two%20Numbers/" itemprop="url">leetcode/2. Add Two Numbers</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-04T22:46:33+08:00">
-                2019-11-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="leetcode-2"><a href="#leetcode-2" class="headerlink" title="leetcode #2"></a>leetcode #2</h1><h2 id="链表问题"><a href="#链表问题" class="headerlink" title="链表问题"></a>链表问题</h2><p>遍历链表，直到两个链表均为空。</p>
-<p>但是若最后是需要进位的数，则还需添加判断条件，即sum是否为0。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode* result = <span class="literal">NULL</span>;</span><br><span class="line">        ListNode* prePtr;</span><br><span class="line">        ListNode* curPtr;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(l1 != <span class="literal">NULL</span> || l2 != <span class="literal">NULL</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//add</span></span><br><span class="line">            <span class="keyword">if</span>(l1 != <span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += l1-&gt;val;</span><br><span class="line">                 l1 = l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(l2 != <span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                sum += l2-&gt;val;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//insert</span></span><br><span class="line">            curPtr = <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</span><br><span class="line">            <span class="keyword">if</span>(result == <span class="literal">NULL</span>)</span><br><span class="line">                result = curPtr;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                prePtr-&gt;next = curPtr;</span><br><span class="line">            sum = sum / <span class="number">10</span>;</span><br><span class="line">            prePtr = curPtr;</span><br><span class="line">           </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            curPtr = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">            prePtr-&gt;next = curPtr;</span><br><span class="line">        &#125;    </span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/lab/gdb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/01/lab/gdb/" itemprop="url">lab/gdb</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-01T22:14:31+08:00">
-                2019-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算机系统基础LAB1"><a href="#计算机系统基础LAB1" class="headerlink" title="计算机系统基础LAB1"></a>计算机系统基础LAB1</h1><h2 id="一、实验目的"><a href="#一、实验目的" class="headerlink" title="一、实验目的"></a>一、实验目的</h2><p>1、 熟悉linux操作的基本操作；</p>
-<p>2、 掌握gcc编译方法；</p>
-<p>3、 掌握gdb的调试工具使用；</p>
-<p>4、 掌握objdump反汇编工具使用；</p>
-<p>5、 熟悉理解反汇编程序（对照源程序与objdump生成的汇编程序）。</p>
-<h2 id="二、-实验环境"><a href="#二、-实验环境" class="headerlink" title="二、 实验环境"></a>二、 实验环境</h2><p>列举你所使用的软件工具</p>
-<p>1、 使用powershell远程连接至bupt1服务端</p>
-<p>三、实验内容</p>
-<p>现有int型数组a[i]=i-50,b[i]=i+y，其中y取自于学生本人学号2018211x*y的个位。登录bupt1服务器，在linux环境下使用vi编辑器编写C语言源程序，完成数组a+b的功能，规定数组长度为100，函数名为madd（），数组a，b均定义在函数内，采用gcc编译该程序（不使用优化选项），</p>
-<p>1、 使用objdump工具生成汇编程序，找到madd函数的汇编程序，给出截图；</p>
-<p>2、 用gdb进行调试，练习如下gdb命令，给出截图；</p>
-<p>gdb、file、kill、quit、break、delete、clear、info break、run、continue、nexti、stepi、disassemble、list、print、x、info reg、watch</p>
-<p>3、 找到a[i]+b[i]对应的汇编指令，指出a[i]和b[i]位于哪个寄存器中，给出截图；</p>
-<p>4、 使用单步指令及gdb相关命令，显示a[xy]+b[xy]对应的汇编指令执行前后操作数寄存器十进制和十六进制的值，其中x，y取自于学生本人学号2018211x*y的百位和个位。</p>
-<p>学号2018211999，a[99]+b[99]单步执行前后的参考截图如下（实际命令未显示出）：</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps1.jpg" alt="img"> </p>
-<h2 id="三、-实验步骤及实验分析"><a href="#三、-实验步骤及实验分析" class="headerlink" title="三、 实验步骤及实验分析"></a>三、 实验步骤及实验分析</h2><p>1、使用vim lab1.c指令编写源程序。</p>
-<p>​    <img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps2.jpg" alt="img"></p>
-<p>键入i进入编辑模式，编辑完毕后按esc进入末行模式后键入:x后保存退出。</p>
-<p>   用cat lab1.c指令打开后如下所示</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps3.jpg" alt="img"> </p>
-<p>2、使用gcc -g lab1.c -o lab1指令生成可执行程序并附加调试信息。</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps4.jpg" alt="img"> </p>
-<p>用./lab1打开可执行程序后运行结果如下：</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps5.jpg" alt="img"> </p>
-<p>3、使用objdump -d lab1指令生成汇编程序。madd函数的汇编程序如下：</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps6.jpg" alt="img"> </p>
-<p>4、练习gdb调试指令</p>
-<p>·file</p>
-<pre><code>打开要调试的可执行文件</code></pre><p>​     <img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps7.jpg" alt="img"></p>
-<p>·kill</p>
-<pre><code>终止正在运行的程序
-
-![img](file:///C:\Users\dell\AppData\Local\Temp\ksohtml11304\wps8.jpg)    </code></pre><p>·quit</p>
-<pre><code>退出调试</code></pre><p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps9.jpg" alt="img"> </p>
-<p>·break</p>
-<p>设置断点处的位置</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps10.jpg" alt="img"> </p>
-<p>·delete</p>
-<p>删除断点，选项为断点的编号</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps11.jpg" alt="img"> </p>
-<p>·clear</p>
-<p>删除断点，选项为设置了断点的行号</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps12.jpg" alt="img"> </p>
-<p>·info break</p>
-<p>查看断点处的情况</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps13.jpg" alt="img"> </p>
-<p>·run</p>
-<p>运行程序</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps14.jpg" alt="img"> </p>
-<p>·continue</p>
-<p>从断点处继续运行，直到下一断点处或程序结束</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps15.jpg" alt="img"> </p>
-<p>·nexti</p>
-<p>直接执行下一步语句</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps16.jpg" alt="img"> </p>
-<p>·stepi</p>
-<p>执行下一步语句，如果遇到函数则进入函数内</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps17.jpg" alt="img"> </p>
-<p>·list</p>
-<p>显示源程序，一次显示10行</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps18.jpg" alt="img"> </p>
-<p>·print</p>
-<p>打印出变量、寄存器储存的信息</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps19.jpg" alt="img"> </p>
-<p>·x</p>
-<p>打印出内存存储的信息</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps20.jpg" alt="img"> </p>
-<p>·info reg</p>
-<p>显示出所有寄存器的信息</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps21.jpg" alt="img"> </p>
-<p>·watch</p>
-<p>跟踪变量，如发生变化则显示改变前及改变后的信息</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps22.jpg" alt="img"> </p>
-<p>5、找到a[i]+b[i]的汇编指令：</p>
-<p>  <img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps23.jpg" alt="img"></p>
-<p>​    a[i]所在的位置为“-816（%rbp,%rax,4）”</p>
-<p>b[i]所在的位置为“-416（%rbp,%rax,4)”</p>
-<p>i所在的位置为-824（%rbp)</p>
-<p>temp所在位置为-820（%rbp)</p>
-<p>存放a[i]+b[i]的值的寄存器为%eax</p>
-<p>该汇编指令先将a[i]的值移动到%edx中，再将b[i]的值移动到%eax中，通过addl将其相加，再存放至变量temp中。</p>
-<p>单步执行指令：</p>
-<p><img src="file:///C:%5CUsers%5Cdell%5CAppData%5CLocal%5CTemp%5Cksohtml11304%5Cwps24.jpg" alt="img"> </p>
-<p>使用print $eax 打印寄存器寄存的信息。得到原来%eax中的值为46，只后变为b[46]的值52，将a[46]的值加入后得到48，十六进制为0x30。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/mytest/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/28/mytest/" itemprop="url">mytest</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T22:46:36+08:00">
-                2019-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>在whl带佬的指导下，爷终于搞定了</strong></p>
-<p><img src="http://i2.tiimg.com/703093/1e80a95fd47ce6ec.jpg" alt="jpg"></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/28/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/28/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-28T22:43:34+08:00">
-                2019-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class=&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">&lt;i class=&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
   </nav>
 
 
@@ -1527,7 +1871,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1538,7 +1882,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
