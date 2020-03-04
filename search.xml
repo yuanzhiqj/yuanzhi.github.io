@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>python/Django-创建应用程序</title>
+    <url>/2020/03/04/python/Django-%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</url>
+    <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
+]]></content>
+      <categories>
+        <category>Django</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python/Django项目-准备</title>
+    <url>/2020/03/04/python/Django%E9%A1%B9%E7%9B%AE-%E5%87%86%E5%A4%87/</url>
+    <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
+<ul>
+<li><p>建立虚拟环境</p>
+<p>新建一个目录命名为learning_log，在该目录下打开终端</p>
+<p><code>python -m venv ll_env</code></p>
+</li>
+<li><p>安装virtualenv</p>
+<p><code>pip install --user virtualenv</code></p>
+</li>
+<li><p>激活虚拟环境(windows下)</p>
+<p><code>ll_env/Scripts/activate</code></p>
+</li>
+<li><p>安装Django</p>
+<p><code>pip install Django</code></p>
+</li>
+<li><p>在Django中创建项目</p>
+<p><code>django-admin.py startproject learning_log .</code></p>
+<p>若创建成功，则在learning_log目录下出现_<em>init_</em>.py, setting.py, urls.py, wsgi.py四个文件</p>
+<ul>
+<li>setting.py:指定Django如何与系统校核以及如何管理项目。</li>
+<li>urls.py:告诉Django应创建哪些网页来响应浏览器请求。</li>
+<li>wsgi.py:帮助Django提供它创建的文件。</li>
+</ul>
+</li>
+<li><p>创建数据库</p>
+<p><code>python manege.py migrate</code> </p>
+<p>若创建成功，则出现文件db.sqlite3。(SQLite是一种使用单个文件的数据库)</p>
+</li>
+<li><p>查看项目：</p>
+<p><code>python manage.py runserver</code></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Django</category>
+      </categories>
+  </entry>
+  <entry>
     <title>python/互喷脚本</title>
     <url>/2020/03/04/python/%E4%BA%92%E5%96%B7%E8%84%9A%E6%9C%AC/</url>
     <content><![CDATA[<p><font color="blue">本文参考B站UP主寒食君的视频，基于个人理解写成</font><a href="https://www.bilibili.com/video/av71289666" target="_blank" rel="noopener">视频传送门</a></p>
@@ -39,8 +88,8 @@
 ]]></content>
   </entry>
   <entry>
-    <title>QT/QT学习笔记-对象和槽</title>
-    <url>/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%A7%BD/</url>
+    <title>QT/QT学习笔记-信号和槽</title>
+    <url>/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD/</url>
     <content><![CDATA[<h1 id="信号-Signal-和槽-Slot"><a href="#信号-Signal-和槽-Slot" class="headerlink" title="信号(Signal)和槽(Slot)"></a>信号(Signal)和槽(Slot)</h1><ul>
 <li>伪代码描述：</li>
 </ul>
@@ -49,9 +98,29 @@
 <p>​    <em>eg</em>:</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需求:点击mybtn实现关闭窗口的功能 connect(mybtn,&amp;MyPushButton::clicked,this,&amp;mywidget::close);</span></span><br></pre></td></tr></table></figure>
 
-
-
+<h2 id="断开"><a href="#断开" class="headerlink" title="断开"></a>断开</h2><p>disconnect</p>
 <h1 id="QPushButton的Signal函数"><a href="#QPushButton的Signal函数" class="headerlink" title="QPushButton的Signal函数"></a>QPushButton的Signal函数</h1><h2 id="继承自QAbstractButton"><a href="#继承自QAbstractButton" class="headerlink" title="继承自QAbstractButton"></a>继承自QAbstractButton</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void clicked(bool checked=false)	//点击</span><br><span class="line">void pressed()						//按下</span><br><span class="line">void released()						//松开</span><br><span class="line">void toggled(bool checked)			//一直按着不松开</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="自定义的信号和槽"><a href="#自定义的信号和槽" class="headerlink" title="自定义的信号和槽"></a>自定义的信号和槽</h1><h2 id="自定义信号"><a href="#自定义信号" class="headerlink" title="自定义信号"></a>自定义信号</h2><ul>
+<li><p>写在signals下</p>
+</li>
+<li><p>返回值为void，只需要声明</p>
+</li>
+<li><p>可以有参数，可以重载</p>
+</li>
+</ul>
+<h2 id="自定义槽"><a href="#自定义槽" class="headerlink" title="自定义槽"></a>自定义槽</h2><ul>
+<li>早期版本必须写到public slots下，高级版本可以写到public或者全局下</li>
+<li>返回值是void 需要声明也需要实现</li>
+<li>可以有参数可以重载</li>
+</ul>
+<h2 id="函数重载冲突"><a href="#函数重载冲突" class="headerlink" title="函数重载冲突"></a>函数重载冲突</h2><p>此时需要函数指针指向函数地址</p>
+<p><em>eg</em>:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher::*teacherSignal)(QString) = &amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Student::*studentSignal)(QString) = &amp;Student::treat;</span><br><span class="line">connect(tc,teacherSignal,st,studentSignal);</span><br><span class="line">classIsOver();</span><br></pre></td></tr></table></figure>
+
+
 
 ]]></content>
       <categories>
