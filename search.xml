@@ -1,6 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>python/互喷脚本</title>
+    <url>/2020/03/04/python/%E4%BA%92%E5%96%B7%E8%84%9A%E6%9C%AC/</url>
+    <content><![CDATA[<p><font color="blue">本文参考B站UP主寒食君的视频，基于个人理解写成</font><a href="https://www.bilibili.com/video/av71289666" target="_blank" rel="noopener">视频传送门</a></p>
+<hr>
+<p>或许许多人都有在网络冲浪或者游戏里都多多少少有跟人对线的经历，可惜奈何手速不太行。看了这个视频仿佛找到了跟人对线的良器，尤其是在研习代码时使我受益良多~</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>即一个能实现按下指定的任意键就能从文本库中调取一条语句并复制到剪贴板的功能。</p>
+<p><font color="red">希望大家还是能营造一个良好的网络环境，把这个代码当成一个学习过程就好啦。</font></p>
+<h1 id="库准备"><a href="#库准备" class="headerlink" title="库准备"></a>库准备</h1><p>（本人python版本为3.6.0 32位）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> win32clipboard <span class="keyword">as</span> w</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> PyHook3</span><br><span class="line"><span class="keyword">import</span> pythoncom</span><br><span class="line"><span class="keyword">import</span> random</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们需要win32clipboard来实现python对windows剪切板的操作。</li>
+</ul>
+<p>​       安装：<code>pip install pypiwin32</code></p>
+<ul>
+<li><p>pyHook是一个钩子，用来监听鼠标或键盘事件。</p>
+<p>（由于不知名原因，我用不了pyHook所以使用的是PyHook3,效果一样，但是pyHook3安装繁琐一些而且对应版本的轮子较少）</p>
+<ul>
+<li>pyHook轮子下载 ： <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook</a> </li>
+<li>pyHook3安装教程： <a href="https://blog.csdn.net/u013560932/article/details/78732250/" target="_blank" rel="noopener">https://blog.csdn.net/u013560932/article/details/78732250/</a> </li>
+</ul>
+</li>
+</ul>
+<h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#监听键盘事件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onKeyboardEvent</span><span class="params">(event)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(event.Key == <span class="string">"Lcontrol"</span>): <span class="comment">#按下左下角的ctrl键，可以修改为</span></span><br><span class="line">        b = random.sample(array,<span class="number">1</span>) <span class="comment">#从array数组中随机取出一条句子</span></span><br><span class="line">        settext(b[<span class="number">0</span>].encode(<span class="string">'utf-8'</span>).decode(<span class="string">'utf8'</span>).encode(sys.getfilesystemencoding()))<span class="comment">#设置到剪贴板中</span></span><br><span class="line">    <span class="comment">#print(event.Key)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#把字符串复制到剪贴板中</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">settext</span><span class="params">(s)</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    w.EmptyClipboard()</span><br><span class="line">    <span class="comment">#print(chardet.detect(str.encode(s)))</span></span><br><span class="line">    res = s.decode(<span class="string">'utf-8'</span>) <span class="comment">#如果出现乱码，注释这条语句</span></span><br><span class="line">    w.SetClipboardData(win32con.CF_UNICODETEXT,res)</span><br><span class="line">    w.CloseClipboard()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> win32clipboard <span class="keyword">as</span> w</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> PyHook3</span><br><span class="line"><span class="keyword">import</span> pythoncom</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">filename = <span class="string">'yaoshui.txt'</span> <span class="comment">#在这里修改你的文件名路径</span></span><br><span class="line"></span><br><span class="line">array=[]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onKeyboardEvent</span><span class="params">(event)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(event.Key == <span class="string">"Lcontrol"</span>):</span><br><span class="line">        b = random.sample(array,<span class="number">1</span>)</span><br><span class="line">        settext(b[<span class="number">0</span>].encode(<span class="string">'utf-8'</span>).decode(<span class="string">'utf-8'</span>).encode(sys.getfilesystemencoding()))</span><br><span class="line">    print(event.Key)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gettext</span><span class="params">()</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    t = w.GetClipboardData(win32con.CF_TEXT)</span><br><span class="line">    w.CloseClipboard()</span><br><span class="line">    <span class="keyword">return</span> t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">settext</span><span class="params">(s)</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    w.EmptyClipboard()</span><br><span class="line">    <span class="comment">#print(chardet.detect(str.encode(s)))</span></span><br><span class="line">    res = s.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    w.SetClipboardData(win32con.CF_UNICODETEXT,res)</span><br><span class="line">    w.CloseClipboard()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    f = open(filename,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">    array = f.readlines() </span><br><span class="line"></span><br><span class="line">    hm = PyHook3.HookManager()</span><br><span class="line">    </span><br><span class="line">    hm.KeyDown = onKeyboardEvent</span><br><span class="line">    hm.HookKeyboard()</span><br><span class="line"></span><br><span class="line">    pythoncom.PumpMessages()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>如果遇到中文字符乱码的情况，也许是<code>SetClipboardData()</code>这里出现问题。我在测试的时候发现参数s的字符串类型为byte，所以decode解码成了’utf-8’的编码。如果在你的电脑上运行参数s的类型是str的话，就注释掉decode的那一条语句。</p>
+<p><font color="red">如果您有任何问题，欢迎在评论区与我讨论</font></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>QT/QT学习笔记-对象和槽</title>
+    <url>/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%A7%BD/</url>
+    <content><![CDATA[<h1 id="信号-Signal-和槽-Slot"><a href="#信号-Signal-和槽-Slot" class="headerlink" title="信号(Signal)和槽(Slot)"></a>信号(Signal)和槽(Slot)</h1><ul>
+<li>伪代码描述：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">connect(信号的发送者,发生的具体信号,信号的接受者,信号的处理(槽))</span><br></pre></td></tr></table></figure>
+
+<p>​    <em>eg</em>:</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需求:点击mybtn实现关闭窗口的功能 connect(mybtn,&amp;MyPushButton::clicked,this,&amp;mywidget::close);</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="QPushButton的Signal函数"><a href="#QPushButton的Signal函数" class="headerlink" title="QPushButton的Signal函数"></a>QPushButton的Signal函数</h1><h2 id="继承自QAbstractButton"><a href="#继承自QAbstractButton" class="headerlink" title="继承自QAbstractButton"></a>继承自QAbstractButton</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void clicked(bool checked=false)	//点击</span><br><span class="line">void pressed()						//按下</span><br><span class="line">void released()						//松开</span><br><span class="line">void toggled(bool checked)			//一直按着不松开</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>QT入门</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>QT/QT学习笔记-对象树</title>
+    <url>/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E6%A0%91/</url>
+    <content><![CDATA[<p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
+<h1 id="对象模型-对象树"><a href="#对象模型-对象树" class="headerlink" title="对象模型(对象树)"></a>对象模型(对象树)</h1><ul>
+<li><p>当创建的对象在堆区时候如果指定的父类是QObject派生下来的类或者QObject子类派生下来的类，可以不用管理释放的操作，将对象放入到对象树中。在一定程度上简化了内存回收机制</p>
+</li>
+<li><p>当创建一个QObject对象时，会看到QObject的构造函数接收一个QObject指针作为参数，这个参数就是parent，也就是父对象指针。这相当于，在创建QObject对象时，可以提供一个其父对象，我们创建的这个QObject对象会自动添加到其父对象的children()列表。</p>
+<p><em>eg</em>：一个按钮有一个QShortcut（快捷键）对象作为其子对象。当我们删除按钮的时候，这个快捷键应被删除。</p>
+</li>
+</ul>
+<h2 id="QWidgt是能够在屏幕上显示一切组件的父类"><a href="#QWidgt是能够在屏幕上显示一切组件的父类" class="headerlink" title="QWidgt是能够在屏幕上显示一切组件的父类"></a>QWidgt是能够在屏幕上显示一切组件的父类</h2><ul>
+<li><p>QWidgt继承自Qbject</p>
+<p><em>eg</em>当关闭应用程序的窗口时，任何组件都随着窗口消失而消失</p>
+</li>
+</ul>
+<h2 id="解决内存问题"><a href="#解决内存问题" class="headerlink" title="解决内存问题"></a>解决内存问题</h2><ul>
+<li><p>当一个QObject对象在堆上创建时，Qt会为其创建一个对象树。但是对象树中的对象是没有定义的，因此销毁的顺序也是未定义的。</p>
+</li>
+<li><p>任何对象树中QObject对象delete的时候。如果它有parent，那么将其从parent的children()列表中删除；如果有孩子，则自动delete每一个孩子。Qt保证没有QObject被delete两次</p>
+</li>
+</ul>
+<h2 id="出现另一种问题"><a href="#出现另一种问题" class="headerlink" title="出现另一种问题"></a>出现另一种问题</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">QPushButton <span class="title">quit</span><span class="params">(<span class="string">"Quit"</span>)</span></span>;</span><br><span class="line">QWidget window;</span><br><span class="line">quit.setParent(&amp;window);</span><br></pre></td></tr></table></figure>
+
+<p>由于window是最后一个被创建的对象，所以首先调用window的析构函数，再对quit析构(这里可以理解为栈的先进后出)。由于quit是window的子对象，所以quit在此时也被析构了。在执行完window的析构之后，又对quit调用了一次析构函数。由于对quit调用了两次析构函数，程序崩溃。</p>
+]]></content>
+      <categories>
+        <category>QT入门</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>python/webapp D3</title>
+    <url>/2020/03/02/python/webapp%20D3/</url>
+    <content><![CDATA[<h1 id="yield-from-amp-await"><a href="#yield-from-amp-await" class="headerlink" title="yield from &amp; await"></a>yield from &amp; await</h1><p> <a href="https://blog.csdn.net/soonfly/article/details/78361819" target="_blank" rel="noopener">https://blog.csdn.net/soonfly/article/details/78361819</a> </p>
+]]></content>
+  </entry>
+  <entry>
     <title>leetcode/5.最大回文子串(动态规划)</title>
     <url>/2020/02/25/leetcode/5.%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2(%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)/</url>
     <content><![CDATA[<p><a href="https://leetcode-cn.com/problems/longest-palindromic-substring/" target="_blank" rel="noopener">题目链接</a></p>

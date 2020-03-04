@@ -324,6 +324,594 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/04/python/%E4%BA%92%E5%96%B7%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/04/python/%E4%BA%92%E5%96%B7%E8%84%9A%E6%9C%AC/" itemprop="url">python/互喷脚本</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-04T17:29:00+08:00">
+                2020-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><font color="blue">本文参考B站UP主寒食君的视频，基于个人理解写成</font><a href="https://www.bilibili.com/video/av71289666" target="_blank" rel="noopener">视频传送门</a></p>
+<hr>
+<p>或许许多人都有在网络冲浪或者游戏里都多多少少有跟人对线的经历，可惜奈何手速不太行。看了这个视频仿佛找到了跟人对线的良器，尤其是在研习代码时使我受益良多~</p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>即一个能实现按下指定的任意键就能从文本库中调取一条语句并复制到剪贴板的功能。</p>
+<p><font color="red">希望大家还是能营造一个良好的网络环境，把这个代码当成一个学习过程就好啦。</font></p>
+<h1 id="库准备"><a href="#库准备" class="headerlink" title="库准备"></a>库准备</h1><p>（本人python版本为3.6.0 32位）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> win32clipboard <span class="keyword">as</span> w</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> PyHook3</span><br><span class="line"><span class="keyword">import</span> pythoncom</span><br><span class="line"><span class="keyword">import</span> random</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>我们需要win32clipboard来实现python对windows剪切板的操作。</li>
+</ul>
+<p>​       安装：<code>pip install pypiwin32</code></p>
+<ul>
+<li><p>pyHook是一个钩子，用来监听鼠标或键盘事件。</p>
+<p>（由于不知名原因，我用不了pyHook所以使用的是PyHook3,效果一样，但是pyHook3安装繁琐一些而且对应版本的轮子较少）</p>
+<ul>
+<li>pyHook轮子下载 ： <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook</a> </li>
+<li>pyHook3安装教程： <a href="https://blog.csdn.net/u013560932/article/details/78732250/" target="_blank" rel="noopener">https://blog.csdn.net/u013560932/article/details/78732250/</a> </li>
+</ul>
+</li>
+</ul>
+<h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#监听键盘事件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onKeyboardEvent</span><span class="params">(event)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(event.Key == <span class="string">"Lcontrol"</span>): <span class="comment">#按下左下角的ctrl键，可以修改为</span></span><br><span class="line">        b = random.sample(array,<span class="number">1</span>) <span class="comment">#从array数组中随机取出一条句子</span></span><br><span class="line">        settext(b[<span class="number">0</span>].encode(<span class="string">'utf-8'</span>).decode(<span class="string">'utf8'</span>).encode(sys.getfilesystemencoding()))<span class="comment">#设置到剪贴板中</span></span><br><span class="line">    <span class="comment">#print(event.Key)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#把字符串复制到剪贴板中</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">settext</span><span class="params">(s)</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    w.EmptyClipboard()</span><br><span class="line">    <span class="comment">#print(chardet.detect(str.encode(s)))</span></span><br><span class="line">    res = s.decode(<span class="string">'utf-8'</span>) <span class="comment">#如果出现乱码，注释这条语句</span></span><br><span class="line">    w.SetClipboardData(win32con.CF_UNICODETEXT,res)</span><br><span class="line">    w.CloseClipboard()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> win32clipboard <span class="keyword">as</span> w</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> PyHook3</span><br><span class="line"><span class="keyword">import</span> pythoncom</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">filename = <span class="string">'yaoshui.txt'</span> <span class="comment">#在这里修改你的文件名路径</span></span><br><span class="line"></span><br><span class="line">array=[]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onKeyboardEvent</span><span class="params">(event)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(event.Key == <span class="string">"Lcontrol"</span>):</span><br><span class="line">        b = random.sample(array,<span class="number">1</span>)</span><br><span class="line">        settext(b[<span class="number">0</span>].encode(<span class="string">'utf-8'</span>).decode(<span class="string">'utf-8'</span>).encode(sys.getfilesystemencoding()))</span><br><span class="line">    print(event.Key)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gettext</span><span class="params">()</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    t = w.GetClipboardData(win32con.CF_TEXT)</span><br><span class="line">    w.CloseClipboard()</span><br><span class="line">    <span class="keyword">return</span> t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">settext</span><span class="params">(s)</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    w.EmptyClipboard()</span><br><span class="line">    <span class="comment">#print(chardet.detect(str.encode(s)))</span></span><br><span class="line">    res = s.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    w.SetClipboardData(win32con.CF_UNICODETEXT,res)</span><br><span class="line">    w.CloseClipboard()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    f = open(filename,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">    array = f.readlines() </span><br><span class="line"></span><br><span class="line">    hm = PyHook3.HookManager()</span><br><span class="line">    </span><br><span class="line">    hm.KeyDown = onKeyboardEvent</span><br><span class="line">    hm.HookKeyboard()</span><br><span class="line"></span><br><span class="line">    pythoncom.PumpMessages()</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>如果遇到中文字符乱码的情况，也许是<code>SetClipboardData()</code>这里出现问题。我在测试的时候发现参数s的字符串类型为byte，所以decode解码成了’utf-8’的编码。如果在你的电脑上运行参数s的类型是str的话，就注释掉decode的那一条语句。</p>
+<p><font color="red">如果您有任何问题，欢迎在评论区与我讨论</font></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%A7%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%A7%BD/" itemprop="url">QT/QT学习笔记-对象和槽</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-03T19:43:49+08:00">
+                2020-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/QT%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">QT入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="信号-Signal-和槽-Slot"><a href="#信号-Signal-和槽-Slot" class="headerlink" title="信号(Signal)和槽(Slot)"></a>信号(Signal)和槽(Slot)</h1><ul>
+<li>伪代码描述：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(信号的发送者,发生的具体信号,信号的接受者,信号的处理(槽))</span><br></pre></td></tr></table></figure>
+
+<p>​    <em>eg</em>:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需求:点击mybtn实现关闭窗口的功能 connect(mybtn,&amp;MyPushButton::clicked,this,&amp;mywidget::close);</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="QPushButton的Signal函数"><a href="#QPushButton的Signal函数" class="headerlink" title="QPushButton的Signal函数"></a>QPushButton的Signal函数</h1><h2 id="继承自QAbstractButton"><a href="#继承自QAbstractButton" class="headerlink" title="继承自QAbstractButton"></a>继承自QAbstractButton</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void clicked(bool checked=false)	//点击</span><br><span class="line">void pressed()						//按下</span><br><span class="line">void released()						//松开</span><br><span class="line">void toggled(bool checked)			//一直按着不松开</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E6%A0%91/" itemprop="url">QT/QT学习笔记-对象树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-03T18:48:31+08:00">
+                2020-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/QT%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">QT入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
+<h1 id="对象模型-对象树"><a href="#对象模型-对象树" class="headerlink" title="对象模型(对象树)"></a>对象模型(对象树)</h1><ul>
+<li><p>当创建的对象在堆区时候如果指定的父类是QObject派生下来的类或者QObject子类派生下来的类，可以不用管理释放的操作，将对象放入到对象树中。在一定程度上简化了内存回收机制</p>
+</li>
+<li><p>当创建一个QObject对象时，会看到QObject的构造函数接收一个QObject指针作为参数，这个参数就是parent，也就是父对象指针。这相当于，在创建QObject对象时，可以提供一个其父对象，我们创建的这个QObject对象会自动添加到其父对象的children()列表。</p>
+<p><em>eg</em>：一个按钮有一个QShortcut（快捷键）对象作为其子对象。当我们删除按钮的时候，这个快捷键应被删除。</p>
+</li>
+</ul>
+<h2 id="QWidgt是能够在屏幕上显示一切组件的父类"><a href="#QWidgt是能够在屏幕上显示一切组件的父类" class="headerlink" title="QWidgt是能够在屏幕上显示一切组件的父类"></a>QWidgt是能够在屏幕上显示一切组件的父类</h2><ul>
+<li><p>QWidgt继承自Qbject</p>
+<p><em>eg</em>当关闭应用程序的窗口时，任何组件都随着窗口消失而消失</p>
+</li>
+</ul>
+<h2 id="解决内存问题"><a href="#解决内存问题" class="headerlink" title="解决内存问题"></a>解决内存问题</h2><ul>
+<li><p>当一个QObject对象在堆上创建时，Qt会为其创建一个对象树。但是对象树中的对象是没有定义的，因此销毁的顺序也是未定义的。</p>
+</li>
+<li><p>任何对象树中QObject对象delete的时候。如果它有parent，那么将其从parent的children()列表中删除；如果有孩子，则自动delete每一个孩子。Qt保证没有QObject被delete两次</p>
+</li>
+</ul>
+<h2 id="出现另一种问题"><a href="#出现另一种问题" class="headerlink" title="出现另一种问题"></a>出现另一种问题</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QPushButton <span class="title">quit</span><span class="params">(<span class="string">"Quit"</span>)</span></span>;</span><br><span class="line">QWidget window;</span><br><span class="line">quit.setParent(&amp;window);</span><br></pre></td></tr></table></figure>
+
+<p>由于window是最后一个被创建的对象，所以首先调用window的析构函数，再对quit析构(这里可以理解为栈的先进后出)。由于quit是window的子对象，所以quit在此时也被析构了。在执行完window的析构之后，又对quit调用了一次析构函数。由于对quit调用了两次析构函数，程序崩溃。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/python/webapp%20D3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/02/python/webapp%20D3/" itemprop="url">python/webapp D3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-02T19:53:49+08:00">
+                2020-03-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="yield-from-amp-await"><a href="#yield-from-amp-await" class="headerlink" title="yield from &amp; await"></a>yield from &amp; await</h1><p> <a href="https://blog.csdn.net/soonfly/article/details/78361819" target="_blank" rel="noopener">https://blog.csdn.net/soonfly/article/details/78361819</a> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/leetcode/5.%E6%9C%80%E5%A4%A7%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2(%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1210,644 +1798,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/08/CSS/CSS%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/08/CSS/CSS%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/" itemprop="url">CSS/CSS盒子模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-08T21:35:56+08:00">
-                2020-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>盒子模型的内容范围包括：</p>
-<p>margin、border、padding、content部分组成</p>
-<h1 id="内边距"><a href="#内边距" class="headerlink" title="内边距"></a>内边距</h1><p>内边距在content外，边框内</p>
-<p>属性：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">padding							设置所有边距</span><br><span class="line">padding-bottom/left/right/top	设置底/左/右/上边距</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h1><h2 id="1、CSS边框"><a href="#1、CSS边框" class="headerlink" title="1、CSS边框"></a>1、CSS边框</h2><p>我们可以创建出效果出色的边框，并且可以应用于任何元素</p>
-<h2 id="2、边框的样式"><a href="#2、边框的样式" class="headerlink" title="2、边框的样式"></a>2、边框的样式</h2><p>border-style:定义了10个不同的非继承样式，包括none</p>
-<h2 id="3、边框的单边样式"><a href="#3、边框的单边样式" class="headerlink" title="3、边框的单边样式"></a>3、边框的单边样式</h2><p>border-top-style</p>
-<p>border-left-style</p>
-<p>border-right-style</p>
-<p>border-bottom-style</p>
-<h2 id="4、CSS3边框"><a href="#4、CSS3边框" class="headerlink" title="4、CSS3边框"></a>4、CSS3边框</h2><p>border-radius:圆角边框</p>
-<p>box-shadow:边框阴影</p>
-<p>border-image:边框图片</p>
-<h1 id="CSS外边距"><a href="#CSS外边距" class="headerlink" title="CSS外边距"></a>CSS外边距</h1><p>围绕在内容边框的区域就是外边距，外边距默认为透明区域</p>
-<p>外边距接受任何长度单位、百分数值</p>
-<h2 id="外边距常用属性"><a href="#外边距常用属性" class="headerlink" title="外边距常用属性:"></a>外边距常用属性:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">margin								设置所有边距</span><br><span class="line">margin-bottom/left/right/top		设置底/左/右/上边距</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="外边距合并"><a href="#外边距合并" class="headerlink" title="外边距合并"></a>外边距合并</h1><p>外边距合并就是一个叠加的概念</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/08/CSS/CSS%E5%AE%9A%E4%BD%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/08/CSS/CSS%E5%AE%9A%E4%BD%8D/" itemprop="url">CSS/CSS定位</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-08T20:41:30+08:00">
-                2020-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CSS定位"><a href="#CSS定位" class="headerlink" title="CSS定位"></a>CSS定位</h1><h2 id="1、CSS定位"><a href="#1、CSS定位" class="headerlink" title="1、CSS定位"></a>1、CSS定位</h2><p>改变元素在页面上的位置</p>
-<h2 id="2、CSS定位机制"><a href="#2、CSS定位机制" class="headerlink" title="2、CSS定位机制"></a>2、CSS定位机制</h2><ul>
-<li><p>普通流:元素按照其在HTML中的位置顺序决定排布的过程</p>
-</li>
-<li><p>浮动</p>
-</li>
-<li><p>绝对布局</p>
-</li>
-</ul>
-<h2 id="3、CSS定位属性"><a href="#3、CSS定位属性" class="headerlink" title="3、CSS定位属性"></a>3、CSS定位属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">position					把元素放在一个静态的、相对的、绝对的、或固定的位置中</span><br><span class="line">top/left/right/bottom		元素向上/向左/向右/向下的偏移量</span><br><span class="line">overflow					设置元素溢出其区域发生的事情</span><br><span class="line">clip						设置元素显示的形状</span><br><span class="line">vertical-align				设置元素垂直对齐方式</span><br><span class="line">z-index						设置元素的堆叠顺序//谁的值大谁在前面</span><br></pre></td></tr></table></figure>
-
-<h3 id="1、position属性"><a href="#1、position属性" class="headerlink" title="1、position属性"></a>1、position属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">static</span><br><span class="line">relative</span><br><span class="line">absolute</span><br><span class="line">fixed</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="CSS浮动"><a href="#CSS浮动" class="headerlink" title="CSS浮动"></a>CSS浮动</h1><h2 id="1、浮动"><a href="#1、浮动" class="headerlink" title="1、浮动"></a>1、浮动</h2><p>float属性可用的值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">left:属性向左浮动</span><br><span class="line">right:元素向右浮动</span><br><span class="line">none:元素不浮动</span><br><span class="line">inherit:从父级继承浮动属性</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、clear属性"><a href="#2、clear属性" class="headerlink" title="2、clear属性"></a>2、clear属性</h2><p>去掉浮动属性（包括继承来的属性）</p>
-<p>clear属性值:</p>
-<p>left、right：去掉元素向左、右浮动</p>
-<p>both:左右两侧均去掉浮动</p>
-<p>inherit:从父级继承来clear的值</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06%E7%B1%BB/" itemprop="url">python/python学习笔记6类</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-08T19:15:34+08:00">
-                2020-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">python入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="创建和使用类"><a href="#创建和使用类" class="headerlink" title="创建和使用类"></a>创建和使用类</h1><h2 id="init-方法"><a href="#init-方法" class="headerlink" title="__init__()方法"></a>__init__()方法</h2><p>每次创建新的实例时，python都会自动运行它。</p>
-<p>方法__init__中并未显示地包含return语句，但python自动返回一个实例。</p>
-<h2 id="self"><a href="#self" class="headerlink" title="self"></a>self</h2><p>self会自动传递，因此我们不需要传递它。</p>
-<p>以self为前缀的变量都可以供类中的所有方法使用</p>
-<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>创建字类时，父类必须包含在当前文件中，且位于子类前面。</p>
-<p>定义子类时，必须在括号内指定父类的名称。</p>
-<p><code>class son_name(father_name):</code></p>
-<h2 id="super"><a href="#super" class="headerlink" title="super()"></a>super()</h2><p>super是一个特殊函数，帮助python将父类和子类关联起来。</p>
-<p><code>super().__init__(make, model, year)</code></p>
-<h2 id="重写父类的方法"><a href="#重写父类的方法" class="headerlink" title="重写父类的方法"></a>重写父类的方法</h2><p>对于父类的方法，只要它不符合子类模拟的实物的行为，都可以对其进行重写。</p>
-<p>当在子类中与要重写的父类方法同名时，python将不会考虑这个父类方法，而只关注在子类中定义的相应的方法。</p>
-<h1 id="导入类"><a href="#导入类" class="headerlink" title="导入类"></a>导入类</h1><p><code>from module_name import class_name</code></p>
-<p><code>from module_name import class_name1,class_name2...</code></p>
-<p><code>from module_name import *</code></p>
-<h1 id="python标准库"><a href="#python标准库" class="headerlink" title="python标准库"></a>python标准库</h1><h2 id="collections模块"><a href="#collections模块" class="headerlink" title="collections模块"></a>collections模块</h2><p>collections中的OrderedDict类的示例与字典几乎相同，但能记录键-值对的添加顺序。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05%E5%87%BD%E6%95%B0/" itemprop="url">python/python学习笔记5函数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-08T17:22:28+08:00">
-                2020-02-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">python入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h1><p>使用关键字<strong>def</strong>，定义以冒号结尾。</p>
-<h1 id="传递实参"><a href="#传递实参" class="headerlink" title="传递实参"></a>传递实参</h1><h2 id="位置实参"><a href="#位置实参" class="headerlink" title="位置实参"></a>位置实参</h2><p>要求<strong>实参</strong>的顺序和<strong>形参</strong>的顺序相同</p>
-<h2 id="关键字实参"><a href="#关键字实参" class="headerlink" title="关键字实参"></a>关键字实参</h2><p>每个实参都由变量名和值组成，即传递给函数的是<strong>名称-值对</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">describe_pet(animal_type=<span class="string">'hamster'</span>, pet_name=<span class="string">'harry'</span>) </span><br><span class="line">describe_pet(pet_name=<span class="string">'harry'</span>, animal_type=<span class="string">'hamster'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>编写函数时，可以给每个形参指定默认值</p>
-<p><code>def describe_pet(pet_name, animal_type=&#39;dog&#39;):</code></p>
-<p><font color=##FF0000>注意：使用默认值时，在形参列表中必须先列出没有默认值的形参，再列出有默认值的实参。这让python能够正确地解读位置实参。</font></p>
-<h2 id="禁止函数修改列表"><a href="#禁止函数修改列表" class="headerlink" title="禁止函数修改列表"></a>禁止函数修改列表</h2><p>要将列表的<strong>副本</strong>传递给函数，可以这样做</p>
-<p><code>function_name(list_name[:])</code></p>
-<h2 id="传递任意数量的实参"><a href="#传递任意数量的实参" class="headerlink" title="传递任意数量的实参"></a>传递任意数量的实参</h2><p><code>def function_name(*parameters)</code></p>
-<p>符号*让python创建一个空元组，并将所有收到的值都封装到这个元组中。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1902,7 +1852,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1913,7 +1863,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
