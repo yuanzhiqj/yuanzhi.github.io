@@ -79,15 +79,17 @@
 
 
 
-<meta name="description" content="参考书籍：《Python编程从入门到实践》—Eric Matthes">
+<meta name="description" content="参考书籍：《Python编程从入门到实践》—Eric Matthes  在虚拟环境中执行命令 python manage.py startapp learning_logs 命令让Django建立创建应用程序所需的基础设施。在learning_logs下创建了文件models.py, admin.py, views.py。我们将使用models.py来定义我们要在应用程序中管理的数据。   定义模">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python&#x2F;Django-创建应用程序">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;03&#x2F;04&#x2F;python&#x2F;Django-%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F&#x2F;index.html">
 <meta property="og:site_name" content="元直">
-<meta property="og:description" content="参考书籍：《Python编程从入门到实践》—Eric Matthes">
+<meta property="og:description" content="参考书籍：《Python编程从入门到实践》—Eric Matthes  在虚拟环境中执行命令 python manage.py startapp learning_logs 命令让Django建立创建应用程序所需的基础设施。在learning_logs下创建了文件models.py, admin.py, views.py。我们将使用models.py来定义我们要在应用程序中管理的数据。   定义模">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-04T13:23:25.289Z">
+<meta property="og:image" content="d:%5CHEXO%5Cblog%5Csource_posts%5Cpython%5Cimg%5Cadmin.png">
+<meta property="og:updated_time" content="2020-03-07T13:50:39.391Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:%5CHEXO%5Cblog%5Csource_posts%5Cpython%5Cimg%5Cadmin.png">
 
 
 
@@ -414,6 +416,69 @@
 
       
         <p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
+<ul>
+<li><p>在虚拟环境中执行命令</p>
+<p><code>python manage.py startapp learning_logs</code></p>
+<p>命令让Django建立创建应用程序所需的基础设施。在learning_logs下创建了文件models.py, admin.py, views.py。我们将使用models.py来定义我们要在应用程序中管理的数据。</p>
+</li>
+</ul>
+<h1 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h1><p>目前在models.py中的内容仅一条语句<code>from django.db import models</code></p>
+<p>我们需要在模块中创建自己的模型。模型的作用是告诉Django如何处理应用程序中存储的数据。在代码层面上，我们把模型抽象为一个类。</p>
+<p>添加代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Topic</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="string">"""用户学习的主题"""</span></span><br><span class="line">    text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    data_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>属性text是一个由字符或文本组成的数据-CharField，主要用来存储较少量的文本信息，比如名称、标题和城市等。</li>
+<li>属性date_added是一个记录日期和时间的数据-DateTimeField。参数auto_now_add=True的意思是每当用户创建新主题时，都会让Django这个属性自动设置为当前时间。w</li>
+<li>_<em>str_</em>()方法会打印出在这个方法中return的内容。在这里打印出属性text的值。</li>
+</ul>
+<h1 id="激活模型"><a href="#激活模型" class="headerlink" title="激活模型"></a>激活模型</h1><ul>
+<li>要使用模型，必须要让Django将应用程序包含到项目中。打开<strong>learning_log/learning_log/setting.py</strong>文件，显示如下片段：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#my Apps</span></span><br><span class="line">    <span class="string">'learning_logs'</span> <span class="comment">#注：需要添加该语句</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>在末行加上<code>&#39;learning_logs&#39;</code>。</p>
+<hr>
+<ul>
+<li><p>接下来需要让Django修改数据库，使其能够存储模型Topic的相关信息。</p>
+<p>在终端中执行命令：<code>python manage.py makemigrations learning_logs</code></p>
+<p>成功提示:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Migrations for &apos;learning_logs&apos;:   </span><br><span class="line">	0001_initial.py:     </span><br><span class="line">		- Create model Topic</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>接下来应用迁移让Django替我们修改数据库<code>python manage.py migrate</code></p>
+<p>成功提示:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Running migrations:    </span><br><span class="line">	Rendering model states... DONE </span><br><span class="line">    Applying learning_logs.0001_initial... OK</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><font color=red><strong>之后每次需要修改管理的数据时，都要经过以上三个步骤。①修改models.py ②调用makemigrations ③让Django迁移项目。</strong></font></p>
+<h1 id="管理网站"><a href="#管理网站" class="headerlink" title="管理网站"></a>管理网站</h1><h2 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h2><p><code>python manage.py createsuperuser</code></p>
+<h2 id="向管理网站注册模型"><a href="#向管理网站注册模型" class="headerlink" title="向管理网站注册模型"></a>向管理网站注册模型</h2><p>在创建应用程序时，models.py所在目录下还有一个名为admin.py的文件。</p>
+<p>修改admin.py的代码以向管理网站注册我们之前的模型<strong>Topic</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line"></span><br><span class="line">admin.site.register(Topic)</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加主题"><a href="#添加主题" class="headerlink" title="添加主题"></a>添加主题</h2><p>向管理网站注册Topic后，我们来添加第一个主题。为此，单击Topics进入主题网页，它几乎是空的，这是因为我们还没有添加任何主题。单击Add，你将看到一个用于添加新主题的表单。 在第一个方框中输入Chess，再单击Save，这将返回到主题管理页面，其中包含刚创建的主题。</p>
+<h1 id="定义模型Entry"><a href="#定义模型Entry" class="headerlink" title="定义模型Entry"></a>定义模型Entry</h1><p>在model.py中增加Entry类</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Entry</span><span class="params">(models.Model)</span>:</span>     </span><br><span class="line">    <span class="string">"""学到的有关某个主题的具体知识"""</span>      </span><br><span class="line">    topic = models.ForeignKey(Topic)     </span><br><span class="line">    text = models.TextField()     </span><br><span class="line">    date_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>         </span><br><span class="line">        verbose_name_plural = <span class="string">'entries'</span>       </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>         </span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text[:<span class="number">50</span>] + <span class="string">"..."</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>继承了Django基类Model。</li>
+<li>topic是一个ForeignKey(外键)实例，它是一个数据库术语，引用了数据库中的另一条记录。代码将每个条目关联到特定的主题。每个主题创建时都给它分配了一个键(ID)。</li>
+<li>text是一个TextField实例且不受字长限制</li>
+<li>嵌套的Meta类存储用于管理模型的额外信息。</li>
+<li>__str__返回的是text前50个字符加上一串省略号，用来显示简介。</li>
+</ul>
+<p>接下来迁移模型即可</p>
+<p><code>python manage.py makemigrations learning_logs</code></p>
+<p><code>python manage.py migrate</code></p>
+<h1 id="向管理网站注册Entry"><a href="#向管理网站注册Entry" class="headerlink" title="向管理网站注册Entry"></a>向管理网站注册Entry</h1><p>修改admin.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic,Entry</span><br><span class="line"></span><br><span class="line">admin.site.register(Topic)</span><br><span class="line">admin.site.register(Entry)</span><br></pre></td></tr></table></figure>
+
+<p>返回到<a href="http://localhost/admin/，你将看到learning_logs下列出了Entries。单击Entries的Add链接，" target="_blank" rel="noopener">http://localhost/admin/，你将看到learning_logs下列出了Entries。单击Entries的Add链接，</a> 或者单击Entries再选择Add entry。你将看到一个下拉列表，让你能够选择要为哪个主题创建条目， 还有一个用于输入条目的文本框。</p>
+<p>效果图:<img src="D:%5CHEXO%5Cblog%5Csource_posts%5Cpython%5Cimg%5Cadmin.png" alt="img png"></p>
 
       
     </div>
@@ -447,6 +512,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/05/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="prev" title="QT/QT学习笔记-Lambda表达式">
+                QT/QT学习笔记-Lambda表达式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -498,8 +567,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -518,7 +596,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -529,7 +607,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -554,6 +632,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义模型"><span class="nav-number">1.</span> <span class="nav-text">定义模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#激活模型"><span class="nav-number">2.</span> <span class="nav-text">激活模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#管理网站"><span class="nav-number">3.</span> <span class="nav-text">管理网站</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建超级用户"><span class="nav-number">3.1.</span> <span class="nav-text">创建超级用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向管理网站注册模型"><span class="nav-number">3.2.</span> <span class="nav-text">向管理网站注册模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加主题"><span class="nav-number">3.3.</span> <span class="nav-text">添加主题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义模型Entry"><span class="nav-number">4.</span> <span class="nav-text">定义模型Entry</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#向管理网站注册Entry"><span class="nav-number">5.</span> <span class="nav-text">向管理网站注册Entry</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

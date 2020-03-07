@@ -1,9 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>python/Django-管理网站</title>
+    <url>/2020/03/07/python/Django-%E7%AE%A1%E7%90%86%E7%BD%91%E7%AB%99/</url>
+    <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
+<h1 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h1><p><code>python manage.py createsuperuser</code></p>
+<h1 id="向管理网站注册模型"><a href="#向管理网站注册模型" class="headerlink" title="向管理网站注册模型"></a>向管理网站注册模型</h1><p>在创建应用程序时，models.py所在目录下还有一个名为admin.py的文件。</p>
+<p>修改admin.py的代码以向管理网站注册我们之前的模型<strong>Topic</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line"></span><br><span class="line">admin.site.register(Topic)</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Django</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>QT/QT学习笔记-对话框创建</title>
+    <url>/2020/03/06/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%AF%9D%E6%A1%86%E5%88%9B%E5%BB%BA/</url>
+    <content><![CDATA[<p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
+<hr>
+<blockquote>
+<h1 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h1><blockquote>
+<p>模态对话框：不可以对其他窗口进行操作</p>
+<p>非模态对话框：可以对其他窗口进行操作</p>
+</blockquote>
+</blockquote>
+<p><font color=red>实现点击新建按钮弹出一个对话框的功能</font></p>
+<h2 id="模态对话框"><a href="#模态对话框" class="headerlink" title="模态对话框"></a>模态对话框</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"> connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">        <span class="comment">//对话框</span></span><br><span class="line">        <span class="comment">//分为模态对话框(不可以对其他窗口进行操作)和非模态对话框(可以)</span></span><br><span class="line">        <span class="comment">//模态创建</span></span><br><span class="line">		QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">        dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">        dlg.exec();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>模态对话框显示的方法是exec()，起到阻塞作用。</p>
+<h2 id="模态对话框-1"><a href="#模态对话框-1" class="headerlink" title="模态对话框"></a>模态对话框</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//非模态</span></span><br><span class="line">      <span class="function">QDialog <span class="title">dlg2</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">      dlg2.show();</span><br></pre></td></tr></table></figure>
+
+<p>注意此时点击新建按钮时对话框只是”一闪而过”，原因是该对话框dlg2只是lambda表达式里的局部变量。在lambda表达式结束后消失。</p>
+<p>更改为</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">QDialog *dlg2 = <span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">      dlg2-&gt;show();</span><br></pre></td></tr></table></figure>
+
+<p>但是我们注意到如果往复执行新建-&gt;关闭对话框的操作，很有可能造成内存泄漏，因为我们关闭对话框时并没有释放掉该对话框申请的内存，所以还需加上一句<code>dlg2-&gt;setAttribute(Qt::WA_DeleteOnClose);</code></p>
+<h1 id="标准对话框"><a href="#标准对话框" class="headerlink" title="标准对话框"></a>标准对话框</h1><p>所谓标准对话框，是Qt内置的一系列对话框，用于简化开发。大致分为以下几类</p>
+<ul>
+<li>QColor:选择颜色</li>
+<li>QFileDialog:选择文件或者目录</li>
+<li>QFontDialog:选择字体</li>
+<li>QInputDialog:允许用户输入一个值，并将其值返回</li>
+<li>QMessageBox:模态对话框，用于显示信息，询问问题等</li>
+<li>QPageSetupDialog:为打印机提供纸张相关的选项</li>
+<li>QPrintDialog:打印机配置</li>
+<li>QPrintPreviewDialog:打印预览</li>
+<li>QProgressDialog:显示操作过程</li>
+</ul>
+<h2 id="消息对话框QMessageBox"><a href="#消息对话框QMessageBox" class="headerlink" title="消息对话框QMessageBox"></a>消息对话框QMessageBox</h2><h3 id="错误对话框"><a href="#错误对话框" class="headerlink" title="错误对话框"></a>错误对话框</h3><p><code>QMessageBox::critical()</code></p>
+<img src="D:\HEXO\blog\source\_posts\QT\img\critical.png" alt="alt png" style="zoom:50%;" />
+
+
+
+<h3 id="信息对话框"><a href="#信息对话框" class="headerlink" title="信息对话框"></a>信息对话框</h3><p><code>QMessageBox::information()</code></p>
+<img src="D:\HEXO\blog\source\_posts\QT\img\info.png" alt="alt png" style="zoom:50%;" />
+
+<h3 id="提问对话框"><a href="#提问对话框" class="headerlink" title="提问对话框"></a>提问对话框</h3><p><code>QMessageBox::question(this,&quot;info&quot;,&quot;?&quot;,QMessageBox::Save|QMessageBox::Cancel,QMessageBox::Cancel)</code></p>
+<p>参数1：父亲 参数2：标题 参数3：提示内容 参数4：按键类型 参数5：默认关联回车按键。</p>
+<p>返回值:StandarButton类型。</p>
+<img src="D:\HEXO\blog\source\_posts\QT\img\question.png" alt="img png" style="zoom:50%;" />
+
+<h3 id="警告对话框"><a href="#警告对话框" class="headerlink" title="警告对话框"></a>警告对话框</h3><p><code>QMessageBox::warning(this,&quot;warning&quot;,&quot;警告&quot;);</code></p>
+<img src="D:\HEXO\blog\source\_posts\QT\img\warning.png" alt="img png" style="zoom:50%;" />
+
+<h2 id="其他标准对话框"><a href="#其他标准对话框" class="headerlink" title="其他标准对话框"></a>其他标准对话框</h2><h3 id="颜色对话框"><a href="#颜色对话框" class="headerlink" title="颜色对话框"></a>颜色对话框</h3><p><code>QColorDialog::getColor(QColor(255,0,0));</code></p>
+<p>返回值为QColor(RGB值)</p>
+<h3 id="文件对话框"><a href="#文件对话框" class="headerlink" title="文件对话框"></a>文件对话框</h3><p><code>QFileDialog::getOpenFileName(this,&quot;打开文件&quot;,&quot;D:\\7788\\&quot;,&quot;(*.jpg)&quot;);</code></p>
+<p>参数1：父亲  参数2：标题 参数3：默认打开路径 参数4：过滤文件格式</p>
+<p>返回值：一个文件路径的字符串(QString)</p>
+<h3 id="字体对话框"><a href="#字体对话框" class="headerlink" title="字体对话框"></a>字体对话框</h3><p><code>QFontDialog::getFont(&amp;flag,QFont(&quot;微软雅黑&quot;,36)); //第一个参数是一个bool值</code></p>
+<p>返回值：QFont</p>
+]]></content>
+      <categories>
+        <category>QT</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>QT/QT学习笔记-QMainWindow</title>
+    <url>/2020/03/06/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-QMainWindow/</url>
+    <content><![CDATA[<p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
+<p>QMainWindow是一个为用户提供主窗口程序的类，包含一个菜单栏(menu bar)，多个工具栏(tool bars)，多个链接部件(dock widgets)，一个状态栏(status bar)及一个中心部件(central widget)。</p>
+<h1 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h1><p>只能有一个</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//菜单栏创建 最多一个</span></span><br><span class="line">QMenuBar* bar = menuBar();</span><br><span class="line"><span class="comment">//将菜单栏放入窗口中</span></span><br><span class="line">setMenuBar(bar);</span><br><span class="line"><span class="comment">//创建菜单</span></span><br><span class="line">QMenu* fileMenu = bar-&gt;addMenu(<span class="string">"文件"</span>);</span><br><span class="line">QMenu* editMenu = bar-&gt;addMenu(<span class="string">"编辑"</span>);</span><br><span class="line"><span class="comment">//创建菜单项</span></span><br><span class="line">fileMenu-&gt;addAction(<span class="string">"新建"</span>);</span><br><span class="line"><span class="comment">//添加分隔符</span></span><br><span class="line">fileMenu-&gt;addSeparator();</span><br><span class="line">fileMenu-&gt;addAction(<span class="string">"打开"</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="工具栏"><a href="#工具栏" class="headerlink" title="工具栏"></a>工具栏</h1><p>可以有多个</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//工具栏</span></span><br><span class="line">QToolBar* toolBar = <span class="keyword">new</span> QToolBar(<span class="keyword">this</span>);</span><br><span class="line">addToolBar(Qt::LeftToolBarArea,toolBar);</span><br><span class="line"></span><br><span class="line"><span class="comment">//后期设置 只允许左右停靠</span></span><br><span class="line">toolBar-&gt;setAllowedAreas(Qt::LeftToolBarArea | Qt::RightToolBarArea);</span><br><span class="line"><span class="comment">//设置浮动 关闭</span></span><br><span class="line">toolBar-&gt;setFloatable(<span class="literal">false</span>);</span><br><span class="line"><span class="comment">//设置移动(总开关)</span></span><br><span class="line">toolBar-&gt;setMovable(<span class="literal">false</span>);</span><br><span class="line"><span class="comment">//设置内容(共有菜单栏的内容)</span></span><br><span class="line">toolBar-&gt;addAction(newAction);</span><br><span class="line">toolBar-&gt;addAction(openAction);</span><br><span class="line"><span class="comment">//工具栏中添加控件</span></span><br><span class="line">QPushButton* btn = <span class="keyword">new</span> QPushButton(<span class="string">"aa"</span>,<span class="keyword">this</span>);</span><br><span class="line">toolBar-&gt;addWidget(btn);</span><br></pre></td></tr></table></figure>
+
+<p>效果:</p>
+<p><img src="D:%5CHEXO%5Cblog%5Csource_posts%5CQT%5Cimg%5CQQ%E6%88%AA%E5%9B%BE20200306193355.png" alt="alt jpg"></p>
+<h1 id="状态栏"><a href="#状态栏" class="headerlink" title="状态栏"></a>状态栏</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//状态栏 最多一个</span></span><br><span class="line">QStatusBar* stBar = <span class="keyword">new</span> QStatusBar();</span><br><span class="line"><span class="comment">//设置到窗口中</span></span><br><span class="line">setStatusBar(stBar);</span><br><span class="line"><span class="comment">//放标签控件</span></span><br><span class="line">QLabel * label = <span class="keyword">new</span> QLabel(<span class="string">"提示信息"</span>,<span class="keyword">this</span>);</span><br><span class="line">stBar-&gt;addWidget(label);</span><br><span class="line"></span><br><span class="line">QLabel * r_label = <span class="keyword">new</span> QLabel(<span class="string">"右侧提示信息"</span>,<span class="keyword">this</span>);</span><br><span class="line">stBar-&gt;addPermanentWidget(r_label);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="铆接部件-浮动窗口"><a href="#铆接部件-浮动窗口" class="headerlink" title="铆接部件(浮动窗口)"></a>铆接部件(浮动窗口)</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//铆接部件(浮动窗口) 可以有多个</span></span><br><span class="line">QDockWidget* dockWidget = <span class="keyword">new</span> QDockWidget(<span class="string">"浮动"</span>,<span class="keyword">this</span>);</span><br><span class="line">addDockWidget(Qt::BottomDockWidgetArea,dockWidget);</span><br><span class="line"><span class="comment">//设置后期停靠区域，只允许上下</span></span><br><span class="line">dockWidget-&gt;setAllowedAreas(Qt::TopDockWidgetArea | Qt::BottomDockWidgetArea);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置中心部件 只能一个</span></span><br><span class="line">QTextEdit* edit = <span class="keyword">new</span> QTextEdit(<span class="keyword">this</span>);</span><br><span class="line">setCentralWidget(edit);</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>QT</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>QT/QT学习笔记-Lambda表达式</title>
+    <url>/2020/03/05/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
+<p>C++11中的Lambda表达式用于定义并创建匿名的函数对象。</p>
+<h1 id="基本构成"><a href="#基本构成" class="headerlink" title="基本构成"></a>基本构成</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">[capture][parameters]<span class="keyword">mutable</span>-&gt;<span class="keyword">return</span>-&gt;type</span><br><span class="line">&#123;</span><br><span class="line">	statement</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>[函数对象参数](操作符重载函数参数)mutable-&gt;返回值(函数体)</code></p>
+<h2 id="函数对象参数"><a href="#函数对象参数" class="headerlink" title="函数对象参数"></a>函数对象参数</h2><p>[]，标识一个Lamda的开始，这部分必须存在。</p>
+<p>函数对象参数是用来传递给<font color=blue>编译器自动生成的</font><font color = green>函数对象类的</font>构造函数的。</p>
+<p>函数对象参数只能使用那些到定义Lambd为止时Lambda所在作用范围内可见的局部变量。</p>
+<p>可用形式：</p>
+<ul>
+<li>空。没有使用任何函数对象参数</li>
+<li>=。函数体内可以使用Lambda所在作用范围内所有可见的局部变量，并且是<strong>值传递方式</strong>。</li>
+<li>&amp;。函数体内可以使用Lambda所在作用范围内所有可见的局部变量，并且是<strong>引用传递方式</strong>。</li>
+<li>this。函数体内可以使用Lambda所在类中的成员变量</li>
+<li>a。将a按值进行传递。按值进行传递时，函数体内不能修改传递进来的a的拷贝，因为默认情况下函数是const的，要修改传递进来的a的拷贝，可以添加mutable修饰符。</li>
+</ul>
+<h2 id="操作符重载函数参数"><a href="#操作符重载函数参数" class="headerlink" title="操作符重载函数参数"></a>操作符重载函数参数</h2><p>标识重载的()操作符的参数，可以省略。参数可以通过按值和按引用两种方式进行传递。</p>
+<h2 id="可修改标示符"><a href="#可修改标示符" class="headerlink" title="可修改标示符"></a>可修改标示符</h2><p>mutable声明，这部分可以省略。按值传递函数对象参数时，加上mutable修饰符后，可以修改按值传递进来的拷贝(<font color = red>不改变本体</font>)。</p>
+<h2 id="函数返回值"><a href="#函数返回值" class="headerlink" title="函数返回值"></a>函数返回值</h2><p>当返回值为void，或函数体中只有一处return的地方时，可以省略</p>
+<h1 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h1><p>点击一个按钮生成一个新的窗口，并同时生成另外一个按钮实现点击关闭新窗口的功能。</p>
+<ul>
+<li><p>在widget.h下声明私有变量<code>QPushButton* closeBtn;</code></p>
+<p>声明函数<code>void newButton();</code></p>
+</li>
+<li><p>在widget.cpp下定义函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> Widget::newButton()</span><br><span class="line">&#123;</span><br><span class="line">    closeBtn-&gt;setVisible(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在构造函数中：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">QWidget* new_Widget = <span class="keyword">new</span> QWidget;</span><br><span class="line">QPushButton* open = <span class="keyword">new</span> QPushButton(<span class="string">"open"</span>,<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">this</span>-&gt;closeBtn = <span class="keyword">new</span> QPushButton(<span class="string">"close"</span>,<span class="keyword">this</span>);</span><br><span class="line">closeBtn-&gt;move(<span class="number">0</span>,<span class="number">300</span>);</span><br><span class="line">closeBtn-&gt;setVisible(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">connect(open,&amp;QPushButton::clicked,new_Widget,&amp;Widget::show);</span><br><span class="line">connect(open,&amp;QPushButton::clicked,<span class="keyword">this</span>,&amp;Widget::newButton);</span><br><span class="line">connect(closeBtn,&amp;QPushButton::clicked,new_Widget,&amp;Widget::close);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>QT</category>
+      </categories>
+  </entry>
+  <entry>
     <title>python/Django-创建应用程序</title>
     <url>/2020/03/04/python/Django-%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</url>
     <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
+<ul>
+<li><p>在虚拟环境中执行命令</p>
+<p><code>python manage.py startapp learning_logs</code></p>
+<p>命令让Django建立创建应用程序所需的基础设施。在learning_logs下创建了文件models.py, admin.py, views.py。我们将使用models.py来定义我们要在应用程序中管理的数据。</p>
+</li>
+</ul>
+<h1 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h1><p>目前在models.py中的内容仅一条语句<code>from django.db import models</code></p>
+<p>我们需要在模块中创建自己的模型。模型的作用是告诉Django如何处理应用程序中存储的数据。在代码层面上，我们把模型抽象为一个类。</p>
+<p>添加代码:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Topic</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="string">"""用户学习的主题"""</span></span><br><span class="line">    text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    data_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>属性text是一个由字符或文本组成的数据-CharField，主要用来存储较少量的文本信息，比如名称、标题和城市等。</li>
+<li>属性date_added是一个记录日期和时间的数据-DateTimeField。参数auto_now_add=True的意思是每当用户创建新主题时，都会让Django这个属性自动设置为当前时间。w</li>
+<li>_<em>str_</em>()方法会打印出在这个方法中return的内容。在这里打印出属性text的值。</li>
+</ul>
+<h1 id="激活模型"><a href="#激活模型" class="headerlink" title="激活模型"></a>激活模型</h1><ul>
+<li>要使用模型，必须要让Django将应用程序包含到项目中。打开<strong>learning_log/learning_log/setting.py</strong>文件，显示如下片段：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#my Apps</span></span><br><span class="line">    <span class="string">'learning_logs'</span> <span class="comment">#注：需要添加该语句</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>在末行加上<code>&#39;learning_logs&#39;</code>。</p>
+<hr>
+<ul>
+<li><p>接下来需要让Django修改数据库，使其能够存储模型Topic的相关信息。</p>
+<p>在终端中执行命令：<code>python manage.py makemigrations learning_logs</code></p>
+<p>成功提示:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Migrations for &apos;learning_logs&apos;:   </span><br><span class="line">	0001_initial.py:     </span><br><span class="line">		- Create model Topic</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>接下来应用迁移让Django替我们修改数据库<code>python manage.py migrate</code></p>
+<p>成功提示:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Running migrations:    </span><br><span class="line">	Rendering model states... DONE </span><br><span class="line">    Applying learning_logs.0001_initial... OK</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><font color=red><strong>之后每次需要修改管理的数据时，都要经过以上三个步骤。①修改models.py ②调用makemigrations ③让Django迁移项目。</strong></font></p>
+<h1 id="管理网站"><a href="#管理网站" class="headerlink" title="管理网站"></a>管理网站</h1><h2 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h2><p><code>python manage.py createsuperuser</code></p>
+<h2 id="向管理网站注册模型"><a href="#向管理网站注册模型" class="headerlink" title="向管理网站注册模型"></a>向管理网站注册模型</h2><p>在创建应用程序时，models.py所在目录下还有一个名为admin.py的文件。</p>
+<p>修改admin.py的代码以向管理网站注册我们之前的模型<strong>Topic</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line"></span><br><span class="line">admin.site.register(Topic)</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加主题"><a href="#添加主题" class="headerlink" title="添加主题"></a>添加主题</h2><p>向管理网站注册Topic后，我们来添加第一个主题。为此，单击Topics进入主题网页，它几乎是空的，这是因为我们还没有添加任何主题。单击Add，你将看到一个用于添加新主题的表单。 在第一个方框中输入Chess，再单击Save，这将返回到主题管理页面，其中包含刚创建的主题。</p>
+<h1 id="定义模型Entry"><a href="#定义模型Entry" class="headerlink" title="定义模型Entry"></a>定义模型Entry</h1><p>在model.py中增加Entry类</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Entry</span><span class="params">(models.Model)</span>:</span>     </span><br><span class="line">    <span class="string">"""学到的有关某个主题的具体知识"""</span>      </span><br><span class="line">    topic = models.ForeignKey(Topic)     </span><br><span class="line">    text = models.TextField()     </span><br><span class="line">    date_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>         </span><br><span class="line">        verbose_name_plural = <span class="string">'entries'</span>       </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>         </span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text[:<span class="number">50</span>] + <span class="string">"..."</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>继承了Django基类Model。</li>
+<li>topic是一个ForeignKey(外键)实例，它是一个数据库术语，引用了数据库中的另一条记录。代码将每个条目关联到特定的主题。每个主题创建时都给它分配了一个键(ID)。</li>
+<li>text是一个TextField实例且不受字长限制</li>
+<li>嵌套的Meta类存储用于管理模型的额外信息。</li>
+<li>__str__返回的是text前50个字符加上一串省略号，用来显示简介。</li>
+</ul>
+<p>接下来迁移模型即可</p>
+<p><code>python manage.py makemigrations learning_logs</code></p>
+<p><code>python manage.py migrate</code></p>
+<h1 id="向管理网站注册Entry"><a href="#向管理网站注册Entry" class="headerlink" title="向管理网站注册Entry"></a>向管理网站注册Entry</h1><p>修改admin.py</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic,Entry</span><br><span class="line"></span><br><span class="line">admin.site.register(Topic)</span><br><span class="line">admin.site.register(Entry)</span><br></pre></td></tr></table></figure>
+
+<p>返回到<a href="http://localhost/admin/，你将看到learning_logs下列出了Entries。单击Entries的Add链接，" target="_blank" rel="noopener">http://localhost/admin/，你将看到learning_logs下列出了Entries。单击Entries的Add链接，</a> 或者单击Entries再选择Add entry。你将看到一个下拉列表，让你能够选择要为哪个主题创建条目， 还有一个用于输入条目的文本框。</p>
+<p>效果图:<img src="D:%5CHEXO%5Cblog%5Csource_posts%5Cpython%5Cimg%5Cadmin.png" alt="img png"></p>
 ]]></content>
       <categories>
         <category>Django</category>
@@ -98,7 +303,7 @@
 <p>​    <em>eg</em>:</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//需求:点击mybtn实现关闭窗口的功能 connect(mybtn,&amp;MyPushButton::clicked,this,&amp;mywidget::close);</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="断开"><a href="#断开" class="headerlink" title="断开"></a>断开</h2><p>disconnect</p>
+<h2 id="断开"><a href="#断开" class="headerlink" title="断开"></a>断开</h2><p>disconnect()</p>
 <h1 id="QPushButton的Signal函数"><a href="#QPushButton的Signal函数" class="headerlink" title="QPushButton的Signal函数"></a>QPushButton的Signal函数</h1><h2 id="继承自QAbstractButton"><a href="#继承自QAbstractButton" class="headerlink" title="继承自QAbstractButton"></a>继承自QAbstractButton</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void clicked(bool checked=false)	//点击</span><br><span class="line">void pressed()						//按下</span><br><span class="line">void released()						//松开</span><br><span class="line">void toggled(bool checked)			//一直按着不松开</span><br></pre></td></tr></table></figure>
 
 
@@ -120,8 +325,18 @@
 <p><em>eg</em>:</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher::*teacherSignal)(QString) = &amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Student::*studentSignal)(QString) = &amp;Student::treat;</span><br><span class="line">connect(tc,teacherSignal,st,studentSignal);</span><br><span class="line">classIsOver();</span><br></pre></td></tr></table></figure>
 
-
-
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
+<li><p>信号可以连接信号</p>
+</li>
+<li><p>一个信号可以连接多个槽函数</p>
+</li>
+<li><p>多个信号可以连接一个槽函数</p>
+</li>
+<li><p>信号和槽函数的参数类型必须一一对应</p>
+</li>
+<li><p>信号的参数个数可以多于槽函数的参数个数</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>QT入门</category>
