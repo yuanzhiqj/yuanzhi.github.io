@@ -87,7 +87,7 @@
 <meta property="og:description" content="参考书籍：《Python编程从入门到实践》—Eric Matthes  在虚拟环境中执行命令 python manage.py startapp learning_logs 命令让Django建立创建应用程序所需的基础设施。在learning_logs下创建了文件models.py, admin.py, views.py。我们将使用models.py来定义我们要在应用程序中管理的数据。   定义模">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="d:%5CHEXO%5Cblog%5Csource_posts%5Cpython%5Cimg%5Cadmin.png">
-<meta property="og:updated_time" content="2020-03-07T13:50:39.391Z">
+<meta property="og:updated_time" content="2020-03-12T13:12:37.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="d:%5CHEXO%5Cblog%5Csource_posts%5Cpython%5Cimg%5Cadmin.png">
 
@@ -425,7 +425,7 @@
 <h1 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h1><p>目前在models.py中的内容仅一条语句<code>from django.db import models</code></p>
 <p>我们需要在模块中创建自己的模型。模型的作用是告诉Django如何处理应用程序中存储的数据。在代码层面上，我们把模型抽象为一个类。</p>
 <p>添加代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Topic</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="string">"""用户学习的主题"""</span></span><br><span class="line">    text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    data_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Topic</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="string">"""用户学习的主题"""</span></span><br><span class="line">    text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    date_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>属性text是一个由字符或文本组成的数据-CharField，主要用来存储较少量的文本信息，比如名称、标题和城市等。</li>
@@ -596,7 +596,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">44</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
