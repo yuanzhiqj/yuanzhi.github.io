@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>QT/QT进阶-TCP网络通信</title>
+    <url>/2020/09/03/QT/QT%E8%BF%9B%E9%98%B6-TCP%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/</url>
+    <content><![CDATA[<p>​    在QT的程序环境中QT已经集成了Server、TCPSocket和UDPSocket的类供用户使用，所以在QT中编写网络通信还是比较方便的。</p>
+<p>​    现在先简单介绍一下QTcp的简单使用，编写一个简单的TCP通信的Demo。</p>
+<h1 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h1>]]></content>
+      <categories>
+        <category>QT</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>QT/QT学习笔记-QFile文件读写操作</title>
+    <url>/2020/03/16/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-QFile%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
+<p>本节实现目的:点击“上传文件”按钮，将文件目录放到lineEdit中，并读取文件内容至textEdit框中</p>
+<p>添加头文件&lt;QFileDialog&gt;&lt;QFile&gt;</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;pushButton,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        QString path = QFileDialog::getOpenFileName(<span class="keyword">this</span>,<span class="string">"打开文件"</span>,<span class="string">"D:\\vscode\\python\\yaoshui.txt"</span>);</span><br><span class="line">        ui-&gt;lineEdit-&gt;setText(path);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//读取内容</span></span><br><span class="line">        <span class="comment">//QFile默认支持的格式utf-8</span></span><br><span class="line">        QFile file(path);</span><br><span class="line">        <span class="comment">//设置打开方式</span></span><br><span class="line">        file.open(QIODevice::ReadOnly);</span><br><span class="line">        QByteArray <span class="built_in">array</span> = file.readAll();  <span class="comment">//读取全部内容</span></span><br><span class="line"></span><br><span class="line">        ui-&gt;textEdit-&gt;setText(<span class="built_in">array</span>);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>但是这样只支持utf-8的编码格式，如果需要打开其它编码格式的文件，需要这样做，这里以gbk为例</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//编码格式类</span></span><br><span class="line">QTextCodec * codec = QTextCodec::codecForName(<span class="string">"gbk"</span>);</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">ui-&gt;textEdit-&gt;setText(codec-&gt;toUnicode(<span class="built_in">array</span>));</span><br></pre></td></tr></table></figure>
+
+<p>写入(如果之前打开文件需要先用<code>file.close()关闭</code>)</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//追加方式写文件</span></span><br><span class="line">file.open(QIODevice::Append);</span><br><span class="line"></span><br><span class="line">file.write(<span class="string">"啊这"</span>);</span><br><span class="line">file.close();</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="QFileInfo-文件信息类"><a href="#QFileInfo-文件信息类" class="headerlink" title="QFileInfo 文件信息类"></a>QFileInfo 文件信息类</h1><p>头文件&lt;QFileInfo&gt;</p>
+<ul>
+<li>info.size():大小，单位：字节</li>
+<li>info.fileName():名称</li>
+<li>info.suffix():后缀</li>
+<li>info.filePath():路径</li>
+<li>info.created():创建时间，返回类型为QDateTime</li>
+<li>info.lastModified():上次修改时间</li>
+</ul>
+]]></content>
+      <categories>
+        <category>QT</category>
+      </categories>
+  </entry>
+  <entry>
     <title>QT/QT学习笔记-绘图事件</title>
     <url>/2020/03/13/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BB%98%E5%9B%BE%E4%BA%8B%E4%BB%B6/</url>
     <content><![CDATA[<p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
@@ -58,6 +98,22 @@
 <li>QPicture则可以记录和重现QPainter的各条命令</li>
 </ul>
 <p>QPixmap继承了QPaintDevice，因此你可以使用QPainter直接在上面绘制图形。QPixmap也可以接受一个字符串作为一个文件的路径来显示这个文件，比如你想在程序之中打开png,jpg之类的文件，就可以使用QPixmap。使用QPainter的drawPixmap()函数可以把这个文件绘制到一个QLabel、QPushButton或者其它设备上。QPixmap是针对屏幕进行特殊优化的，因此它与实际的底层显示设备息息相关。(这里的显示设备不是硬件，而是操作系统提供的绘图引擎。所有在不太的操作系统平台下，QPixmap的显示可能会有所差别)</p>
+<h3 id="QPixmap"><a href="#QPixmap" class="headerlink" title="QPixmap"></a>QPixmap</h3><p>包含头文件&lt;QPixmap&gt;和&lt;QPainter&gt;</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Pixmap绘图</span></span><br><span class="line"><span class="function">QPixmap <span class="title">pix</span><span class="params">(<span class="number">300</span>,<span class="number">300</span>)</span></span>;</span><br><span class="line"><span class="comment">//填充颜色</span></span><br><span class="line">pix.fill(Qt::white);</span><br><span class="line"><span class="comment">//声明画家</span></span><br><span class="line"><span class="function">QPainter <span class="title">painter</span><span class="params">(&amp;pix)</span></span>;</span><br><span class="line">painter.setPen(QPen(Qt::green));</span><br><span class="line">painter.drawEllipse(QPoint(<span class="number">150</span>,<span class="number">150</span>),<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">pix.save(<span class="string">"D:\\QT\\project\\pix.png"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>路径最好不要有中文</p>
+<h3 id="QImage"><a href="#QImage" class="headerlink" title="QImage"></a>QImage</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//QImage绘图</span></span><br><span class="line"><span class="function">QImage <span class="title">img</span><span class="params">(<span class="number">300</span>,<span class="number">300</span>,QImage::Format_RGB32)</span></span>;</span><br><span class="line">img.fill(Qt::white);</span><br><span class="line"><span class="comment">//声明画家</span></span><br><span class="line"><span class="function">QPainter <span class="title">painter</span><span class="params">(&amp;img)</span></span>;</span><br><span class="line">painter.setPen(QPen(Qt::blue));</span><br><span class="line">painter.drawEllipse(QPoint(<span class="number">150</span>,<span class="number">150</span>),<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">img.save(<span class="string">"D:\\QT\\project\\img.png"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>利用QImage对像素修改</p>
+<p>在widget.cpp public下声明函数<code>void paintEvent(QPaintEvent*);</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> Widget::paintEvent(QPaintEvent *)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">QPainter <span class="title">painter</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">    <span class="comment">//利用QIMage 对像素修改</span></span><br><span class="line">    QImage img;</span><br><span class="line">    img.load(<span class="string">":/img.png"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改像素点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">50</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">50</span>; j &lt; <span class="number">100</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            QRgb value = qRgb(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">            img.setPixel(i,j,value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    painter.drawImage(<span class="number">0</span>,<span class="number">0</span>,img);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="QPicture"><a href="#QPicture" class="headerlink" title="QPicture"></a>QPicture</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Qicture绘图设备 可以记录和重现绘图指令</span></span><br><span class="line">QPicture pic;</span><br><span class="line">QPainter painter;</span><br><span class="line">painter.begin(&amp;pic);    <span class="comment">//开始往pic上画</span></span><br><span class="line">painter.setPen(QPen(Qt::cyan));</span><br><span class="line">painter.drawEllipse(QPoint(<span class="number">150</span>,<span class="number">150</span>),<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">painter.end();          <span class="comment">//结束</span></span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">pic.save(<span class="string">"D:\\QT\\project\\pic.zt"</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//重现</span></span><br><span class="line">QPicture pic;</span><br><span class="line">pic.load(<span class="string">"D:\\QT\\project\\pic.zt"</span>);</span><br><span class="line"><span class="function">QPainter <span class="title">painter</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">painter.drawPicture(<span class="number">0</span>,<span class="number">0</span>,pic);</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>QT</category>
@@ -91,148 +147,6 @@
 <h1 id="添加控件"><a href="#添加控件" class="headerlink" title="添加控件"></a>添加控件</h1>]]></content>
       <categories>
         <category>QT</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/Django-创建其他网页</title>
-    <url>/2020/03/09/python/Django-%E5%88%9B%E5%BB%BA%E5%85%B6%E4%BB%96%E7%BD%91%E9%A1%B5/</url>
-    <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
-<p>我们将创建两个显示数据的网 页，其中一个列出所有的主题，另一个显示特定主题的所有条目。对于每个网页，我们都将指定 URL模式，编写一个视图函数，并编写一个模板</p>
-<h1 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h1><p>创建网站时，几乎都有一些所有网页都将包含的元素。在这种情况下，可编写一个包含通用 元素的父模板，并让每个网页都继承这个模板，而不必在每个网页中重复定义这些通用元素。所以我们先创建一个父模板。</p>
-<h2 id="父模板"><a href="#父模板" class="headerlink" title="父模板"></a>父模板</h2><p>我们首先来创建一个名为base.html的模板，并将其存储在index.html所在的目录中。这个文件 包含所有页面都有的元素；其他的模板都继承base.html。当前，所有页面都包含的元素只有顶端 的标题。我们将在每个页面中包含这个模板，因此我们将这个标题设置为到主页的链接</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'learning_logs:index' %&#125;"</span>&gt;</span>Learning Log<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% block content %&#125;&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>模板标签(用&lt;!–￼11–&gt;表示)生成一个URL，该URL与learning_logs/urls.py中定义的名为index的URL模式匹配。</li>
-<li>在最后一行我们插入了一对块标签，名为content，是一个占位符，其中包含的消息由子模版指定。</li>
-</ul>
-<h2 id="子模版"><a href="#子模版" class="headerlink" title="子模版"></a>子模版</h2><p>重新编写index.html</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% extends "learning_logs/base.html" %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log helps you keep track of your learning, for any topic you're</span><br><span class="line">        learning about.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>将标题Learning Log替换成了从父模板那里继承的代码。</li>
-<li>content的&lt;!–￼12–&gt;是一个描述项目”学习笔记”的段落。</li>
-</ul>
-<h1 id="显示所有主题的页面"><a href="#显示所有主题的页面" class="headerlink" title="显示所有主题的页面"></a>显示所有主题的页面</h1><h2 id="URL模式"><a href="#URL模式" class="headerlink" title="URL模式"></a>URL模式</h2><p>定义URL <a href="https://localhost:8000/topics返回显示所有主题的页面。" target="_blank" rel="noopener">https://localhost:8000/topics返回显示所有主题的页面。</a></p>
-<p>在learning_logs/urls.py中添加</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#显示所有的主题</span></span><br><span class="line">url(<span class="string">r'^topics/$'</span>,views.topics,name=<span class="string">'topics'</span>),</span><br></pre></td></tr></table></figure>
-
-<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>在views.py中添加库函数</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">from .models import Topic</span><br></pre></td></tr></table></figure>
-
-<p>再添加</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">topics</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="string">"""显示所有的主题"""</span></span><br><span class="line">    topics = Topic.objects.order_by(<span class="string">'date_added'</span>)</span><br><span class="line">    context = &#123;<span class="string">'topics'</span>:topics&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'learning_logs/topics.html'</span>,context)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>topics = Topic.objects.order_by(&#39;date_added&#39;)</code>请求Topic对象，并按属性date_added对它们进行排序</li>
-<li>最后，我们定义了一个将要发送给模板的上下文。上下文是一个字典，其中的键是我们在模板中用来访问数据的名称，而值是我们要发送给模板的数据。</li>
-</ul>
-<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>显示所有主题的页面的模板接受字典context。在index.html所在的目录下新建文件topics.html</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% extends "learning_logs/base.html" %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Topics<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        &#123;% for topic in topics %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;&#123; topic &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% empty %&#125;</span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span>No topics have been added yet.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        &#123;% endfor %&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'learning_logs:new_topic' %&#125;"</span>&gt;</span>Add a new topic:<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>修改父模板base.html</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'learning_logs:index' %&#125;"</span>&gt;</span>Learning Log<span class="tag">&lt;/<span class="name">a</span>&gt;</span> - </span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'learning_logs:topics' %&#125;"</span>&gt;</span>Topics<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% block content %&#125;&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>‘-‘是一个连字符，然后添加了一个到显示所有主题的页面的链接——使用的也是模板标签url。这让Django生成一个链接，它与learning_logs/urls.py中名为topics的URL模式匹配。</li>
-</ul>
-<p><font color = red>注意！！！如果此时出现<code>learning_logs&#39; is not a registered namespace</code>的错误，在learning_logs/urls.py末尾中添加：<code>app_name=&#39;learning_logs&#39;</code></font></p>
-<p><font color=blue>淦，之前一直报错原来是把Topic模型里面的date_added打成data了。好不容易改了之后又出现了<code>OperationalError at/admin/learning_logs/topic/add table learning_logs_topic has no column named text</code>的问题，原因是更改了models.py文件里面的主题之后没有迁移数据库，一定要记得更改了models.py的文件后要执行<code>python manage.py makemigration learning_logs</code> <code>python manage.py migrate</code>这两步命令！！！</font></p>
-<h1 id="显示特定主题的页面"><a href="#显示特定主题的页面" class="headerlink" title="显示特定主题的页面"></a>显示特定主题的页面</h1><p>我们还需要一个显示具体主题的页面。所以需要定义一个新的URL模式，编写一个视图和创建一个模板。</p>
-<h2 id="URL模式-1"><a href="#URL模式-1" class="headerlink" title="URL模式"></a>URL模式</h2><p>#在learning_logs/urls.py中添加</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#特定主题的详细页面</span></span><br><span class="line">url(<span class="string">r'^topics/(?P&lt;topic_id&gt;\d+)/$'</span>,views.topic,name=<span class="string">'topic'</span>),</span><br></pre></td></tr></table></figure>
-
-<p>这同样包含了一个正则表达式。r让Django将这个字符串当作原始字符串，并指出正则表达式在引号内。<code>(/(?P&lt;topic_id&gt;\d+)/)</code>与包含在两个斜杠内的整数匹配，并将整数存储在topic_id中。这部分表达式两边的括号捕获URL的值，表达式<code>\d+</code>与两个斜杠内的任何数字都匹配。</p>
-<p>如果发现URL与这个模式匹配，Django就会调用视图函数topic()，并将topic_id中的值作为值传递给它。</p>
-<h2 id="视图-1"><a href="#视图-1" class="headerlink" title="视图"></a>视图</h2><p>在views.py中添加</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">topic</span><span class="params">(request,topic_id)</span>:</span></span><br><span class="line">    <span class="string">"""显示单个主题及其所有的条目"""</span></span><br><span class="line">    topic = Topic.objects.get(id=topic_id)</span><br><span class="line">    entries = topic.entry_set.order_by(<span class="string">'-date_added'</span>)</span><br><span class="line">    context = &#123;<span class="string">'topic'</span>:topic,<span class="string">'entries'</span>:entries&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'learning_logs/topic.html'</span>,context)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>函数接受正则表达式<code>(?P&lt;topic_id&gt;\d+)</code>捕获的值</li>
-<li>使用get获取指定的主题</li>
-<li><code>-date_added</code>按降序排序，即先显示最近的条目</li>
-<li>然后将主题和条目都存储在context字典中，最后发送给模板topic.html</li>
-</ul>
-<h2 id="模板-1"><a href="#模板-1" class="headerlink" title="模板"></a>模板</h2><p>在index.html所在目录下添加topic.html文件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% extends 'learning_logs/base.html' %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Topic:&#123;&#123;topic&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Entries:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    &#123;% for entry in entries %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;entry.date_added|date:'M d, Y H:i' &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;entry.text|linebreaks&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span>&gt;</span><br><span class="line">    &#123;% empty %&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">            There are no entries for this topic yet.</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% endblock content%&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>每个列表项目都将列出两项信息：条目的时间戳和完整的文本。为了列出时间戳，显示出属性date_added的值。在Django中，竖线’|’表示模板过滤器——对模板变量的值进行修改的函数。在这里过滤器<code>date:&#39;M d, Y H:i&#39;</code>按照月 日 年 时分的格式显示时间。</li>
-<li>下一行的过滤器linebreaks将包含换行符的长条目转换为浏览器就能理解的格式。</li>
-</ul>
-<h2 id="将显示所有主题的每个主题都设置为链接"><a href="#将显示所有主题的每个主题都设置为链接" class="headerlink" title="将显示所有主题的每个主题都设置为链接"></a>将显示所有主题的每个主题都设置为链接</h2><p>修改topics.html</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% for topic in topics %&#125;</span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;%url 'learning_logs:topic' topic.id%&#125;"</span>&gt;</span>&#123;&#123; topic &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;% empty %&#125;</span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>No topics have been added yet.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;% endfor %&#125;</span><br></pre></td></tr></table></figure>
-
-<p>使用learnings_logs中名为topic的URL模式来生成合适的链接。这个URL模式要求提供实参topic_id,因此我们在模板标签url中添加了属性topic.id。</p>
-<p><font color=red>这里出现了一个小插曲，出现了<code>TemplateDoesNotExist</code>的报错，在这里需要看html是否正确放在了templates/learning_logs的目录下。</font></p>
-<p>效果图:</p>
-<p><img src="http://139.9.171.87:1721/image/j8n" alt="img"></p>
-<p><img src="http://139.9.171.87:1721/image/ioE" alt="img"></p>
-]]></content>
-      <categories>
-        <category>Django</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/Django-创建主页</title>
-    <url>/2020/03/07/python/Django-%E5%88%9B%E5%BB%BA%E4%B8%BB%E9%A1%B5/</url>
-    <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
-<p>使用Django创建网页的过程通常分为三个阶段:定义URL、编写视图和编写模板。</p>
-<ul>
-<li>URL模式描述了URL是如何设计的，让Django知道如何将浏览器请求与网站URL匹配，以确定返回哪个网页。</li>
-<li>每个URL都被映射到特定的视图——视图函数获取并处理网页所需的数据。视图函数通常调用一个模板，后者生成浏览器能够理解的网页</li>
-</ul>
-<h1 id="映射URL"><a href="#映射URL" class="headerlink" title="映射URL"></a>映射URL</h1><p>URL(Uniform Resource Locator,统一资源定位符)是WWW的统一资源定位标志。</p>
-<p>组成：资源类型、存放资源的主机域名、资源文件名。(或者协议、主机、端口、路径)</p>
-<hr>
-<p>目前我们的URL(<a href="https://localhost:8000/)映射到的是Django网站。所以我们现在需要将它映射到我们自己的主页。" target="_blank" rel="noopener">https://localhost:8000/)映射到的是Django网站。所以我们现在需要将它映射到我们自己的主页。</a></p>
-<p>打开learning_logs目录下的urls.py文件可以看到：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"> </span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, include(admin.site.urls)),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>前两行导入了为项目和管理网站管理URL的函数和模块</li>
-<li>urlpatterns变量包含项目中应用程序的URL</li>
-<li>admin.site.urls是一个模块，定以了可在管理网站中请求的所有URL</li>
-</ul>
-<p>我们在urlpatterns列表里的末尾加上</p>
-<p><code>url(r&#39;&#39;, include((&#39;learning_logs.urls&#39;), namespace=&#39;learning_logs&#39;)),</code></p>
-<p>用来包含模块learning_logs.urls。参数namespace的作用是将learning_logs的URL与项目其他URL区分开。</p>
-<hr>
-<p>现在我们需要在文件夹learning_logs中创建另一个urls.py文件(<font color=red>注意目录！！！</font>)</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views </span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment">#主页</span></span><br><span class="line">    url(<span class="string">r'^$'</span>,views.index,name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>导入url的目的需要使用它来将URL映射到视图</p>
-</li>
-<li><p>句点让Python从当前的urls.py的文件夹中导入视图</p>
-</li>
-<li><p>变量urlpatterns是一个列表，包含可在应用程序learning_logs中请求的网页</p>
-</li>
-</ul>
-<p>URL模式实则是对函数url()的一个调用。url()接受三个实参。第一个是正则表达式，第二个实参指定了要调用的视图函数。第三个参数将这个URL模式的名称指定为index，让我们能够在代码的其他地方引用它。</p>
-<h2 id="正则表达式-regex"><a href="#正则表达式-regex" class="headerlink" title="正则表达式(regex)"></a>正则表达式(regex)</h2><p><code>r&#39;^$&#39;</code>:</p>
-<ul>
-<li>r的作用是让python将接下来的字符串视为原始字符串</li>
-<li>脱字符^让python查看字符串的开头</li>
-<li>$让python查看字符串的结尾。</li>
-</ul>
-<p>这个表达式的意思是只查找开头和末尾之间没有任何东西的URL即基础URL(<a href="http://localhost:8000/" target="_blank" rel="noopener">http://localhost:8000/</a>)</p>
-<h1 id="编写视图"><a href="#编写视图" class="headerlink" title="编写视图"></a>编写视图</h1><p>视图函数接受请求中的信息，准备好生成网页所需的数据，再将这些数据发送给浏览器。这通常是使用定义了网页是什么样的模板实现的。</p>
-<p>打开learning_logs目录下的views.py</p>
-<p>目前只导入了函数render()，它根据视图提供的数据渲染响应:</p>
-<p><code>from django.shortcuts import render</code></p>
-<h2 id="为主页编写视图"><a href="#为主页编写视图" class="headerlink" title="为主页编写视图"></a>为主页编写视图</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="string">"""学习笔记的主页"""</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'learning_logs/index.html'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>URL请求与我们刚才定义的模式匹配时，Django将在文件views.py中查找函数index()，再将请求对象传递给这个视图函数。在这里，我们不需要处理任何数据，因此这个函数只包含调用 render()的代码。这里向函数render()提供了两个实参：原始请求对象以及一个可用于创建网页的模板</p>
-<h1 id="编写模板"><a href="#编写模板" class="headerlink" title="编写模板"></a>编写模板</h1><p>在文件夹learning_logs中新建一个文件夹，并将其命名为templates。在文件夹templates中，再新建一个文件夹，并将其命名为learning_logs。</p>
-<p>即learning_logs-&gt;templates-&gt;learning_logs</p>
-<p>新建文件index.html</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log helps you keep track of your learning, for any topic you're learning about.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>这里定义了两个锻炼:第一个充当标题，第二个阐述了用户可使用学习笔记做什么。</p>
-]]></content>
-      <categories>
-        <category>Django</category>
       </categories>
   </entry>
   <entry>
@@ -364,156 +278,6 @@
       </categories>
   </entry>
   <entry>
-    <title>python/Django-创建应用程序</title>
-    <url>/2020/03/04/python/Django-%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</url>
-    <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
-<ul>
-<li><p>在虚拟环境中执行命令</p>
-<p><code>python manage.py startapp learning_logs</code></p>
-<p>命令让Django建立创建应用程序所需的基础设施。在learning_logs下创建了文件models.py, admin.py, views.py。我们将使用models.py来定义我们要在应用程序中管理的数据。</p>
-</li>
-</ul>
-<h1 id="定义模型"><a href="#定义模型" class="headerlink" title="定义模型"></a>定义模型</h1><p>目前在models.py中的内容仅一条语句<code>from django.db import models</code></p>
-<p>我们需要在模块中创建自己的模型。模型的作用是告诉Django如何处理应用程序中存储的数据。在代码层面上，我们把模型抽象为一个类。</p>
-<p>添加代码:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Topic</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="string">"""用户学习的主题"""</span></span><br><span class="line">    text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    date_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>属性text是一个由字符或文本组成的数据-CharField，主要用来存储较少量的文本信息，比如名称、标题和城市等。</li>
-<li>属性date_added是一个记录日期和时间的数据-DateTimeField。参数auto_now_add=True的意思是每当用户创建新主题时，都会让Django这个属性自动设置为当前时间。w</li>
-<li>_<em>str_</em>()方法会打印出在这个方法中return的内容。在这里打印出属性text的值。</li>
-</ul>
-<h1 id="激活模型"><a href="#激活模型" class="headerlink" title="激活模型"></a>激活模型</h1><ul>
-<li>要使用模型，必须要让Django将应用程序包含到项目中。打开<strong>learning_log/learning_log/setting.py</strong>文件，显示如下片段：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#my Apps</span></span><br><span class="line">    <span class="string">'learning_logs'</span> <span class="comment">#注：需要添加该语句</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>在末行加上<code>&#39;learning_logs&#39;</code>。</p>
-<hr>
-<ul>
-<li><p>接下来需要让Django修改数据库，使其能够存储模型Topic的相关信息。</p>
-<p>在终端中执行命令：<code>python manage.py makemigrations learning_logs</code></p>
-<p>成功提示:</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Migrations for &apos;learning_logs&apos;:   </span><br><span class="line">	0001_initial.py:     </span><br><span class="line">		- Create model Topic</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>接下来应用迁移让Django替我们修改数据库<code>python manage.py migrate</code></p>
-<p>成功提示:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Running migrations:    </span><br><span class="line">	Rendering model states... DONE </span><br><span class="line">    Applying learning_logs.0001_initial... OK</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><font color=red><strong>之后每次需要修改管理的数据时，都要经过以上三个步骤。①修改models.py ②调用makemigrations ③让Django迁移项目。</strong></font></p>
-<h1 id="管理网站"><a href="#管理网站" class="headerlink" title="管理网站"></a>管理网站</h1><h2 id="创建超级用户"><a href="#创建超级用户" class="headerlink" title="创建超级用户"></a>创建超级用户</h2><p><code>python manage.py createsuperuser</code></p>
-<h2 id="向管理网站注册模型"><a href="#向管理网站注册模型" class="headerlink" title="向管理网站注册模型"></a>向管理网站注册模型</h2><p>在创建应用程序时，models.py所在目录下还有一个名为admin.py的文件。</p>
-<p>修改admin.py的代码以向管理网站注册我们之前的模型<strong>Topic</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line"></span><br><span class="line">admin.site.register(Topic)</span><br></pre></td></tr></table></figure>
-
-<h2 id="添加主题"><a href="#添加主题" class="headerlink" title="添加主题"></a>添加主题</h2><p>向管理网站注册Topic后，我们来添加第一个主题。为此，单击Topics进入主题网页，它几乎是空的，这是因为我们还没有添加任何主题。单击Add，你将看到一个用于添加新主题的表单。 在第一个方框中输入Chess，再单击Save，这将返回到主题管理页面，其中包含刚创建的主题。</p>
-<h1 id="定义模型Entry"><a href="#定义模型Entry" class="headerlink" title="定义模型Entry"></a>定义模型Entry</h1><p>在model.py中增加Entry类</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Entry</span><span class="params">(models.Model)</span>:</span>     </span><br><span class="line">    <span class="string">"""学到的有关某个主题的具体知识"""</span>      </span><br><span class="line">    topic = models.ForeignKey(Topic)     </span><br><span class="line">    text = models.TextField()     </span><br><span class="line">    date_added = models.DateTimeField(auto_now_add=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span>         </span><br><span class="line">        verbose_name_plural = <span class="string">'entries'</span>       </span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span>         </span><br><span class="line">        <span class="string">"""返回模型的字符串表示"""</span></span><br><span class="line">        <span class="keyword">return</span> self.text[:<span class="number">50</span>] + <span class="string">"..."</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>继承了Django基类Model。</li>
-<li>topic是一个ForeignKey(外键)实例，它是一个数据库术语，引用了数据库中的另一条记录。代码将每个条目关联到特定的主题。每个主题创建时都给它分配了一个键(ID)。</li>
-<li>text是一个TextField实例且不受字长限制</li>
-<li>嵌套的Meta类存储用于管理模型的额外信息。</li>
-<li>__str__返回的是text前50个字符加上一串省略号，用来显示简介。</li>
-</ul>
-<p>接下来迁移模型即可</p>
-<p><code>python manage.py makemigrations learning_logs</code></p>
-<p><code>python manage.py migrate</code></p>
-<h1 id="向管理网站注册Entry"><a href="#向管理网站注册Entry" class="headerlink" title="向管理网站注册Entry"></a>向管理网站注册Entry</h1><p>修改admin.py</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Register your models here.</span></span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic,Entry</span><br><span class="line"></span><br><span class="line">admin.site.register(Topic)</span><br><span class="line">admin.site.register(Entry)</span><br></pre></td></tr></table></figure>
-
-<p>返回到<a href="http://localhost/admin/，你将看到learning_logs下列出了Entries。单击Entries的Add链接，" target="_blank" rel="noopener">http://localhost/admin/，你将看到learning_logs下列出了Entries。单击Entries的Add链接，</a> 或者单击Entries再选择Add entry。你将看到一个下拉列表，让你能够选择要为哪个主题创建条目， 还有一个用于输入条目的文本框。</p>
-<p>效果图:<img src="D:%5CHEXO%5Cblog%5Csource_posts%5Cpython%5Cimg%5Cadmin.png" alt="img png"></p>
-]]></content>
-      <categories>
-        <category>Django</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/Django项目-准备</title>
-    <url>/2020/03/04/python/Django%E9%A1%B9%E7%9B%AE-%E5%87%86%E5%A4%87/</url>
-    <content><![CDATA[<p>参考书籍：《Python编程从入门到实践》—Eric Matthes</p>
-<ul>
-<li><p>建立虚拟环境</p>
-<p>新建一个目录命名为learning_log，在该目录下打开终端</p>
-<p><code>python -m venv ll_env</code></p>
-</li>
-<li><p>安装virtualenv</p>
-<p><code>pip install --user virtualenv</code></p>
-</li>
-<li><p>激活虚拟环境(windows下)</p>
-<p><code>ll_env/Scripts/activate</code></p>
-</li>
-<li><p>安装Django</p>
-<p><code>pip install Django</code></p>
-</li>
-<li><p>在Django中创建项目</p>
-<p><code>django-admin.py startproject learning_log .</code></p>
-<p>若创建成功，则在learning_log目录下出现_<em>init_</em>.py, setting.py, urls.py, wsgi.py四个文件</p>
-<ul>
-<li>setting.py:指定Django如何与系统校核以及如何管理项目。</li>
-<li>urls.py:告诉Django应创建哪些网页来响应浏览器请求。</li>
-<li>wsgi.py:帮助Django提供它创建的文件。</li>
-</ul>
-</li>
-<li><p>创建数据库</p>
-<p><code>python manege.py migrate</code> </p>
-<p>若创建成功，则出现文件db.sqlite3。(SQLite是一种使用单个文件的数据库)</p>
-</li>
-<li><p>查看项目：</p>
-<p><code>python manage.py runserver</code></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Django</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/互喷脚本</title>
-    <url>/2020/03/04/python/%E4%BA%92%E5%96%B7%E8%84%9A%E6%9C%AC/</url>
-    <content><![CDATA[<p><font color="blue">本文参考B站UP主寒食君的视频，基于个人理解写成</font><a href="https://www.bilibili.com/video/av71289666" target="_blank" rel="noopener">视频传送门</a></p>
-<hr>
-<p>或许许多人都有在网络冲浪或者游戏里都多多少少有跟人对线的经历，可惜奈何手速不太行。看了这个视频仿佛找到了跟人对线的良器，尤其是在研习代码时使我受益良多~</p>
-<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>即一个能实现按下指定的任意键就能从文本库中调取一条语句并复制到剪贴板的功能。</p>
-<p><font color="red">希望大家还是能营造一个良好的网络环境，把这个代码当成一个学习过程就好啦。</font></p>
-<h1 id="库准备"><a href="#库准备" class="headerlink" title="库准备"></a>库准备</h1><p>（本人python版本为3.6.0 32位）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> win32clipboard <span class="keyword">as</span> w</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> PyHook3</span><br><span class="line"><span class="keyword">import</span> pythoncom</span><br><span class="line"><span class="keyword">import</span> random</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>我们需要win32clipboard来实现python对windows剪切板的操作。</li>
-</ul>
-<p>​       安装：<code>pip install pypiwin32</code></p>
-<ul>
-<li><p>pyHook是一个钩子，用来监听鼠标或键盘事件。</p>
-<p>（由于不知名原因，我用不了pyHook所以使用的是PyHook3,效果一样，但是pyHook3安装繁琐一些而且对应版本的轮子较少）</p>
-<ul>
-<li>pyHook轮子下载 ： <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/#pyhook</a> </li>
-<li>pyHook3安装教程： <a href="https://blog.csdn.net/u013560932/article/details/78732250/" target="_blank" rel="noopener">https://blog.csdn.net/u013560932/article/details/78732250/</a> </li>
-</ul>
-</li>
-</ul>
-<h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#监听键盘事件</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onKeyboardEvent</span><span class="params">(event)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(event.Key == <span class="string">"Lcontrol"</span>): <span class="comment">#按下左下角的ctrl键，可以修改为</span></span><br><span class="line">        b = random.sample(array,<span class="number">1</span>) <span class="comment">#从array数组中随机取出一条句子</span></span><br><span class="line">        settext(b[<span class="number">0</span>].encode(<span class="string">'utf-8'</span>).decode(<span class="string">'utf8'</span>).encode(sys.getfilesystemencoding()))<span class="comment">#设置到剪贴板中</span></span><br><span class="line">    <span class="comment">#print(event.Key)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#把字符串复制到剪贴板中</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">settext</span><span class="params">(s)</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    w.EmptyClipboard()</span><br><span class="line">    <span class="comment">#print(chardet.detect(str.encode(s)))</span></span><br><span class="line">    res = s.decode(<span class="string">'utf-8'</span>) <span class="comment">#如果出现乱码，注释这条语句</span></span><br><span class="line">    w.SetClipboardData(win32con.CF_UNICODETEXT,res)</span><br><span class="line">    w.CloseClipboard()</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> win32clipboard <span class="keyword">as</span> w</span><br><span class="line"><span class="keyword">import</span> win32con</span><br><span class="line"><span class="keyword">import</span> PyHook3</span><br><span class="line"><span class="keyword">import</span> pythoncom</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">filename = <span class="string">'yaoshui.txt'</span> <span class="comment">#在这里修改你的文件名路径</span></span><br><span class="line"></span><br><span class="line">array=[]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">onKeyboardEvent</span><span class="params">(event)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(event.Key == <span class="string">"Lcontrol"</span>):</span><br><span class="line">        b = random.sample(array,<span class="number">1</span>)</span><br><span class="line">        settext(b[<span class="number">0</span>].encode(<span class="string">'utf-8'</span>).decode(<span class="string">'utf-8'</span>).encode(sys.getfilesystemencoding()))</span><br><span class="line">    print(event.Key)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gettext</span><span class="params">()</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    t = w.GetClipboardData(win32con.CF_TEXT)</span><br><span class="line">    w.CloseClipboard()</span><br><span class="line">    <span class="keyword">return</span> t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">settext</span><span class="params">(s)</span>:</span></span><br><span class="line">    w.OpenClipboard()</span><br><span class="line">    w.EmptyClipboard()</span><br><span class="line">    <span class="comment">#print(chardet.detect(str.encode(s)))</span></span><br><span class="line">    res = s.decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    w.SetClipboardData(win32con.CF_UNICODETEXT,res)</span><br><span class="line">    w.CloseClipboard()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    f = open(filename,<span class="string">'r'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">    array = f.readlines() </span><br><span class="line"></span><br><span class="line">    hm = PyHook3.HookManager()</span><br><span class="line">    </span><br><span class="line">    hm.KeyDown = onKeyboardEvent</span><br><span class="line">    hm.HookKeyboard()</span><br><span class="line"></span><br><span class="line">    pythoncom.PumpMessages()</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h1><p>如果遇到中文字符乱码的情况，也许是<code>SetClipboardData()</code>这里出现问题。我在测试的时候发现参数s的字符串类型为byte，所以decode解码成了’utf-8’的编码。如果在你的电脑上运行参数s的类型是str的话，就注释掉decode的那一条语句。</p>
-<p><font color="red">如果您有任何问题，欢迎在评论区与我讨论</font></p>
-]]></content>
-  </entry>
-  <entry>
     <title>QT/QT学习笔记-信号和槽</title>
     <url>/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD/</url>
     <content><![CDATA[<h1 id="信号-Signal-和槽-Slot"><a href="#信号-Signal-和槽-Slot" class="headerlink" title="信号(Signal)和槽(Slot)"></a>信号(Signal)和槽(Slot)</h1><ul>
@@ -592,12 +356,6 @@
       <categories>
         <category>QT入门</category>
       </categories>
-  </entry>
-  <entry>
-    <title>python/webapp D3</title>
-    <url>/2020/03/02/python/webapp%20D3/</url>
-    <content><![CDATA[<h1 id="yield-from-amp-await"><a href="#yield-from-amp-await" class="headerlink" title="yield from &amp; await"></a>yield from &amp; await</h1><p> <a href="https://blog.csdn.net/soonfly/article/details/78361819" target="_blank" rel="noopener">https://blog.csdn.net/soonfly/article/details/78361819</a> </p>
-]]></content>
   </entry>
   <entry>
     <title>leetcode/5.最大回文子串(动态规划)</title>
@@ -682,63 +440,6 @@
       </categories>
   </entry>
   <entry>
-    <title>python/python学习笔记8测试</title>
-    <url>/2020/02/10/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B08%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[<h1 id="测试函数"><a href="#测试函数" class="headerlink" title="测试函数"></a>测试函数</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> unittest </span><br><span class="line"><span class="keyword">from</span> name_function <span class="keyword">import</span> get_formatted_name </span><br><span class="line"> </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NamesTestCase</span><span class="params">(unittest.TestCase)</span>:</span>     </span><br><span class="line"><span class="string">"""测试name_function.py"""</span>          </span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">test_first_last_name</span><span class="params">(self)</span>:</span>         </span><br><span class="line">	<span class="string">"""能够正确地处理像Janis Joplin这样的姓名吗？"""</span> </span><br><span class="line">    	formatted_name = get_formatted_name(<span class="string">'janis'</span>, <span class="string">'joplin'</span>)         							self.assertEqual(formatted_name, <span class="string">'Janis Joplin'</span>) </span><br><span class="line"> </span><br><span class="line">unittest.main()</span><br></pre></td></tr></table></figure>
-
-<p>首先，我们导入了模块unittest和要测试的函数get_formatted_ name()。我们创建 了一个名为NamesTestCase的类，用于包含一系列针对get_formatted_name()的单元测试。你可以随便给这个类命名，但最好让它看起来与要测试的函数相关，并包含字样Test。这个类必须继承 unittest.TestCase类，这样Python才知道如何运行你编写的测试。所有以test_打头的方法都将自动运行。</p>
-<h1 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h1><p>unittest.TestCase的断言方法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">assertEqual(a,b)				核实a==b</span><br><span class="line">assertNotEqual(a,b)				核实a!=b</span><br><span class="line">assertTrue(x)					核实x为True</span><br><span class="line">assertFalse(x)					核实x为False</span><br><span class="line">assertIn(item,list)				核实item在list中</span><br><span class="line">assertNotIn(item,list)			核实item不在list中</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="方法setUp"><a href="#方法setUp" class="headerlink" title="方法setUp()"></a>方法setUp()</h2><p>如果在TestCase类中包含了方法setUp(),Python将先运行它，再运行各个以test_打头的方法。</p>
-]]></content>
-      <categories>
-        <category>python入门</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/python学习笔记7文件和异常</title>
-    <url>/2020/02/09/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B07%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<hr>
-<p>categories；</p>
-<ul>
-<li>python入门</li>
-</ul>
-<hr>
-<h1 id="从文件中读取数据"><a href="#从文件中读取数据" class="headerlink" title="从文件中读取数据"></a>从文件中读取数据</h1><h2 id="读取整个文件"><a href="#读取整个文件" class="headerlink" title="读取整个文件"></a>读取整个文件</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'pi_digits.txt'</span>) <span class="keyword">as</span> file_object:     </span><br><span class="line">	contents = file_object.read()     </span><br><span class="line">	print(contents)</span><br></pre></td></tr></table></figure>
-
-<p>函数open()接受一个参数：要打开的文件的名称，并返回一个表示文件的对象。</p>
-<p>关键字with在不再需要访问文件后关闭，所以未调用close()。</p>
-<p>有了表示的文件对象后，使用方法read()读取文件的全部内容，存储在变量contents中。</p>
-<h2 id="逐行读取"><a href="#逐行读取" class="headerlink" title="逐行读取"></a>逐行读取</h2><p><code>for line in file_object:</code></p>
-<h2 id="创建一个包含文件各行内容的列表"><a href="#创建一个包含文件各行内容的列表" class="headerlink" title="创建一个包含文件各行内容的列表"></a>创建一个包含文件各行内容的列表</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">filename = <span class="string">'pi_digits.txt'</span> </span><br><span class="line"><span class="keyword">with</span> open(filename) <span class="keyword">as</span> file_object: </span><br><span class="line">	lines = file_object.readlines() </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> lines:    </span><br><span class="line">	print(line.rstrip())</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h1><p>要将文本写入文件，在调用open()时需要提供另一个实参。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">filename = &apos;programming.txt&apos; </span><br><span class="line"> </span><br><span class="line">with open(filename, &apos;w&apos;) as file_object: </span><br><span class="line">	file_object.write(&quot;I love programming.&quot;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>读取模式’r’</p>
-</li>
-<li><p>写入模式’w’</p>
-</li>
-<li><p>附加模式’a’</p>
-</li>
-<li><p>读取和写入模式’r+’</p>
-</li>
-</ul>
-<p>如果省略模式实参，python将以默认的只读模式打开文件</p>
-<p>要将数值数据存储到文本文件中，必须先使用函数str()。</p>
-<p>另外，函数write()不会在你写入的文本末尾添加换行符。</p>
-<h1 id="存储数据"><a href="#存储数据" class="headerlink" title="存储数据"></a>存储数据</h1><p>模块json让你能够将简单的python数据结果转储到文件中，并在程序再次运行时加载该程序中的数据。还可以使用json在python程序之间分享数据。</p>
-<p>写入：<code>json.dump()</code></p>
-<p>读入：<code>json.load()</code></p>
-]]></content>
-  </entry>
-  <entry>
     <title>CSS/CSS盒子模型</title>
     <url>/2020/02/08/CSS/CSS%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>盒子模型的内容范围包括：</p>
@@ -802,67 +503,6 @@
       </categories>
   </entry>
   <entry>
-    <title>python/python学习笔记6类</title>
-    <url>/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B06%E7%B1%BB/</url>
-    <content><![CDATA[<h1 id="创建和使用类"><a href="#创建和使用类" class="headerlink" title="创建和使用类"></a>创建和使用类</h1><h2 id="init-方法"><a href="#init-方法" class="headerlink" title="__init__()方法"></a>__init__()方法</h2><p>每次创建新的实例时，python都会自动运行它。</p>
-<p>方法__init__中并未显示地包含return语句，但python自动返回一个实例。</p>
-<h2 id="self"><a href="#self" class="headerlink" title="self"></a>self</h2><p>self会自动传递，因此我们不需要传递它。</p>
-<p>以self为前缀的变量都可以供类中的所有方法使用</p>
-<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>创建字类时，父类必须包含在当前文件中，且位于子类前面。</p>
-<p>定义子类时，必须在括号内指定父类的名称。</p>
-<p><code>class son_name(father_name):</code></p>
-<h2 id="super"><a href="#super" class="headerlink" title="super()"></a>super()</h2><p>super是一个特殊函数，帮助python将父类和子类关联起来。</p>
-<p><code>super().__init__(make, model, year)</code></p>
-<h2 id="重写父类的方法"><a href="#重写父类的方法" class="headerlink" title="重写父类的方法"></a>重写父类的方法</h2><p>对于父类的方法，只要它不符合子类模拟的实物的行为，都可以对其进行重写。</p>
-<p>当在子类中与要重写的父类方法同名时，python将不会考虑这个父类方法，而只关注在子类中定义的相应的方法。</p>
-<h1 id="导入类"><a href="#导入类" class="headerlink" title="导入类"></a>导入类</h1><p><code>from module_name import class_name</code></p>
-<p><code>from module_name import class_name1,class_name2...</code></p>
-<p><code>from module_name import *</code></p>
-<h1 id="python标准库"><a href="#python标准库" class="headerlink" title="python标准库"></a>python标准库</h1><h2 id="collections模块"><a href="#collections模块" class="headerlink" title="collections模块"></a>collections模块</h2><p>collections中的OrderedDict类的示例与字典几乎相同，但能记录键-值对的添加顺序。</p>
-]]></content>
-      <categories>
-        <category>python入门</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/python学习笔记5函数</title>
-    <url>/2020/02/08/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h1 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h1><p>使用关键字<strong>def</strong>，定义以冒号结尾。</p>
-<h1 id="传递实参"><a href="#传递实参" class="headerlink" title="传递实参"></a>传递实参</h1><h2 id="位置实参"><a href="#位置实参" class="headerlink" title="位置实参"></a>位置实参</h2><p>要求<strong>实参</strong>的顺序和<strong>形参</strong>的顺序相同</p>
-<h2 id="关键字实参"><a href="#关键字实参" class="headerlink" title="关键字实参"></a>关键字实参</h2><p>每个实参都由变量名和值组成，即传递给函数的是<strong>名称-值对</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">describe_pet(animal_type=<span class="string">'hamster'</span>, pet_name=<span class="string">'harry'</span>) </span><br><span class="line">describe_pet(pet_name=<span class="string">'harry'</span>, animal_type=<span class="string">'hamster'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>编写函数时，可以给每个形参指定默认值</p>
-<p><code>def describe_pet(pet_name, animal_type=&#39;dog&#39;):</code></p>
-<p><font color=##FF0000>注意：使用默认值时，在形参列表中必须先列出没有默认值的形参，再列出有默认值的实参。这让python能够正确地解读位置实参。</font></p>
-<h2 id="禁止函数修改列表"><a href="#禁止函数修改列表" class="headerlink" title="禁止函数修改列表"></a>禁止函数修改列表</h2><p>要将列表的<strong>副本</strong>传递给函数，可以这样做</p>
-<p><code>function_name(list_name[:])</code></p>
-<h2 id="传递任意数量的实参"><a href="#传递任意数量的实参" class="headerlink" title="传递任意数量的实参"></a>传递任意数量的实参</h2><p><code>def function_name(*parameters)</code></p>
-<p>符号*让python创建一个空元组，并将所有收到的值都封装到这个元组中。</p>
-]]></content>
-      <categories>
-        <category>python入门</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/python学习笔记4字典</title>
-    <url>/2020/02/07/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04%E5%AD%97%E5%85%B8/</url>
-    <content><![CDATA[<p>在python中，字典是一系列键-值对。每个键都与一个值相关联。用符号{}表示。</p>
-<h1 id="删除键-值对"><a href="#删除键-值对" class="headerlink" title="删除键-值对"></a>删除键-值对</h1><p>可使用del语句</p>
-<h1 id="遍历字典"><a href="#遍历字典" class="headerlink" title="遍历字典"></a>遍历字典</h1><h2 id="可声明两个变量，用于存储键-值对中的键和值"><a href="#可声明两个变量，用于存储键-值对中的键和值" class="headerlink" title="可声明两个变量，用于存储键-值对中的键和值"></a>可声明两个变量，用于存储键-值对中的键和值</h2><p>方法<code>items()</code></p>
-<p><code>for key,value in dictionary.items():</code></p>
-<h2 id="遍历键"><a href="#遍历键" class="headerlink" title="遍历键"></a>遍历键</h2><p>方法<code>keys()</code></p>
-<p><code>for key in dictionary.keys()</code></p>
-<h2 id="在遍历前按特定顺序排列"><a href="#在遍历前按特定顺序排列" class="headerlink" title="在遍历前按特定顺序排列"></a>在遍历前按特定顺序排列</h2><p>方法<code>keys()</code></p>
-<p><code>for name in sorted(dictionary.keys())</code></p>
-<h1 id="遍历值"><a href="#遍历值" class="headerlink" title="遍历值"></a>遍历值</h1><p>方法<code>values()</code></p>
-<p><code>for value in dictionary.values()</code></p>
-]]></content>
-      <categories>
-        <category>python入门</category>
-      </categories>
-  </entry>
-  <entry>
     <title>CSS/CSS样式</title>
     <url>/2020/02/05/CSS/CSS%E6%A0%B7%E5%BC%8F/</url>
     <content><![CDATA[<h1 id="CSS背景"><a href="#CSS背景" class="headerlink" title="CSS背景"></a>CSS背景</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">background-attachment		背景图像是否固定或随着页面的其余部分滚动</span><br><span class="line">background-color			设置元素的背景颜色</span><br><span class="line">background-image			把图片设置为背景</span><br><span class="line">background-position			设置背景图片的起始位置</span><br><span class="line">background-repeat			设置背景图片是否及如何重复</span><br><span class="line">background-size				规定背景图片的尺寸</span><br><span class="line">background-origin			规定背景图片的定位区域</span><br><span class="line">background-clip				规定背景的绘制区域</span><br></pre></td></tr></table></figure>
@@ -905,59 +545,6 @@
       </categories>
   </entry>
   <entry>
-    <title>python/python学习笔记3条件语句</title>
-    <url>/2020/02/05/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B03%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5/</url>
-    <content><![CDATA[<h1 id="条件测试"><a href="#条件测试" class="headerlink" title="条件测试"></a>条件测试</h1><h2 id="检查特定值是否包含在列表中"><a href="#检查特定值是否包含在列表中" class="headerlink" title="检查特定值是否包含在列表中"></a>检查特定值是否包含在列表中</h2><p>使用关键字in</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">requested_toppings = [&apos;mushrooms&apos;, &apos;onions&apos;, &apos;pineapple&apos;] </span><br><span class="line">&gt;&gt;&gt; &apos;mushrooms&apos; in requested_toppings</span><br><span class="line">True </span><br><span class="line">&gt;&gt;&gt; &apos;pepperoni&apos; in requested_toppings </span><br><span class="line">False</span><br></pre></td></tr></table></figure>
-
-<p>相反，使用not in特定值是否不包含在列表中</p>
-]]></content>
-      <categories>
-        <category>python入门</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/python学习笔记2列表</title>
-    <url>/2020/02/05/python/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02%E5%88%97%E8%A1%A8/</url>
-    <content><![CDATA[<h1 id="列表索引"><a href="#列表索引" class="headerlink" title="列表索引"></a>列表索引</h1><p>将索引指定为-1，可让python返回最后一个列表元素。</p>
-<p>同样，索引-2返回倒数第二个列表元素，索引-3返回倒数第三个列表元素，以此类推。</p>
-<h1 id="在列表中添加元素"><a href="#在列表中添加元素" class="headerlink" title="在列表中添加元素"></a>在列表中添加元素</h1><h2 id="1、在列表末尾添加元素"><a href="#1、在列表末尾添加元素" class="headerlink" title="1、在列表末尾添加元素"></a>1、在列表末尾添加元素</h2><p>方法<code>append(添加的元素)</code></p>
-<h2 id="2、在列表任意位置添加元素"><a href="#2、在列表任意位置添加元素" class="headerlink" title="2、在列表任意位置添加元素"></a>2、在列表任意位置添加元素</h2><p>方法<code>insert(插入的位置，添加的元素)</code></p>
-<h1 id="从列表中删除元素"><a href="#从列表中删除元素" class="headerlink" title="从列表中删除元素"></a>从列表中删除元素</h1><h2 id="1、使用del语句删除元素"><a href="#1、使用del语句删除元素" class="headerlink" title="1、使用del语句删除元素"></a>1、使用del语句删除元素</h2><p>前提：知道要删除的元素在列表的位置</p>
-<p><code>del list[index]</code></p>
-<h2 id="2、使用pop-方法删除元素"><a href="#2、使用pop-方法删除元素" class="headerlink" title="2、使用pop()方法删除元素"></a>2、使用pop()方法删除元素</h2><p>方法pop()可以删除列表末尾的元素，并且能够继续使用该元素</p>
-<p><code>popped = list.pop()</code></p>
-<p>增加参数可以弹出任意位置的元素</p>
-<p><code>popped = list.pop(index)</code></p>
-<h2 id="3、根据值删除元素"><a href="#3、根据值删除元素" class="headerlink" title="3、根据值删除元素"></a>3、根据值删除元素</h2><p>方法<code>remove(要删除元素的值)</code></p>
-<p>该方法也可以继续使用它的值</p>
-<p><font color = #FF0000>*注意：如果列表中有重复的值，remove()只能删除第一个指定的值</font></p>
-<h1 id="组织列表"><a href="#组织列表" class="headerlink" title="组织列表"></a>组织列表</h1><h2 id="使用sort-对列表进行永久性排序"><a href="#使用sort-对列表进行永久性排序" class="headerlink" title="使用sort()对列表进行永久性排序"></a>使用sort()对列表进行永久性排序</h2><p>按照字母顺序排序。</p>
-<p>如果需要按字母顺序相反的顺序排列元素，则需向sort()方法传递参数reverse=True。</p>
-<p><code>list.sort(reverse=True)</code></p>
-<h2 id="使用sorted-对列表进行临时排序"><a href="#使用sorted-对列表进行临时排序" class="headerlink" title="使用sorted()对列表进行临时排序"></a>使用sorted()对列表进行临时排序</h2><p><code>print(sorted(list))</code></p>
-<h2 id="倒着打印列表"><a href="#倒着打印列表" class="headerlink" title="倒着打印列表"></a>倒着打印列表</h2><p>方法<code>reverse()</code></p>
-<h2 id="确定列表的长度"><a href="#确定列表的长度" class="headerlink" title="确定列表的长度"></a>确定列表的长度</h2><p>函数<code>len()</code></p>
-<h1 id="数值列表"><a href="#数值列表" class="headerlink" title="数值列表"></a>数值列表</h1><h2 id="使用函数range"><a href="#使用函数range" class="headerlink" title="使用函数range()"></a>使用函数range()</h2><p>函数range()让python从指定的第一个值开始计数，在达到第二个值后停止，因此输出不包括第二个值。</p>
-<p>还可以指定步长<code>even_numbers = list(range(2,11,2))    //打印1~10之内的偶数</code></p>
-<h2 id="使用list-创建数字列表"><a href="#使用list-创建数字列表" class="headerlink" title="使用list()创建数字列表"></a>使用list()创建数字列表</h2><p><code>numbers = list(range(1,6))</code></p>
-<h2 id="一些简单的统计计算"><a href="#一些简单的统计计算" class="headerlink" title="一些简单的统计计算"></a>一些简单的统计计算</h2><p>min()    找出最小值</p>
-<p>max()    找出最大值</p>
-<p>sum()    找出总和</p>
-<h1 id="使用列表的一部分"><a href="#使用列表的一部分" class="headerlink" title="使用列表的一部分"></a>使用列表的一部分</h1><h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">players = [<span class="string">'charkes'</span>,<span class="string">'martina'</span>,<span class="string">'michael'</span>,<span class="string">'florence'</span>,<span class="string">'eli'</span>]</span><br><span class="line">print(players[<span class="number">0</span>:<span class="number">3</span>])	//这将输出<span class="number">0</span>，<span class="number">1</span>，<span class="number">2</span>的元素，即第<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>个元素</span><br></pre></td></tr></table></figure>
-
-<p>如果没有指定起始索引，python从列表开头开始提取，要让切片终止于列表末尾，也可以使用类似的语法</p>
-<p><code>print(players[-3:])        //打印最后三名队员的名字</code>    </p>
-<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><p><code>players_two = player[:]</code></p>
-<h1 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h1><p>不可变的列表。不同于列表用[]表示，元组使用()表示</p>
-<p><code>dimension = (200,50)</code></p>
-<h2 id="修改元组变量"><a href="#修改元组变量" class="headerlink" title="修改元组变量"></a>修改元组变量</h2><p>虽然不能修改元组的元素，但可以给存储元组的变量赋值。即重新定义整个元组</p>
-]]></content>
-      <categories>
-        <category>python入门</category>
-      </categories>
-  </entry>
-  <entry>
     <title>CSS/CSS基础</title>
     <url>/2020/02/04/CSS/CSS%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h1 id="CSS基础语法"><a href="#CSS基础语法" class="headerlink" title="CSS基础语法"></a>CSS基础语法</h1><p>1.selector{</p>
@@ -997,38 +584,6 @@
 ]]></content>
       <categories>
         <category>CSS</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>python/pyhton学习笔记1字符串</title>
-    <url>/2020/02/04/python/pyhton%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
-    <content><![CDATA[<h1 id="修改大小写"><a href="#修改大小写" class="headerlink" title="修改大小写"></a>修改大小写</h1><ul>
-<li>以首字母大写的方式显示每个单词</li>
-</ul>
-<p><code>.title()</code></p>
-<ul>
-<li>全部大写</li>
-</ul>
-<p><code>.upper()</code></p>
-<ul>
-<li>全部小写</li>
-</ul>
-<p><code>.lower()</code></p>
-<h1 id="删除空白"><a href="#删除空白" class="headerlink" title="删除空白"></a>删除空白</h1><ul>
-<li>找出字符串开头和末尾多余的空白，但是只是暂时的</li>
-</ul>
-<p><code>.rstrip()</code></p>
-<ul>
-<li>剔除开头的空白</li>
-</ul>
-<p><code>.lstrip()</code></p>
-<ul>
-<li>剔除两端的空白</li>
-</ul>
-<p><code>.strip</code></p>
-]]></content>
-      <categories>
-        <category>python入门</category>
       </categories>
   </entry>
   <entry>

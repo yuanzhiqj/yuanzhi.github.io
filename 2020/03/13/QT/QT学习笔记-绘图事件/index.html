@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="元直">
 <meta property="og:description" content="传智播客：学习视频传送门 在widget.h的public中添加void paintEvent(QPainEvent*); 在widget.cpp中编写函数 12345void Widget::paintEvent(QPaintEvent*)&amp;#123;    &#x2F;&#x2F;实例化 this指定的是绘图设备    QPainter painter(this);&amp;#125;  基本操作 线  painter.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-14T12:44:20.936Z">
+<meta property="og:updated_time" content="2020-03-16T11:05:07.567Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -468,6 +468,22 @@
 <li>QPicture则可以记录和重现QPainter的各条命令</li>
 </ul>
 <p>QPixmap继承了QPaintDevice，因此你可以使用QPainter直接在上面绘制图形。QPixmap也可以接受一个字符串作为一个文件的路径来显示这个文件，比如你想在程序之中打开png,jpg之类的文件，就可以使用QPixmap。使用QPainter的drawPixmap()函数可以把这个文件绘制到一个QLabel、QPushButton或者其它设备上。QPixmap是针对屏幕进行特殊优化的，因此它与实际的底层显示设备息息相关。(这里的显示设备不是硬件，而是操作系统提供的绘图引擎。所有在不太的操作系统平台下，QPixmap的显示可能会有所差别)</p>
+<h3 id="QPixmap"><a href="#QPixmap" class="headerlink" title="QPixmap"></a>QPixmap</h3><p>包含头文件&lt;QPixmap&gt;和&lt;QPainter&gt;</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Pixmap绘图</span></span><br><span class="line"><span class="function">QPixmap <span class="title">pix</span><span class="params">(<span class="number">300</span>,<span class="number">300</span>)</span></span>;</span><br><span class="line"><span class="comment">//填充颜色</span></span><br><span class="line">pix.fill(Qt::white);</span><br><span class="line"><span class="comment">//声明画家</span></span><br><span class="line"><span class="function">QPainter <span class="title">painter</span><span class="params">(&amp;pix)</span></span>;</span><br><span class="line">painter.setPen(QPen(Qt::green));</span><br><span class="line">painter.drawEllipse(QPoint(<span class="number">150</span>,<span class="number">150</span>),<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">pix.save(<span class="string">"D:\\QT\\project\\pix.png"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>路径最好不要有中文</p>
+<h3 id="QImage"><a href="#QImage" class="headerlink" title="QImage"></a>QImage</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//QImage绘图</span></span><br><span class="line"><span class="function">QImage <span class="title">img</span><span class="params">(<span class="number">300</span>,<span class="number">300</span>,QImage::Format_RGB32)</span></span>;</span><br><span class="line">img.fill(Qt::white);</span><br><span class="line"><span class="comment">//声明画家</span></span><br><span class="line"><span class="function">QPainter <span class="title">painter</span><span class="params">(&amp;img)</span></span>;</span><br><span class="line">painter.setPen(QPen(Qt::blue));</span><br><span class="line">painter.drawEllipse(QPoint(<span class="number">150</span>,<span class="number">150</span>),<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">img.save(<span class="string">"D:\\QT\\project\\img.png"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>利用QImage对像素修改</p>
+<p>在widget.cpp public下声明函数<code>void paintEvent(QPaintEvent*);</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> Widget::paintEvent(QPaintEvent *)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">QPainter <span class="title">painter</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">    <span class="comment">//利用QIMage 对像素修改</span></span><br><span class="line">    QImage img;</span><br><span class="line">    img.load(<span class="string">":/img.png"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改像素点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">50</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">50</span>; j &lt; <span class="number">100</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            QRgb value = qRgb(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">            img.setPixel(i,j,value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    painter.drawImage(<span class="number">0</span>,<span class="number">0</span>,img);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="QPicture"><a href="#QPicture" class="headerlink" title="QPicture"></a>QPicture</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Qicture绘图设备 可以记录和重现绘图指令</span></span><br><span class="line">QPicture pic;</span><br><span class="line">QPainter painter;</span><br><span class="line">painter.begin(&amp;pic);    <span class="comment">//开始往pic上画</span></span><br><span class="line">painter.setPen(QPen(Qt::cyan));</span><br><span class="line">painter.drawEllipse(QPoint(<span class="number">150</span>,<span class="number">150</span>),<span class="number">100</span>,<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">painter.end();          <span class="comment">//结束</span></span><br><span class="line"><span class="comment">//保存</span></span><br><span class="line">pic.save(<span class="string">"D:\\QT\\project\\pic.zt"</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//重现</span></span><br><span class="line">QPicture pic;</span><br><span class="line">pic.load(<span class="string">"D:\\QT\\project\\pic.zt"</span>);</span><br><span class="line"><span class="function">QPainter <span class="title">painter</span><span class="params">(<span class="keyword">this</span>)</span></span>;</span><br><span class="line">painter.drawPicture(<span class="number">0</span>,<span class="number">0</span>,pic);</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -501,6 +517,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/16/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-QFile%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C/" rel="prev" title="QT/QT学习笔记-QFile文件读写操作">
+                QT/QT学习笔记-QFile文件读写操作 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -581,7 +601,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -592,7 +612,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -627,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">1.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#画笔"><span class="nav-number">1.1.</span> <span class="nav-text">画笔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#画刷"><span class="nav-number">1.2.</span> <span class="nav-text">画刷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级绘图设置"><span class="nav-number">2.</span> <span class="nav-text">高级绘图设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置抗锯齿能力"><span class="nav-number">2.1.</span> <span class="nav-text">设置抗锯齿能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动画家"><span class="nav-number">2.2.</span> <span class="nav-text">移动画家</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存和还原画家的状态"><span class="nav-number">2.3.</span> <span class="nav-text">保存和还原画家的状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手动调用绘图事件"><span class="nav-number">3.</span> <span class="nav-text">手动调用绘图事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘图和绘图设备"><span class="nav-number">4.</span> <span class="nav-text">绘图和绘图设备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘图设备"><span class="nav-number">4.1.</span> <span class="nav-text">绘图设备</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本操作"><span class="nav-number">1.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#画笔"><span class="nav-number">1.1.</span> <span class="nav-text">画笔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#画刷"><span class="nav-number">1.2.</span> <span class="nav-text">画刷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级绘图设置"><span class="nav-number">2.</span> <span class="nav-text">高级绘图设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置抗锯齿能力"><span class="nav-number">2.1.</span> <span class="nav-text">设置抗锯齿能力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动画家"><span class="nav-number">2.2.</span> <span class="nav-text">移动画家</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存和还原画家的状态"><span class="nav-number">2.3.</span> <span class="nav-text">保存和还原画家的状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手动调用绘图事件"><span class="nav-number">3.</span> <span class="nav-text">手动调用绘图事件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绘图和绘图设备"><span class="nav-number">4.</span> <span class="nav-text">绘图和绘图设备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘图设备"><span class="nav-number">4.1.</span> <span class="nav-text">绘图设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#QPixmap"><span class="nav-number">4.1.1.</span> <span class="nav-text">QPixmap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QImage"><span class="nav-number">4.1.2.</span> <span class="nav-text">QImage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QPicture"><span class="nav-number">4.1.3.</span> <span class="nav-text">QPicture</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
