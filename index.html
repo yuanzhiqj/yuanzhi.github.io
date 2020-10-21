@@ -324,6 +324,358 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/21/Spring/IOC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/10/21/Spring/IOC%E6%93%8D%E4%BD%9C/" itemprop="url">Spring/IOC操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-21T23:22:00+08:00">
+                2020-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="IOC操作-Bean管理xml"><a href="#IOC操作-Bean管理xml" class="headerlink" title="IOC操作 Bean管理xml"></a>IOC操作 Bean管理xml</h1><p><strong>Bean管理：</strong></p>
+<ol>
+<li>Spring创建对象</li>
+<li>Spring注入属性</li>
+</ol>
+<p><strong>两种方式</strong></p>
+<h2 id="基于xml配置文件方式实现"><a href="#基于xml配置文件方式实现" class="headerlink" title="基于xml配置文件方式实现"></a>基于xml配置文件方式实现</h2><h3 id="基于xml方式创建对象"><a href="#基于xml方式创建对象" class="headerlink" title="基于xml方式创建对象"></a>基于xml方式创建对象</h3><p>在spring配置文件中，使用bean标签，标签里面添加对应属性就可以实现对象创建</p>
+<p><font color=red>在创建对象的时候，默认使用无参构造！</font></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.atguigu.spring5.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>常用属性</strong>:</p>
+<ul>
+<li>id属性：对象在容器中的别 名，是唯一标识</li>
+<li>class属性：类的全路径 </li>
+</ul>
+<h3 id="基于xml方式注入属性"><a href="#基于xml方式注入属性" class="headerlink" title="基于xml方式注入属性"></a>基于xml方式注入属性</h3><p>DI：IOC中的具体实现，依赖注入。</p>
+<ol>
+<li><p>第一种注入方式：使用<strong>set方法</strong>注入。</p>
+<p>（1）创建类，并定义set方法。 </p>
+<p>（2）在spring配置文件中配置对象创建，配置属性注入。</p>
+<ul>
+<li>name：类里面属性名称</li>
+<li>value：向属性注入的值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"book"</span> <span class="attr">class</span>=<span class="string">"com.atguigu.spring5.Book"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"bname"</span> <span class="attr">value</span>=<span class="string">"琅琊榜"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li>第二种注入方式：使用<strong>有参构造</strong>注入。</li>
+</ol>
+<h2 id="基于注解方式实现"><a href="#基于注解方式实现" class="headerlink" title="基于注解方式实现"></a>基于注解方式实现</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/21/Spring/IOC%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="元直">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/xushu.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元直">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/10/21/Spring/IOC%E5%AE%B9%E5%99%A8/" itemprop="url">Spring/IOC容器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-21T23:22:00+08:00">
+                2020-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="IOC概念和原理"><a href="#IOC概念和原理" class="headerlink" title="IOC概念和原理"></a>IOC概念和原理</h1><p><strong>控制反转</strong>：把对象创建和对象之间的调用过程交给Spring管理</p>
+<p><strong>目的</strong>：降低耦合度 </p>
+<hr>
+<p><strong>底层原理</strong></p>
+<ul>
+<li>xml解析</li>
+<li>工厂模式</li>
+<li>反射 </li>
+</ul>
+<h2 id="原理图解"><a href="#原理图解" class="headerlink" title="原理图解"></a>原理图解</h2><ol>
+<li>原始方式：耦合度过高。</li>
+</ol>
+<p><img src="D:%5CHEXO%5CSpring%5Cimg%5C%E5%8E%9F%E5%A7%8B.png" alt="alt img"></p>
+<ol start="2">
+<li><p>使用工厂模式：一种解决方案，降低一定的耦合度，但依然存在。</p>
+<p>(static可以直接用类调用方法，不需要new UserFactory。比如在现实中不可能每次生产一样东西就造一个工厂。）</p>
+<p><img src="D:%5CHEXO%5CSpring%5Cimg%5C%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" alt="img"></p>
+</li>
+<li><p><strong>IOC模式</strong></p>
+</li>
+</ol>
+<p>第一步： xml配置文件，配置创建的对象</p>
+<figure class="highlight plain"><figcaption><span>id</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第二步：有service类和user类，创建工厂类</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">class UserFactory&#123;</span><br><span class="line">	public static User getUser()&#123;</span><br><span class="line">		String classValue = class属性值;	//xml解析</span><br><span class="line">		Class clazz = Class.forName(classValue);	//通过反射创建对象</span><br><span class="line">		return (User)clazz.newInstance();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第三步：像上述工厂模式关系一样调用。</p>
+<h1 id="IOC接口"><a href="#IOC接口" class="headerlink" title="IOC接口"></a>IOC接口</h1><p>IOC思想基于IOC容器完成，IOC容器底层就是对象工厂。</p>
+<p>Spring提供IOC容器实现两种方式(两个接口)</p>
+<ul>
+<li><p>BeanFactory</p>
+<p>加载配置文件的时候不会创建对象，在获取对象或使用时才会创建对象。</p>
+</li>
+<li><p>ApplicationContext(常用)</p>
+<p>加载配置文件时就会把在配置文件中的对象进行创建(饿汉式)。用内存换取时间，将这些耗时的项目在服务器启动时便进行处理在Web项目时更合适。</p>
+</li>
+</ul>
+<h2 id="ApplicationContext实现类"><a href="#ApplicationContext实现类" class="headerlink" title="ApplicationContext实现类"></a>ApplicationContext实现类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = </span><br><span class="line">		<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"bean.xml"</span>);</span><br><span class="line"></span><br><span class="line">ApplicationContext context = </span><br><span class="line">		<span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"D:\Java\bean.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/03/QT/QT%E8%BF%9B%E9%98%B6-TCP%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1652,352 +2004,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD/" itemprop="url">QT/QT学习笔记-信号和槽</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-03T19:43:49+08:00">
-                2020-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/QT%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">QT入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="信号-Signal-和槽-Slot"><a href="#信号-Signal-和槽-Slot" class="headerlink" title="信号(Signal)和槽(Slot)"></a>信号(Signal)和槽(Slot)</h1><ul>
-<li>伪代码描述：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(信号的发送者,发生的具体信号,信号的接受者,信号的处理(槽))</span><br></pre></td></tr></table></figure>
-
-<p>​    <em>eg</em>:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//需求:点击mybtn实现关闭窗口的功能 connect(mybtn,&amp;MyPushButton::clicked,this,&amp;mywidget::close);</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="断开"><a href="#断开" class="headerlink" title="断开"></a>断开</h2><p>disconnect()</p>
-<h1 id="QPushButton的Signal函数"><a href="#QPushButton的Signal函数" class="headerlink" title="QPushButton的Signal函数"></a>QPushButton的Signal函数</h1><h2 id="继承自QAbstractButton"><a href="#继承自QAbstractButton" class="headerlink" title="继承自QAbstractButton"></a>继承自QAbstractButton</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void clicked(bool checked=false)	//点击</span><br><span class="line">void pressed()						//按下</span><br><span class="line">void released()						//松开</span><br><span class="line">void toggled(bool checked)			//一直按着不松开</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="自定义的信号和槽"><a href="#自定义的信号和槽" class="headerlink" title="自定义的信号和槽"></a>自定义的信号和槽</h1><h2 id="自定义信号"><a href="#自定义信号" class="headerlink" title="自定义信号"></a>自定义信号</h2><ul>
-<li><p>写在signals下</p>
-</li>
-<li><p>返回值为void，只需要声明</p>
-</li>
-<li><p>可以有参数，可以重载</p>
-</li>
-</ul>
-<h2 id="自定义槽"><a href="#自定义槽" class="headerlink" title="自定义槽"></a>自定义槽</h2><ul>
-<li>早期版本必须写到public slots下，高级版本可以写到public或者全局下</li>
-<li>返回值是void 需要声明也需要实现</li>
-<li>可以有参数可以重载</li>
-</ul>
-<h2 id="函数重载冲突"><a href="#函数重载冲突" class="headerlink" title="函数重载冲突"></a>函数重载冲突</h2><p>此时需要函数指针指向函数地址</p>
-<p><em>eg</em>:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher::*teacherSignal)(QString) = &amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Student::*studentSignal)(QString) = &amp;Student::treat;</span><br><span class="line">connect(tc,teacherSignal,st,studentSignal);</span><br><span class="line">classIsOver();</span><br></pre></td></tr></table></figure>
-
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
-<li><p>信号可以连接信号</p>
-</li>
-<li><p>一个信号可以连接多个槽函数</p>
-</li>
-<li><p>多个信号可以连接一个槽函数</p>
-</li>
-<li><p>信号和槽函数的参数类型必须一一对应</p>
-</li>
-<li><p>信号的参数个数可以多于槽函数的参数个数</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="元直">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/xushu.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元直">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/03/QT/QT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E6%A0%91/" itemprop="url">QT/QT学习笔记-对象树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-03T18:48:31+08:00">
-                2020-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/QT%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">QT入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>传智播客：<a href="https://www.bilibili.com/video/av54523708" target="_blank" rel="noopener">学习视频传送门</a></p>
-<h1 id="对象模型-对象树"><a href="#对象模型-对象树" class="headerlink" title="对象模型(对象树)"></a>对象模型(对象树)</h1><ul>
-<li><p>当创建的对象在堆区时候如果指定的父类是QObject派生下来的类或者QObject子类派生下来的类，可以不用管理释放的操作，将对象放入到对象树中。在一定程度上简化了内存回收机制</p>
-</li>
-<li><p>当创建一个QObject对象时，会看到QObject的构造函数接收一个QObject指针作为参数，这个参数就是parent，也就是父对象指针。这相当于，在创建QObject对象时，可以提供一个其父对象，我们创建的这个QObject对象会自动添加到其父对象的children()列表。</p>
-<p><em>eg</em>：一个按钮有一个QShortcut（快捷键）对象作为其子对象。当我们删除按钮的时候，这个快捷键应被删除。</p>
-</li>
-</ul>
-<h2 id="QWidgt是能够在屏幕上显示一切组件的父类"><a href="#QWidgt是能够在屏幕上显示一切组件的父类" class="headerlink" title="QWidgt是能够在屏幕上显示一切组件的父类"></a>QWidgt是能够在屏幕上显示一切组件的父类</h2><ul>
-<li><p>QWidgt继承自Qbject</p>
-<p><em>eg</em>当关闭应用程序的窗口时，任何组件都随着窗口消失而消失</p>
-</li>
-</ul>
-<h2 id="解决内存问题"><a href="#解决内存问题" class="headerlink" title="解决内存问题"></a>解决内存问题</h2><ul>
-<li><p>当一个QObject对象在堆上创建时，Qt会为其创建一个对象树。但是对象树中的对象是没有定义的，因此销毁的顺序也是未定义的。</p>
-</li>
-<li><p>任何对象树中QObject对象delete的时候。如果它有parent，那么将其从parent的children()列表中删除；如果有孩子，则自动delete每一个孩子。Qt保证没有QObject被delete两次</p>
-</li>
-</ul>
-<h2 id="出现另一种问题"><a href="#出现另一种问题" class="headerlink" title="出现另一种问题"></a>出现另一种问题</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">QPushButton <span class="title">quit</span><span class="params">(<span class="string">"Quit"</span>)</span></span>;</span><br><span class="line">QWidget window;</span><br><span class="line">quit.setParent(&amp;window);</span><br></pre></td></tr></table></figure>
-
-<p>由于window是最后一个被创建的对象，所以首先调用window的析构函数，再对quit析构(这里可以理解为栈的先进后出)。由于quit是window的子对象，所以quit在此时也被析构了。在执行完window的析构之后，又对quit调用了一次析构函数。由于对quit调用了两次析构函数，程序崩溃。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2052,7 +2058,7 @@
               
                 <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2063,7 +2069,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

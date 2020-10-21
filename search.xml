@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Spring/IOC操作</title>
+    <url>/2020/10/21/Spring/IOC%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h1 id="IOC操作-Bean管理xml"><a href="#IOC操作-Bean管理xml" class="headerlink" title="IOC操作 Bean管理xml"></a>IOC操作 Bean管理xml</h1><p><strong>Bean管理：</strong></p>
+<ol>
+<li>Spring创建对象</li>
+<li>Spring注入属性</li>
+</ol>
+<p><strong>两种方式</strong></p>
+<h2 id="基于xml配置文件方式实现"><a href="#基于xml配置文件方式实现" class="headerlink" title="基于xml配置文件方式实现"></a>基于xml配置文件方式实现</h2><h3 id="基于xml方式创建对象"><a href="#基于xml方式创建对象" class="headerlink" title="基于xml方式创建对象"></a>基于xml方式创建对象</h3><p>在spring配置文件中，使用bean标签，标签里面添加对应属性就可以实现对象创建</p>
+<p><font color=red>在创建对象的时候，默认使用无参构造！</font></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.atguigu.spring5.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>常用属性</strong>:</p>
+<ul>
+<li>id属性：对象在容器中的别 名，是唯一标识</li>
+<li>class属性：类的全路径 </li>
+</ul>
+<h3 id="基于xml方式注入属性"><a href="#基于xml方式注入属性" class="headerlink" title="基于xml方式注入属性"></a>基于xml方式注入属性</h3><p>DI：IOC中的具体实现，依赖注入。</p>
+<ol>
+<li><p>第一种注入方式：使用<strong>set方法</strong>注入。</p>
+<p>（1）创建类，并定义set方法。 </p>
+<p>（2）在spring配置文件中配置对象创建，配置属性注入。</p>
+<ul>
+<li>name：类里面属性名称</li>
+<li>value：向属性注入的值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"book"</span> <span class="attr">class</span>=<span class="string">"com.atguigu.spring5.Book"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"bname"</span> <span class="attr">value</span>=<span class="string">"琅琊榜"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li>第二种注入方式：使用<strong>有参构造</strong>注入。</li>
+</ol>
+<h2 id="基于注解方式实现"><a href="#基于注解方式实现" class="headerlink" title="基于注解方式实现"></a>基于注解方式实现</h2>]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Spring/IOC容器</title>
+    <url>/2020/10/21/Spring/IOC%E5%AE%B9%E5%99%A8/</url>
+    <content><![CDATA[<h1 id="IOC概念和原理"><a href="#IOC概念和原理" class="headerlink" title="IOC概念和原理"></a>IOC概念和原理</h1><p><strong>控制反转</strong>：把对象创建和对象之间的调用过程交给Spring管理</p>
+<p><strong>目的</strong>：降低耦合度 </p>
+<hr>
+<p><strong>底层原理</strong></p>
+<ul>
+<li>xml解析</li>
+<li>工厂模式</li>
+<li>反射 </li>
+</ul>
+<h2 id="原理图解"><a href="#原理图解" class="headerlink" title="原理图解"></a>原理图解</h2><ol>
+<li>原始方式：耦合度过高。</li>
+</ol>
+<p><img src="D:%5CHEXO%5CSpring%5Cimg%5C%E5%8E%9F%E5%A7%8B.png" alt="alt img"></p>
+<ol start="2">
+<li><p>使用工厂模式：一种解决方案，降低一定的耦合度，但依然存在。</p>
+<p>(static可以直接用类调用方法，不需要new UserFactory。比如在现实中不可能每次生产一样东西就造一个工厂。）</p>
+<p><img src="D:%5CHEXO%5CSpring%5Cimg%5C%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" alt="img"></p>
+</li>
+<li><p><strong>IOC模式</strong></p>
+</li>
+</ol>
+<p>第一步： xml配置文件，配置创建的对象</p>
+<figure class="highlight plain"><figcaption><span>id</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">第二步：有service类和user类，创建工厂类</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">class UserFactory&#123;</span><br><span class="line">	public static User getUser()&#123;</span><br><span class="line">		String classValue = class属性值;	//xml解析</span><br><span class="line">		Class clazz = Class.forName(classValue);	//通过反射创建对象</span><br><span class="line">		return (User)clazz.newInstance();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第三步：像上述工厂模式关系一样调用。</p>
+<h1 id="IOC接口"><a href="#IOC接口" class="headerlink" title="IOC接口"></a>IOC接口</h1><p>IOC思想基于IOC容器完成，IOC容器底层就是对象工厂。</p>
+<p>Spring提供IOC容器实现两种方式(两个接口)</p>
+<ul>
+<li><p>BeanFactory</p>
+<p>加载配置文件的时候不会创建对象，在获取对象或使用时才会创建对象。</p>
+</li>
+<li><p>ApplicationContext(常用)</p>
+<p>加载配置文件时就会把在配置文件中的对象进行创建(饿汉式)。用内存换取时间，将这些耗时的项目在服务器启动时便进行处理在Web项目时更合适。</p>
+</li>
+</ul>
+<h2 id="ApplicationContext实现类"><a href="#ApplicationContext实现类" class="headerlink" title="ApplicationContext实现类"></a>ApplicationContext实现类</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ApplicationContext context = </span><br><span class="line">		<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"bean.xml"</span>);</span><br><span class="line"></span><br><span class="line">ApplicationContext context = </span><br><span class="line">		<span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"D:\Java\bean.xml"</span>);</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+  </entry>
+  <entry>
     <title>QT/QT进阶-TCP网络通信</title>
     <url>/2020/09/03/QT/QT%E8%BF%9B%E9%98%B6-TCP%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1/</url>
     <content><![CDATA[<p>​    在QT的程序环境中QT已经集成了Server、TCPSocket和UDPSocket的类供用户使用，所以在QT中编写网络通信还是比较方便的。</p>

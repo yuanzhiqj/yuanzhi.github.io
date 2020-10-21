@@ -79,14 +79,14 @@
 
 
 
-<meta name="description" content="2D、3D转换通过CSS3转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸 转换是使元素改变形状、尺寸和位置的一种效果 2D转换方法：12345translate()		&#x2F;&#x2F;平移rotate()		&#x2F;&#x2F;翻转scale()			&#x2F;&#x2F;缩放skew()			&#x2F;&#x2F;倾斜matrix()		&#x2F;&#x2F;矩阵  在不同的浏览器可能需要加上不同的前缀 1234-webkit-transform:translate()">
+<meta name="description" content="IOC操作 Bean管理xmlBean管理：  Spring创建对象 Spring注入属性  两种方式 基于xml配置文件方式实现基于xml方式创建对象在spring配置文件中，使用bean标签，标签里面添加对应属性就可以实现对象创建 在创建对象的时候，默认使用无参构造！ 1&amp;lt;bean id=&quot;user&quot; class=&quot;com.atguigu.spring5.User&quot;&amp;gt;&amp;lt;&#x2F;be">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS&#x2F;CSS动画">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;14&#x2F;CSS&#x2F;CSS%E5%8A%A8%E7%94%BB&#x2F;index.html">
+<meta property="og:title" content="Spring&#x2F;IOC操作">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;10&#x2F;21&#x2F;Spring&#x2F;IOC%E6%93%8D%E4%BD%9C&#x2F;index.html">
 <meta property="og:site_name" content="元直">
-<meta property="og:description" content="2D、3D转换通过CSS3转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸 转换是使元素改变形状、尺寸和位置的一种效果 2D转换方法：12345translate()		&#x2F;&#x2F;平移rotate()		&#x2F;&#x2F;翻转scale()			&#x2F;&#x2F;缩放skew()			&#x2F;&#x2F;倾斜matrix()		&#x2F;&#x2F;矩阵  在不同的浏览器可能需要加上不同的前缀 1234-webkit-transform:translate()">
+<meta property="og:description" content="IOC操作 Bean管理xmlBean管理：  Spring创建对象 Spring注入属性  两种方式 基于xml配置文件方式实现基于xml方式创建对象在spring配置文件中，使用bean标签，标签里面添加对应属性就可以实现对象创建 在创建对象的时候，默认使用无参构造！ 1&amp;lt;bean id=&quot;user&quot; class=&quot;com.atguigu.spring5.User&quot;&amp;gt;&amp;lt;&#x2F;be">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-14T11:15:26.156Z">
+<meta property="og:updated_time" content="2020-10-21T15:21:40.070Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -117,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/14/CSS/CSS动画/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/10/21/Spring/IOC操作/"/>
 
 
 
 
 
-  <title>CSS/CSS动画 | 元直</title>
+  <title>Spring/IOC操作 | 元直</title>
   
 
 
@@ -324,7 +324,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/CSS/CSS%E5%8A%A8%E7%94%BB/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/21/Spring/IOC%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="元直">
@@ -341,7 +341,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSS/CSS动画</h1>
+          <h1 class="post-title" itemprop="name headline">Spring/IOC操作</h1>
         
 
         <div class="post-meta">
@@ -353,8 +353,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-14T18:15:34+08:00">
-                2020-02-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-21T23:22:00+08:00">
+                2020-10-21
               </time>
             
 
@@ -376,8 +376,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
+                  <a href="/categories/Spring/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring</span>
                   </a>
                 </span>
 
@@ -413,24 +413,40 @@
       
 
       
-        <h1 id="2D、3D转换"><a href="#2D、3D转换" class="headerlink" title="2D、3D转换"></a>2D、3D转换</h1><p>通过CSS3转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸</p>
-<p>转换是使元素改变形状、尺寸和位置的一种效果</p>
-<h2 id="2D转换方法："><a href="#2D转换方法：" class="headerlink" title="2D转换方法："></a>2D转换方法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">translate()		//平移</span><br><span class="line">rotate()		//翻转</span><br><span class="line">scale()			//缩放</span><br><span class="line">skew()			//倾斜</span><br><span class="line">matrix()		//矩阵</span><br></pre></td></tr></table></figure>
+        <h1 id="IOC操作-Bean管理xml"><a href="#IOC操作-Bean管理xml" class="headerlink" title="IOC操作 Bean管理xml"></a>IOC操作 Bean管理xml</h1><p><strong>Bean管理：</strong></p>
+<ol>
+<li>Spring创建对象</li>
+<li>Spring注入属性</li>
+</ol>
+<p><strong>两种方式</strong></p>
+<h2 id="基于xml配置文件方式实现"><a href="#基于xml配置文件方式实现" class="headerlink" title="基于xml配置文件方式实现"></a>基于xml配置文件方式实现</h2><h3 id="基于xml方式创建对象"><a href="#基于xml方式创建对象" class="headerlink" title="基于xml方式创建对象"></a>基于xml方式创建对象</h3><p>在spring配置文件中，使用bean标签，标签里面添加对应属性就可以实现对象创建</p>
+<p><font color=red>在创建对象的时候，默认使用无参构造！</font></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.atguigu.spring5.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>在不同的浏览器可能需要加上不同的前缀</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform:translate()	//safari、chrome</span><br><span class="line">-ms-transform:translate()		//IE</span><br><span class="line">-o-transform:translate()		//opera</span><br><span class="line">-moz-transform:translate()		//firefox</span><br></pre></td></tr></table></figure>
+<p><strong>常用属性</strong>:</p>
+<ul>
+<li>id属性：对象在容器中的别 名，是唯一标识</li>
+<li>class属性：类的全路径 </li>
+</ul>
+<h3 id="基于xml方式注入属性"><a href="#基于xml方式注入属性" class="headerlink" title="基于xml方式注入属性"></a>基于xml方式注入属性</h3><p>DI：IOC中的具体实现，依赖注入。</p>
+<ol>
+<li><p>第一种注入方式：使用<strong>set方法</strong>注入。</p>
+<p>（1）创建类，并定义set方法。 </p>
+<p>（2）在spring配置文件中配置对象创建，配置属性注入。</p>
+<ul>
+<li>name：类里面属性名称</li>
+<li>value：向属性注入的值</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"book"</span> <span class="attr">class</span>=<span class="string">"com.atguigu.spring5.Book"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"bname"</span> <span class="attr">value</span>=<span class="string">"琅琊榜"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 
-
-
-<h2 id="3D转换方法："><a href="#3D转换方法：" class="headerlink" title="3D转换方法："></a>3D转换方法：</h2><p>rotateX()</p>
-<p>rotateY()</p>
-<h1 id="过渡"><a href="#过渡" class="headerlink" title="过渡"></a>过渡</h1><p>通过使用CSS3，可以给元素添加一些效果</p>
-<p>CSS3过渡是元素从一种样式转换为另一种样式</p>
-<p>​    动画执行的CSS</p>
-<p>​    动画执行的时间</p>
-
+</li>
+</ol>
+<ol start="2">
+<li>第二种注入方式：使用<strong>有参构造</strong>注入。</li>
+</ol>
+<h2 id="基于注解方式实现"><a href="#基于注解方式实现" class="headerlink" title="基于注解方式实现"></a>基于注解方式实现</h2>
       
     </div>
     
@@ -454,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/10/CSS/CSS%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" rel="next" title="CSS/CSS常用操作">
-                <i class="fa fa-chevron-left"></i> CSS/CSS常用操作
+              <a href="/2020/10/21/Spring/IOC%E5%AE%B9%E5%99%A8/" rel="next" title="Spring/IOC容器">
+                <i class="fa fa-chevron-left"></i> Spring/IOC容器
               </a>
             
           </div>
@@ -463,10 +479,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/15/Javascript/JS%E5%9F%BA%E7%A1%80/" rel="prev" title="Javascript/JS基础">
-                Javascript/JS基础 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -593,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2D、3D转换"><span class="nav-number">1.</span> <span class="nav-text">2D、3D转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2D转换方法："><span class="nav-number">1.1.</span> <span class="nav-text">2D转换方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3D转换方法："><span class="nav-number">1.2.</span> <span class="nav-text">3D转换方法：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过渡"><span class="nav-number">2.</span> <span class="nav-text">过渡</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IOC操作-Bean管理xml"><span class="nav-number">1.</span> <span class="nav-text">IOC操作 Bean管理xml</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于xml配置文件方式实现"><span class="nav-number">1.1.</span> <span class="nav-text">基于xml配置文件方式实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于xml方式创建对象"><span class="nav-number">1.1.1.</span> <span class="nav-text">基于xml方式创建对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于xml方式注入属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">基于xml方式注入属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于注解方式实现"><span class="nav-number">1.2.</span> <span class="nav-text">基于注解方式实现</span></a></li></ol></li></ol></div>
             
 
           </div>
